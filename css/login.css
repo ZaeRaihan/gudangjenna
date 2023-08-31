@@ -1,0 +1,172 @@
+body {
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0; /* Halaman Tertutup Semua */
+  padding: 0; /* Halaman Tertutup Semua */
+  background-color: #F0F0F0;
+  overflow-x: hidden; /* Mencegah menggeser halaman ke samping secara horizontal */
+  }
+
+p {
+  font-size: 15px;
+}
+h1 {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+hr.star-primary {
+  padding: 0;
+  border: none;
+  border-top: solid 5px;
+  max-width: 250px;
+  margin: 10px auto 30px;
+}  
+
+/*                      NAVBAR                           */
+.navbar-custom {
+    background: #454545; /* BG Navbar */
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: none;
+  }
+
+.navbar-custom .navbar-brand {
+  color: whitesmoke; /* Teks Navbar */
+}
+
+.navbar-custom:hover,
+.navbar-custom:focus,
+.navbar-custom:active,
+.navbar-custom.active {
+  color: white;
+}
+.navbar-custom .navbar-nav {
+  letter-spacing: 1px;
+}
+.navbar-custom .navbar-nav li a {
+  color: black;
+}
+.navbar-custom .navbar-nav li a:hover {
+  color: white;
+}
+.navbar-custom .navbar-nav li a:focus,
+.navbar-custom .navbar-nav li a:active {
+  color: white;
+}
+.navbar-custom .navbar-nav li.active a {
+  color: white;
+  background: green;
+}
+.navbar-custom .navbar-nav li.active a:hover,
+.navbar-custom .navbar-nav li.active a:focus,
+.navbar-custom .navbar-nav li.active a:active {
+  color: white;
+  background: yellow;
+}
+.navbar-custom .navbar-toggle {
+  color: white;
+  text-transform: uppercase;
+  font-size: 10px;
+  border-color: white;
+}
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+  background-color: #E6E7E8;
+  color: white;
+  border-color: #E6E7E8;
+}
+
+@media (min-width: 768px) {
+  .navbar-custom {
+    padding: 10px 0;
+    -webkit-transition: padding 0.3s;
+    -moz-transition: padding 0.3s;
+    transition: padding 0.3s;
+  }
+  .navbar-custom .navbar-brand {
+    font-size: 2em;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  .navbar-custom.affix {
+    padding: 10px 0;
+  }
+  .navbar-custom.affix .navbar-brand {
+    font-size: 1.5em;
+  }
+}
+
+
+/*                      BODY                           */
+section {
+  color: black;
+  width: 100vw;
+  height: 90vh;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+
+}
+section.bagian3 {
+  background: #E6E7E8;
+  padding-top: 250px;
+}
+
+
+/* padding pada bagian atas dan bawah untuk tampilan di perangkat mobile */
+@media (max-width: 767px) {
+  section.bagian3 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+
+/* Ukuran font untuk tampilan di perangkat mobile */
+@media (max-width: 767px) {
+  h1.panel-title {
+    font-size: 24px;
+  }
+  p {
+    font-size: 12px;
+  }
+  .form-group .btn {
+    font-size: 10px;
+  }
+}
+
+
+
+/*                      FOOTER                           */
+
+/* Agar footer tetap berada di bawah */
+footer {
+  text-transform: uppercase;
+  padding: 20px;
+  color: whitesmoke;
+  background-color: #454545;
+  text-align: center;
+  font-weight: bold;
+  position: fixed; /* agar footer tetap berada di bawah */
+  bottom: 0; /* agar footer tetap berada di bawah */
+  left: 0;
+  width: 100%; /* agar footer menutupi seluruh lebar halaman */
+  z-index: 999;
+}
+
+footer p{
+ text-align: center;
+}
+
+/* margin bottom pada section untuk memberi ruang agar footer tidak menutupi konten */
+section {
+ margin-bottom: 60px;
+}
+
+.text-danger {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}

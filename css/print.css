@@ -1,0 +1,68 @@
+body {
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 15px;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: x-large;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th {
+  background-color: #9DB2BF;
+  border: 1px solid black;
+  text-align: center;
+  border-bottom: 2px solid black;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.table td {
+  background-color: #EEE2DE;
+  border: 1px solid black;
+  text-align: center;
+;
+}
+
+.table tr:hover {
+  background-color: white; 
+}
+
+.table tr:hover td {
+  background-color: white; 
+  color: black; 
+}
+
+.text-center {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.text-right {
+  margin-top: 10px;
+}
+
+@media print {
+  /* Styles untuk printed content */
+  table {
+      border-collapse: collapse;
+      width: 100%;
+  }
+  th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+  }
+  h1 {
+      text-align: center;
+  }
+}
