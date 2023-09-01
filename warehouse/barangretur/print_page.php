@@ -57,7 +57,7 @@ $selectedRowsData = query($query);
     </table>
     <p class="text-right mt-3" style="margin-right: 100px; margin-bottom: 75px; margin-top: 30px;">Tanda tangan:</p>
     <p class="text-right mt-3">__________________________</p>
-    <p class="text-right mt-3" style="margin-right: 178px;"><?php echo getNama($_SESSION['username']); ?></p>
+    <p class="text-right mt-3" style="margin-right: 178px;"><?php echo getNama($_SESSION['usernamewh']); ?></p>
 
 </body>
 

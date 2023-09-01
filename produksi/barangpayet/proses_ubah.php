@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = ubahBarang($_POST, $idbarang_payet);
     if ($result > 0) {
         echo "<script>alert('Data Barang berhasil diubah!');</script>";
-        echo "<script>window.location.href = 'barangpayet.php?page=$page';</script>"; // Redirect kembali ke halaman admin
+        echo "<script>window.location.href = '".$_POST['url']."';</script>";
     } else {
         echo "<script>alert('Data Barang gagal diubah!');</script>";
-        echo "<script>window.location.href = 'barangpayet.php?page=$page';</script>"; // Redirect kembali ke halaman admin
+        echo "<script>window.location.href = '".$_POST['url']."';</script>";
     }
 }

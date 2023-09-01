@@ -3,7 +3,7 @@ session_start();
 require 'functions.php';
 
 // cek apakah user belum login
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['usernamewh'])) {
     header("Location: login.php");
     exit();
 }
@@ -43,7 +43,7 @@ if (!isset($_SESSION['username'])) {
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown"
-                    href="../logout.php"><?php echo getNama($_SESSION['username']); ?></i>
+                    href="../logout.php"><?php echo getNama($_SESSION['usernamewh']); ?></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li>
@@ -131,7 +131,7 @@ if (!isset($_SESSION['username'])) {
     <div class="content">
         <div class="container-fluid">
             <!------- HEADER ------->
-            <h1 class="page-header">Selamat Datang <?php echo getNama($_SESSION['username']); ?></h1> <!-- PAKE PHP -->
+            <h1 class="page-header">Selamat Datang <?php echo getNama($_SESSION['usernamewh']); ?></h1> <!-- PAKE PHP -->
             <div class="row">
                 <!-- Cards di atas -->
                 <div class="column">

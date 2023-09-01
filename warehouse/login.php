@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Compare password yang sudah pakai hash
     if (password_verify($password, $hashedPassword)) {
-        $_SESSION['username'] = $username;
+        $_SESSION['usernamewh'] = $username;
         header("Location: beranda.php");
         exit();
     } else {

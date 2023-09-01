@@ -3,7 +3,7 @@ session_start();
 require 'functions.php';
 
 // Check jika user sudah login
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['usernamepr'])) {
     header("Location: ../login.php");
     exit();
 }
@@ -108,7 +108,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown"
-                    href="../logout.php"><?php echo getNama($_SESSION['username']); ?></i>
+                    href="../logout.php"><?php echo getNama($_SESSION['usernamepr']); ?></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li>
@@ -399,7 +399,8 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <div class="modal-body">
                                         <!-- Form untuk mengubah data barang -->
                                         <form action="proses_ubah.php" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="id" value="<?= $row["idbarang_insewing"]; ?>">
+                                        <input type="hidden" name="url" value="<?= basename($_SERVER['PHP_SELF']) . "?" . $_SERVER['QUERY_STRING'] ?>">    
+                                        <input type="hidden" name="id" value="<?= $row["idbarang_insewing"]; ?>">
                                             <div class="form-group">
                                                 <label for="tgl_brg_keluar">Tanggal Barang Keluar</label>
                                                 <input type="date" class="form-control" id="tgl_brg_keluar"
