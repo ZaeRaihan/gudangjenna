@@ -66,10 +66,26 @@ function ubahBarang($data, $idbarang_inrevisi)
     $totalstock = htmlspecialchars($data['totalstock']);
     $status = htmlspecialchars($data['status']);
 
-    // Convert the date values to the correct format (YYYY-MM-DD)
+// Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
     $launching_date = date('Y-m-d', strtotime($launching_date));
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
+
+    // Query untuk mendapatkan total stock masuk sebelum perubahan
+    $query = "SELECT totalstock, stock_inrevisi FROM baranginrevisi WHERE idbarang_inrevisi = $idbarang_inrevisi";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    $totalstock_sebelumnya = $row['totalstock'];
+    $stock_inrevisi_sebelumnya = $row['stock_inrevisi'];
+
+    // Tambahkan kondisi untuk memeriksa apakah total stock baru tidak sama dengan stock in revisi
+    if ($totalstock_sebelumnya != $stock_inrevisi) {
+        // Hitung total stock masuk baru berdasarkan perubahan stock hasil revisi
+        $totalstock_baru = $totalstock_sebelumnya + $stock_hasilrevisi;
+    } else {
+        // Jika total stock sama dengan stock in revisi, maka total stock baru tetap sama dengan total stock sebelumnya
+        $totalstock_baru = $totalstock_sebelumnya;
+    }
 
     // Query ubah barang
     $query = "UPDATE baranginrevisi SET 
@@ -84,7 +100,7 @@ function ubahBarang($data, $idbarang_inrevisi)
         vendor_revisi = '$vendor_revisi',
         tgl_brg_masuk = '$tgl_brg_masuk',
         sj_from_vendor = '$sj_from_vendor',
-        totalstock = '$totalstock',
+        totalstock = '$totalstock_baru',
         status = '$status'
     WHERE idbarang_inrevisi = $idbarang_inrevisi";
 
