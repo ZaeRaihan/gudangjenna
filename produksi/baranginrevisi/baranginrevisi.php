@@ -41,23 +41,31 @@ if (!empty($search)) {
     $search = strtolower($search); // Ubah istilah penelusuran menjadi huruf kecil
 
     $search_filter = "WHERE 
-        LOWER(tgl_brg_keluar) LIKE '%$search%' OR
-        LOWER(sj_for_vendor) LIKE '%$search%' OR
-        LOWER(launching_date) LIKE '%$search%' OR
-        LOWER(collection) LIKE '%$search%' OR
-        LOWER(article_name) LIKE '%$search%' OR
-        LOWER(size) LIKE '%$search%' OR
-        LOWER(stock_inrevisi) LIKE '%$search%' OR
-        LOWER(stock_hasilrevisi) LIKE '%$search%' OR
-        LOWER(vendor_revisi) LIKE '%$search%' OR
-        DATE_FORMAT(tgl_brg_keluar, '%d-%m-%Y') LIKE '%$search%' OR
-        DATE_FORMAT(launching_date, '%d-%m-%Y') LIKE '%$search%' OR
-        DATE_FORMAT(tgl_brg_keluar, '%Y-%m-%d') LIKE '%$search%' OR
-        DATE_FORMAT(launching_date, '%Y-%m-%d') LIKE '%$search%' OR
-        LOWER(MONTHNAME(tgl_brg_keluar)) LIKE '%$search%' OR
-        LOWER(MONTHNAME(launching_date)) LIKE '%$search%' OR
-        LOWER(YEAR(tgl_brg_keluar)) LIKE '%$search%'OR
-        LOWER(YEAR(launching_date)) LIKE '%$search%' ";
+    LOWER(tgl_brg_keluar) LIKE '%$search%' OR
+    LOWER(sj_for_vendor) LIKE '%$search%' OR
+    LOWER(launching_date) LIKE '%$search%' OR
+    LOWER(collection) LIKE '%$search%' OR
+    LOWER(article_name) LIKE '%$search%' OR
+    LOWER(size) LIKE '%$search%' OR
+    LOWER(stock_inrevisi) LIKE '%$search%' OR
+    LOWER(vendor_revisi) LIKE '%$search%' OR
+    LOWER(tgl_brg_masuk) LIKE '%$search%' OR
+    LOWER(sj_from_vendor) LIKE '%$search%' OR
+    LOWER(stock_hasilrevisi) LIKE '%$search%' OR
+    LOWER(totalstock) LIKE '%$search%' OR
+    LOWER(status) LIKE '%$search%' OR
+    DATE_FORMAT(launching_date, '%d-%m-%Y') LIKE '%$search%' OR
+    DATE_FORMAT(tgl_brg_keluar, '%d-%m-%Y') LIKE '%$search%' OR
+    DATE_FORMAT(tgl_brg_masuk, '%d-%m-%Y') LIKE '%$search%' OR
+    DATE_FORMAT(launching_date, '%Y-%m-%d') LIKE '%$search%' OR
+    DATE_FORMAT(tgl_brg_keluar, '%Y-%m-%d') LIKE '%$search%' OR
+    DATE_FORMAT(tgl_brg_masuk, '%Y-%m-%d') LIKE '%$search%' OR
+    LOWER(MONTHNAME(launching_date)) LIKE '%$search%' OR
+    LOWER(MONTHNAME(tgl_brg_keluar)) LIKE '%$search%' OR
+    LOWER(MONTHNAME(tgl_brg_masuk)) LIKE '%$search%' OR
+    LOWER(YEAR(launching_date)) LIKE '%$search%' OR
+    LOWER(YEAR(tgl_brg_keluar)) LIKE '%$search%' OR
+    LOWER(YEAR(tgl_brg_masuk)) LIKE '%$search%'";
 }
 
 // Query dengan search filter and date filter
@@ -229,7 +237,19 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <!-- PAGINATION -->
                             <div class="pagination-container">
                                 <ul class="pagination pagination-lg">
-                                    <?php for ($p = 1; $p <= $totalPagesSearchDateFilter; $p++) : ?>
+                                    <?php if ($page > 1) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page - 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
+                                    <?php
+                                    $startPage = max(1, $page - 1);
+                                    $endPage = min($totalPagesSearchDateFilter, $startPage + 4);
+                                    for ($p = $startPage; $p <= $endPage; $p++) :
+                                    ?>
                                     <li class="<?php if ($p == $page) echo 'active'; ?>">
                                         <a
                                             href="?page=<?php echo $p; ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>">
@@ -237,6 +257,15 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                         </a>
                                     </li>
                                     <?php endfor; ?>
+
+                                    <?php if ($page < $totalPagesSearchDateFilter) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page + 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -245,7 +274,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
 
                 <!-- Date Filter Form -->
                 <div class="row" style="margin-top: 5px; margin-bottom: 5px">
-                    <div class="col-md-12">
+                    <div class="col-md-10">
                         <form action="" method="GET" class="form-inline">
                             <label for="start_date">Start Date:</label>
                             <input type="date" class="form-control mx-2" id="start_date" name="start_date"
@@ -259,8 +288,11 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <a href="baranginrevisi.php" class="btn btn-warning mx-2">Clear Filter</a>
                         </form>
                     </div>
+                    <div class="col-md-2 text-right">
+                        <!-- "text-right" untuk menggeser teks ke kanan -->
+                        <a href="baranginrevisi_history.php" class="btn btn-info mx-2" target="_blank">History</a>
+                    </div>
                 </div>
-
 
 
                 <!-- Modal -->
@@ -283,7 +315,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             name="tgl_brg_keluar" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="sj_for_vendor">Surat Jalan For Vendor</label>
+                                        <label for="sj_for_vendor">SJ For Vendor Revisi</label>
                                         <input type="text" class="form-control" id="sj_for_vendor" name="sj_for_vendor">
                                     </div>
                                     <div class="form-group">
@@ -306,18 +338,40 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     </div>
                                     <div class="form-group">
                                         <label for="stock_inrevisi">Stock In Revisi</label>
-                                        <input type="text" class="form-control" id="stock_inrevisi"
-                                            name="stock_inrevisi" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="stock_hasilrevisi">Stock Hasil Revisi</label>
-                                        <input type="text" class="form-control" id="stock_hasilrevisi"
-                                            name="stock_hasilrevisi" required>
+                                        <input type="number" class="form-control" id="stock_inrevisi"
+                                            name="stock_inrevisi" pattern="[0-9]*">
                                     </div>
                                     <div class="form-group">
                                         <label for="vendor_revisi">Vendor Revisi</label>
                                         <input type="text" class="form-control" id="vendor_revisi" name="vendor_revisi"
                                             required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tgl_brg_masuk">Tanggal Barang Masuk</label>
+                                        <input type="date" class="form-control" id="tgl_brg_masuk" name="tgl_brg_masuk">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sj_from_vendor">SJ From Vendor Revisi</label>
+                                        <input type="text" class="form-control" id="sj_from_vendor"
+                                            name="sj_from_vendor">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stock_hasilrevisi">Stock Hasil Revisi</label>
+                                        <input type="number" class="form-control" id="stock_hasilrevisi"
+                                            name="stock_hasilrevisi" pattern="[0-9]*">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="totalstock">Total Stock Masuk</label>
+                                        <input type="number" class="form-control" id="totalstock" name="totalstock"
+                                            pattern="[0-9]*">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="status">Status</label>
+                                        <select class="form-control" id="status" name="status" required>
+                                            <option value="" disabled selected>Pilih Status Barang</option>
+                                            <option value="Finished">Finished</option>
+                                            <option value="on progress">On progress</option>
+                                        </select>
                                     </div>
                                     <button type="submit" class="btn btn-success">Tambah</button>
                                 </form>
@@ -332,14 +386,19 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <th scope="col"></th>
                             <th scope="col">No</th>
                             <th scope="col">Tanggal Barang Keluar</th>
-                            <th scope="col">Surat Jalan For Vendor</th>
+                            <th scope="col">SJ For Revisi</th>
                             <th scope="col">Launching Date</th>
                             <th scope="col">Collection</th>
                             <th scope="col">Article Name</th>
                             <th scope="col">Size</th>
                             <th scope="col">Stock In Revisi</th>
-                            <th scope="col">Stock Hasil Revisi</th>
                             <th scope="col">Vendor Revisi</th>
+                            <th scope="col">Tanggal Barang Masuk</th>
+                            <th scope="col">SJ From Revisi</th>
+                            <th scope="col">Stock Hasil Revisi</th>
+                            <th scope="col">Total Stock Masuk</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Kirim</th>
                             <th scope="col">Aksi</th>
                         </tr>
 
@@ -360,13 +419,27 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <td><?= $row["article_name"]; ?></td>
                             <td><?= $row["size"]; ?></td>
                             <td><?= $row["stock_inrevisi"]; ?></td>
-                            <td><?= $row["stock_hasilrevisi"]; ?></td>
                             <td><?= $row["vendor_revisi"]; ?></td>
+                            <td><?= formatDate($row["tgl_brg_masuk"]); ?></td>
+                            <td><?= $row["sj_from_vendor"]; ?></td>
+                            <td><?= $row["stock_hasilrevisi"]; ?></td>
+                            <td><?= $row["totalstock"]; ?></td>
+                            <td><?= $row["status"]; ?></td>
+                            <td>
+                                <div class="btn-group text-center" style="display: flex; justify-content: center;">
+                                    <!-- Button untuk mengirim data ke tabel barangqc -->
+                                    <form action="kirim_qc.php" method="post" style="margin: 0;">
+                                        <input type="hidden" name="idbarang_inrevisi"
+                                            value="<?= $row["idbarang_inrevisi"]; ?>">
+                                        <button type="submit" class="btn btn-info">QC</button>
+                                    </form>
+                                </div>
+                            </td>
                             <td>
                                 <div class="btn-group text-center" style="display: flex; justify-content: center;">
                                     <button type="button" class="btn btn-warning delete-button"
                                         data-id="<?= $row["idbarang_inrevisi"]; ?>">Hapus</button>
-                                    <button type="button" class="btn btn-primary update-button" data-toggle="modal"
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#ubahBarangModal<?= $row["idbarang_inrevisi"]; ?>"
                                         data-id="<?= $row["idbarang_inrevisi"]; ?>"
                                         data-page="<?= $page; ?>">Ubah</button>
@@ -392,8 +465,9 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <div class="modal-body">
                                         <!-- Form untuk mengubah data barang -->
                                         <form action="proses_ubah.php" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="url" value="<?= basename($_SERVER['PHP_SELF']) . "?" . $_SERVER['QUERY_STRING'] ?>">    
-                                        <input type="hidden" name="id" value="<?= $row["idbarang_inrevisi"]; ?>">
+                                            <input type="hidden" name="url"
+                                                value="<?= basename($_SERVER['PHP_SELF']) . "?" . $_SERVER['QUERY_STRING'] ?>">
+                                            <input type="hidden" name="id" value="<?= $row["idbarang_inrevisi"]; ?>">
                                             <div class="form-group">
                                                 <label for="tgl_brg_keluar">Tanggal Barang Keluar</label>
                                                 <input type="date" class="form-control" id="tgl_brg_keluar"
@@ -401,9 +475,9 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                     required>
                                             </div>
                                             <div class="form-group">
-                                                <label for="sj_for_vendor">Surat Jalan For Vendor</label>
+                                                <label for="sj_for_vendor">SJ For Vendor Revisi</label>
                                                 <input type="text" class="form-control" id="sj_for_vendor"
-                                                    name="sj_for_vendor" value="<?= $row["sj_for_vendor"]; ?>" required>
+                                                    name="sj_for_vendor" value="<?= $row["sj_for_vendor"]; ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="launching_date">Launching Date</label>
@@ -427,20 +501,50 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             </div>
                                             <div class="form-group">
                                                 <label for="stock_inrevisi">Stock In Revisi</label>
-                                                <input type="text" class="form-control" id="stock_inrevisi"
-                                                    name="stock_inrevisi" value="<?= $row["stock_inrevisi"]; ?>"
-                                                    required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="stock_hasilrevisi">Stock hasil Revisi</label>
-                                                <input type="text" class="form-control" id="stock_hasilrevisi"
-                                                    name="stock_hasilrevisi" value="<?= $row["stock_hasilrevisi"]; ?>"
-                                                    required>
+                                                <input type="number" class="form-control" id="stock_inrevisi"
+                                                    name="stock_inrevisi" pattern="[0-9]*"
+                                                    value="<?= $row["stock_inrevisi"]; ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="vendor_revisi">Vendor Revisi</label>
                                                 <input type="text" class="form-control" id="vendor_revisi"
-                                                    name="vendor_revisi" value="<?= $row["vendor_revisi"]; ?>" required>
+                                                    name="vendor_revisi" value="<?= $row["vendor_revisi"]; ?>">
+                                            </div>
+                                            <!-- New Fields -->
+                                            <div class="form-group">
+                                                <label for="tgl_brg_masuk">Tanggal Barang Masuk</label>
+                                                <input type="date" class="form-control" id="tgl_brg_masuk"
+                                                    name="tgl_brg_masuk" value="<?= $row["tgl_brg_masuk"]; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sj_from_vendor">SJ From Vendor Revisi</label>
+                                                <input type="text" class="form-control" id="sj_from_vendor"
+                                                    name="sj_from_vendor" value="<?= $row["sj_from_vendor"]; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="stock_hasilrevisi">Stock Hasil Revisi</label>
+                                                <input type="number" class="form-control" id="stock_hasilrevisi"
+                                                    name="stock_hasilrevisi" pattern="[0-9]*"
+                                                    value="<?= $row["stock_hasilrevisi"]; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="totalstock">Total Stock Masuk</label>
+                                                <input type="number" class="form-control" id="totalstock"
+                                                    name="totalstock" pattern="[0-9]*"
+                                                    value="<?= $row["totalstock"]; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="status">Status</label>
+                                                <select class="form-control" id="status" name="status" required>
+                                                    <option value="" disabled>Pilih Status Barang</option>
+                                                    <option value="Finished"
+                                                        <?= ($row["status"] == "Finished") ? "selected" : ""; ?>>
+                                                        Finished
+                                                    </option>
+                                                    <option value="on progress"
+                                                        <?= ($row["status"] == "on progress") ? "selected" : ""; ?>>
+                                                        On progress</option>
+                                                </select>
                                             </div>
                                             <input type="hidden" name="page" value="<?= $page; ?>">
                                             <button type="submit" class="btn btn-primary">Ubah</button>

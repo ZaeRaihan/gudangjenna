@@ -215,7 +215,19 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <!-- PAGINATION -->
                             <div class="pagination-container">
                                 <ul class="pagination pagination-lg">
-                                    <?php for ($p = 1; $p <= $totalPagesSearchDateFilter; $p++) : ?>
+                                    <?php if ($page > 1) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page - 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
+                                    <?php
+                                    $startPage = max(1, $page - 1);
+                                    $endPage = min($totalPagesSearchDateFilter, $startPage + 4);
+                                        for ($p = $startPage; $p <= $endPage; $p++) :
+                                     ?>
                                     <li class="<?php if ($p == $page) echo 'active'; ?>">
                                         <a
                                             href="?page=<?php echo $p; ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>">
@@ -223,6 +235,15 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                         </a>
                                     </li>
                                     <?php endfor; ?>
+
+                                    <?php if ($page < $totalPagesSearchDateFilter) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page + 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>

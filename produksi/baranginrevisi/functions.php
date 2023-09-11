@@ -6,10 +6,6 @@ function query($query)
 {
     global $db;
     $result = mysqli_query($db, $query);
-    if (!$result) {
-        // Handle query error here (you can log the error or take appropriate action)
-        return false;
-    }
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
@@ -32,15 +28,19 @@ function tambahBarang($data)
     $stock_inrevisi = htmlspecialchars($data['stock_inrevisi']);
     $stock_hasilrevisi = htmlspecialchars($data['stock_hasilrevisi']);
     $vendor_revisi = htmlspecialchars($data['vendor_revisi']);
+    $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
+    $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
+    $totalstock = htmlspecialchars($data['totalstock']);
+    $status = htmlspecialchars($data['status']);
 
     // Convert the date values to the correct format (YYYY-MM-DD)
-    //$tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
-    $launching_date = date('Y-m-d', strtotime($launching_date));
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
+    $launching_date = date('Y-m-d', strtotime($launching_date));
+    $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
 
     // Query tambah barang
-    $query = "INSERT INTO baranginrevisi (tgl_brg_keluar, sj_for_vendor, launching_date, collection, article_name, size, stock_inrevisi, stock_hasilrevisi , vendor_revisi) VALUES
-    ('$tgl_brg_keluar','$sj_for_vendor', '$launching_date', '$collection', '$article_name', '$size', '$stock_inrevisi' ,'$stock_hasilrevisi', '$vendor_revisi')";
+    $query = "INSERT INTO baranginrevisi (tgl_brg_keluar, sj_for_vendor, launching_date, collection, article_name, size, stock_inrevisi, stock_hasilrevisi, vendor_revisi, tgl_brg_masuk, sj_from_vendor, totalstock, status)
+    VALUES ('$tgl_brg_keluar', '$sj_for_vendor', '$launching_date', '$collection', '$article_name', '$size', '$stock_inrevisi', '$stock_hasilrevisi', '$vendor_revisi', '$tgl_brg_masuk', '$sj_from_vendor', '$totalstock', '$status')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -61,16 +61,32 @@ function ubahBarang($data, $idbarang_inrevisi)
     $stock_inrevisi = htmlspecialchars($data['stock_inrevisi']);
     $stock_hasilrevisi = htmlspecialchars($data['stock_hasilrevisi']);
     $vendor_revisi = htmlspecialchars($data['vendor_revisi']);
+    $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
+    $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
+    $totalstock = htmlspecialchars($data['totalstock']);
+    $status = htmlspecialchars($data['status']);
 
     // Convert the date values to the correct format (YYYY-MM-DD)
-    // $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
-    $launching_date = date('Y-m-d', strtotime($launching_date));
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
+    $launching_date = date('Y-m-d', strtotime($launching_date));
+    $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
 
     // Query ubah barang
-    $query = "UPDATE baranginrevisi SET tgl_brg_keluar = '$tgl_brg_keluar', sj_for_vendor = '$sj_for_vendor',  launching_date = '$launching_date',
-    collection = '$collection', article_name = '$article_name', size = '$size', stock_inrevisi = '$stock_inrevisi',
-    stock_hasilrevisi = '$stock_hasilrevisi', vendor_revisi = '$vendor_revisi' WHERE idbarang_inrevisi = $idbarang_inrevisi";
+    $query = "UPDATE baranginrevisi SET 
+        tgl_brg_keluar = '$tgl_brg_keluar',
+        sj_for_vendor = '$sj_for_vendor',
+        launching_date = '$launching_date',
+        collection = '$collection',
+        article_name = '$article_name',
+        size = '$size',
+        stock_inrevisi = '$stock_inrevisi',
+        stock_hasilrevisi = '$stock_hasilrevisi',
+        vendor_revisi = '$vendor_revisi',
+        tgl_brg_masuk = '$tgl_brg_masuk',
+        sj_from_vendor = '$sj_from_vendor',
+        totalstock = '$totalstock',
+        status = '$status'
+    WHERE idbarang_inrevisi = $idbarang_inrevisi";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -129,7 +145,7 @@ function proses_copy($id)
     }
 
     // Insert the copied data as a new entry
-    $insertQuery = "INSERT INTO baranginrevisi (tgl_brg_keluar, sj_for_vendor , launching_date, collection, article_name, size, stock_inrevisi, stock_hasilrevisi, vendor_revisi )
+    $insertQuery = "INSERT INTO baranginrevisi (tgl_brg_keluar, sj_for_vendor, launching_date, collection, article_name, size, stock_inrevisi, stock_hasilrevisi, vendor_revisi, tgl_brg_masuk, sj_from_vendor, totalstock, status)
                     VALUES (
                         '{$dataToCopy['tgl_brg_keluar']}',
                         '{$dataToCopy['sj_for_vendor']}',
@@ -139,7 +155,11 @@ function proses_copy($id)
                         '{$dataToCopy['size']}',
                         '{$dataToCopy['stock_inrevisi']}',
                         '{$dataToCopy['stock_hasilrevisi']}',
-                        '{$dataToCopy['vendor_revisi']}'
+                        '{$dataToCopy['vendor_revisi']}',
+                        '{$dataToCopy['tgl_brg_masuk']}',
+                        '{$dataToCopy['sj_from_vendor']}',
+                        '{$dataToCopy['totalstock']}',
+                        '{$dataToCopy['status']}'
                     )";
 
     $result = mysqli_query($db, $insertQuery);

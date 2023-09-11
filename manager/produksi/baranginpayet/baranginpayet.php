@@ -41,23 +41,31 @@ if (!empty($search)) {
     $search = strtolower($search); // Ubah istilah penelusuran menjadi huruf kecil
 
     $search_filter = "WHERE 
-        LOWER(tgl_brg_keluar) LIKE '%$search%' OR
-        LOWER(sj_for_vendor) LIKE '%$search%' OR
-        LOWER(launching_date) LIKE '%$search%' OR
-        LOWER(collection) LIKE '%$search%' OR
-        LOWER(article_name) LIKE '%$search%' OR
-        LOWER(size) LIKE '%$search%' OR
-        LOWER(stock_inpayet) LIKE '%$search%' OR
-        LOWER(stock_hasilpayet) LIKE '%$search%' OR
-        LOWER(vendor_payet) LIKE '%$search%' OR
-        DATE_FORMAT(launching_date, '%d-%m-%Y') LIKE '%$search%' OR
-        DATE_FORMAT(tgl_brg_keluar, '%d-%m-%Y') LIKE '%$search%' OR
-        DATE_FORMAT(launching_date, '%Y-%m-%d') LIKE '%$search%' OR
-        DATE_FORMAT(tgl_brg_keluar, '%Y-%m-%d') LIKE '%$search%' OR
-        LOWER(MONTHNAME(launching_date)) LIKE '%$search%' OR
-        LOWER(MONTHNAME(tgl_brg_keluar)) LIKE '%$search%' OR
-        LOWER(YEAR(launching_date)) LIKE '%$search%' OR
-        LOWER(YEAR(tgl_brg_keluar)) LIKE '%$search%'";
+    LOWER(tgl_brg_keluar) LIKE '%$search%' OR
+    LOWER(sj_for_vendor) LIKE '%$search%' OR
+    LOWER(launching_date) LIKE '%$search%' OR
+    LOWER(collection) LIKE '%$search%' OR
+    LOWER(article_name) LIKE '%$search%' OR
+    LOWER(size) LIKE '%$search%' OR
+    LOWER(stock_inpayet) LIKE '%$search%' OR
+    LOWER(vendor_payet) LIKE '%$search%' OR
+    LOWER(tgl_brg_masuk) LIKE '%$search%' OR
+    LOWER(sj_from_vendor) LIKE '%$search%' OR
+    LOWER(stock_hasilpayet) LIKE '%$search%' OR
+    LOWER(totalstock) LIKE '%$search%' OR
+    LOWER(status) LIKE '%$search%' OR
+    DATE_FORMAT(launching_date, '%d-%m-%Y') LIKE '%$search%' OR
+    DATE_FORMAT(tgl_brg_keluar, '%d-%m-%Y') LIKE '%$search%' OR
+    DATE_FORMAT(tgl_brg_masuk, '%d-%m-%Y') LIKE '%$search%' OR
+    DATE_FORMAT(launching_date, '%Y-%m-%d') LIKE '%$search%' OR
+    DATE_FORMAT(tgl_brg_keluar, '%Y-%m-%d') LIKE '%$search%' OR
+    DATE_FORMAT(tgl_brg_masuk, '%Y-%m-%d') LIKE '%$search%' OR
+    LOWER(MONTHNAME(launching_date)) LIKE '%$search%' OR
+    LOWER(MONTHNAME(tgl_brg_keluar)) LIKE '%$search%' OR
+    LOWER(MONTHNAME(tgl_brg_masuk)) LIKE '%$search%' OR
+    LOWER(YEAR(launching_date)) LIKE '%$search%' OR
+    LOWER(YEAR(tgl_brg_keluar)) LIKE '%$search%' OR
+    LOWER(YEAR(tgl_brg_masuk)) LIKE '%$search%'";
 }
 
 // Query dengan search filter and date filter
@@ -212,7 +220,19 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <!-- PAGINATION -->
                             <div class="pagination-container">
                                 <ul class="pagination pagination-lg">
-                                    <?php for ($p = 1; $p <= $totalPagesSearchDateFilter; $p++) : ?>
+                                    <?php if ($page > 1) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page - 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
+                                    <?php
+                                    $startPage = max(1, $page - 1);
+                                    $endPage = min($totalPagesSearchDateFilter, $startPage + 4);
+                                        for ($p = $startPage; $p <= $endPage; $p++) :
+                                     ?>
                                     <li class="<?php if ($p == $page) echo 'active'; ?>">
                                         <a
                                             href="?page=<?php echo $p; ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>">
@@ -220,6 +240,15 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                         </a>
                                     </li>
                                     <?php endfor; ?>
+
+                                    <?php if ($page < $totalPagesSearchDateFilter) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page + 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -249,14 +278,18 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Tanggal Barang Keluar</th>
-                            <th scope="col">SJ For Vendor Payet</th>
+                            <th scope="col">SJ For Payet</th>
                             <th scope="col">Launching Date</th>
                             <th scope="col">Collection</th>
                             <th scope="col">Article Name</th>
                             <th scope="col">Size</th>
                             <th scope="col">Stock In Payet</th>
-                            <th scope="col">Stock Hasil Payet</th>
                             <th scope="col">Vendor Payet</th>
+                            <th scope="col">Tanggal Barang Masuk</th>
+                            <th scope="col">SJ From Payet</th>
+                            <th scope="col">Stock Hasil Payet</th>
+                            <th scope="col">Total Stock Masuk</th>
+                            <th scope="col">Status</th>
                         </tr>
 
                         <!-- Table and Pagination -->
@@ -273,8 +306,12 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <td><?= $row["article_name"]; ?></td>
                             <td><?= $row["size"]; ?></td>
                             <td><?= $row["stock_inpayet"]; ?></td>
-                            <td><?= $row["stock_hasilpayet"]; ?></td>
                             <td><?= $row["vendor_payet"]; ?></td>
+                            <td><?= formatDate($row["tgl_brg_masuk"]); ?></td>
+                            <td><?= $row["sj_from_vendor"]; ?></td>
+                            <td><?= $row["stock_hasilpayet"]; ?></td>
+                            <td><?= $row["totalstock"]; ?></td>
+                            <td><?= $row["status"]; ?></td>
                         </tr>
 
                         <?php $i++; ?>

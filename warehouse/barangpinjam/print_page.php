@@ -36,7 +36,7 @@ $selectedRowsData = query($query);
         <tr>
             <th scope="col">No</th>
             <th scope="col">Tanggal Barang Keluar</th>
-            <th scope="col">Surat Retur</th>
+            <th scope="col">Surat pinjam</th>
             <th scope="col">Article Name</th>
             <th scope="col">Size</th>
             <th scope="col">Stock</th>

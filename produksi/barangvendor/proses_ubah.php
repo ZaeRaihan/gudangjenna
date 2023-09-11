@@ -5,7 +5,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Konversi nilai tanggal ke format yang benar menggunakan formatDate
     $_POST['tgl_brg_masuk'] = formatDate($_POST['tgl_brg_masuk']);
     $_POST['launching_date'] = formatDate($_POST['launching_date']);
-    //$_POST['tgl_brg_keluar'] = formatDate($_POST['tgl_brg_keluar']);
 
     // Panggil fungsi ubahBarang() untuk memproses ubah data barang
     $idbarang_vendor = $_POST['id'];

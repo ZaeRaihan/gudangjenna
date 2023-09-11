@@ -217,7 +217,19 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <!-- PAGINATION -->
                             <div class="pagination-container">
                                 <ul class="pagination pagination-lg">
-                                    <?php for ($p = 1; $p <= $totalPagesSearchDateFilter; $p++) : ?>
+                                    <?php if ($page > 1) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page - 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
+                                    <?php
+                                    $startPage = max(1, $page - 1);
+                                    $endPage = min($totalPagesSearchDateFilter, $startPage + 4);
+                                    for ($p = $startPage; $p <= $endPage; $p++) :
+                                    ?>
                                     <li class="<?php if ($p == $page) echo 'active'; ?>">
                                         <a
                                             href="?page=<?php echo $p; ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>">
@@ -225,6 +237,15 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                         </a>
                                     </li>
                                     <?php endfor; ?>
+
+                                    <?php if ($page < $totalPagesSearchDateFilter) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page + 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -233,7 +254,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
 
                 <!-- Date Filter Form -->
                 <div class="row" style="margin-top: 5px; margin-bottom: 5px">
-                    <div class="col-md-12">
+                    <div class="col-md-10">
                         <form action="" method="GET" class="form-inline">
                             <label for="start_date">Start Date:</label>
                             <input type="date" class="form-control mx-2" id="start_date" name="start_date"
@@ -246,6 +267,10 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <button type="submit" class="btn btn-success">Apply Filter</button>
                             <a href="barangrevisi.php" class="btn btn-warning mx-2">Clear Filter</a>
                         </form>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <!-- "text-right" untuk menggeser teks ke kanan -->
+                        <a href="barangrevisi_history.php" class="btn btn-info mx-2" target="_blank">History</a>
                     </div>
                 </div>
 
@@ -290,7 +315,8 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     </div>
                                     <div class="form-group">
                                         <label for="stock">Stock</label>
-                                        <input type="text" class="form-control" id="stock" name="stock" required>
+                                        <input type="number" class="form-control" id="stock" name="stock"
+                                            pattern="[0-9]*">
                                     </div>
                                     <div class="form-group">
                                         <label for="tgl_brg_keluar">Tanggal Barang Keluar</label>
@@ -346,7 +372,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                 <div class="btn-group text-center" style="display: flex; justify-content: center;">
                                     <button type="button" class="btn btn-warning delete-button"
                                         data-id="<?= $row["idbarang_revisi"]; ?>">Hapus</button>
-                                    <button type="button" class="btn btn-primary update-button" data-toggle="modal"
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#ubahBarangModal<?= $row["idbarang_revisi"]; ?>"
                                         data-id="<?= $row["idbarang_revisi"]; ?>"
                                         data-page="<?= $page; ?>">Ubah</button>
@@ -372,7 +398,8 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <div class="modal-body">
                                         <!-- Form untuk mengubah data barang -->
                                         <form action="proses_ubah.php" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="url" value="<?= basename($_SERVER['PHP_SELF']) . "?" . $_SERVER['QUERY_STRING'] ?>">    
+                                            <input type="hidden" name="url"
+                                                value="<?= basename($_SERVER['PHP_SELF']) . "?" . $_SERVER['QUERY_STRING'] ?>">
                                             <input type="hidden" name="id" value="<?= $row["idbarang_revisi"]; ?>">
                                             <div class="form-group">
                                                 <label for="tgl_brg_masuk">Tanggal Barang Masuk</label>
@@ -401,8 +428,8 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             </div>
                                             <div class="form-group">
                                                 <label for="stock">Stock</label>
-                                                <input type="text" class="form-control" id="stock" name="stock"
-                                                    value="<?= $row["stock"]; ?>" required>
+                                                <input type="number" class="form-control" id="stock" name="stock"
+                                                    pattern="[0-9]*" value="<?= $row["stock"]; ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="tgl_brg_keluar">Tanggal Barang Keluar</label>

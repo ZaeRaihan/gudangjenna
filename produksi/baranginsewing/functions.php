@@ -29,20 +29,23 @@ function tambahBarang($data)
     $stock_insewing = htmlspecialchars($data['stock_insewing']);
     $stock_hasilsewing = htmlspecialchars($data['stock_hasilsewing']);
     $vendor_sewing = htmlspecialchars($data['vendor_sewing']);
+    $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
+    $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
+    $totalstock = htmlspecialchars($data['totalstock']);
+    $status = htmlspecialchars($data['status']);
 
     // Convert the date values to the correct format (YYYY-MM-DD)
-    //$tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
-    $launching_date = date('Y-m-d', strtotime($launching_date));
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
+    $launching_date = date('Y-m-d', strtotime($launching_date));
+    $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
 
     // Query tambah barang
-    $query = "INSERT INTO baranginsewing (tgl_brg_keluar, sj_for_vendor, nama, launching_date, collection, article_name, size, stock_insewing, stock_hasilsewing , vendor_sewing) VALUES
-    ('$tgl_brg_keluar','$sj_for_vendor', '$nama','$launching_date', '$collection', '$article_name', '$size', '$stock_insewing' ,'$stock_hasilsewing', '$vendor_sewing')";
+    $query = "INSERT INTO baranginsewing (tgl_brg_keluar, sj_for_vendor, nama, launching_date, collection, article_name, size, stock_insewing, stock_hasilsewing, vendor_sewing, tgl_brg_masuk, sj_from_vendor, totalstock, status)
+    VALUES ('$tgl_brg_keluar', '$sj_for_vendor', '$nama', '$launching_date', '$collection', '$article_name', '$size', '$stock_insewing', '$stock_hasilsewing', '$vendor_sewing', '$tgl_brg_masuk', '$sj_from_vendor', '$totalstock', '$status')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
-
 // Fungsi untuk mengubah data barang
 function ubahBarang($data, $idbarang_insewing)
 {
@@ -59,16 +62,33 @@ function ubahBarang($data, $idbarang_insewing)
     $stock_insewing = htmlspecialchars($data['stock_insewing']);
     $stock_hasilsewing = htmlspecialchars($data['stock_hasilsewing']);
     $vendor_sewing = htmlspecialchars($data['vendor_sewing']);
+    $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
+    $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
+    $totalstock = htmlspecialchars($data['totalstock']);
+    $status = htmlspecialchars($data['status']);
 
     // Convert the date values to the correct format (YYYY-MM-DD)
-    // $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
-    $launching_date = date('Y-m-d', strtotime($launching_date));
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
+    $launching_date = date('Y-m-d', strtotime($launching_date));
+    $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
 
     // Query ubah barang
-    $query = "UPDATE baranginsewing SET tgl_brg_keluar = '$tgl_brg_keluar', sj_for_vendor = '$sj_for_vendor',  nama = '$nama', launching_date = '$launching_date',
-    collection = '$collection', article_name = '$article_name', size = '$size', stock_insewing = '$stock_insewing',
-    stock_hasilsewing = '$stock_hasilsewing', vendor_sewing = '$vendor_sewing' WHERE idbarang_insewing = $idbarang_insewing";
+    $query = "UPDATE baranginsewing SET 
+        tgl_brg_keluar = '$tgl_brg_keluar',
+        sj_for_vendor = '$sj_for_vendor',
+        nama = '$nama',
+        launching_date = '$launching_date',
+        collection = '$collection',
+        article_name = '$article_name',
+        size = '$size',
+        stock_insewing = '$stock_insewing',
+        stock_hasilsewing = '$stock_hasilsewing',
+        vendor_sewing = '$vendor_sewing',
+        tgl_brg_masuk = '$tgl_brg_masuk',
+        sj_from_vendor = '$sj_from_vendor',
+        totalstock = '$totalstock',
+        status = '$status'
+    WHERE idbarang_insewing = $idbarang_insewing";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -127,7 +147,7 @@ function proses_copy($id)
     }
 
     // Insert the copied data as a new entry
-    $insertQuery = "INSERT INTO baranginsewing (tgl_brg_keluar, sj_for_vendor , nama , launching_date, collection, article_name, size, stock_insewing, stock_hasilsewing, vendor_sewing )
+    $insertQuery = "INSERT INTO baranginsewing (tgl_brg_keluar, sj_for_vendor, nama, launching_date, collection, article_name, size, stock_insewing, stock_hasilsewing, vendor_sewing, tgl_brg_masuk, sj_from_vendor, totalstock, status)
                     VALUES (
                         '{$dataToCopy['tgl_brg_keluar']}',
                         '{$dataToCopy['sj_for_vendor']}',
@@ -138,7 +158,11 @@ function proses_copy($id)
                         '{$dataToCopy['size']}',
                         '{$dataToCopy['stock_insewing']}',
                         '{$dataToCopy['stock_hasilsewing']}',
-                        '{$dataToCopy['vendor_sewing']}'
+                        '{$dataToCopy['vendor_sewing']}',
+                        '{$dataToCopy['tgl_brg_masuk']}',
+                        '{$dataToCopy['sj_from_vendor']}',
+                        '{$dataToCopy['totalstock']}',
+                        '{$dataToCopy['status']}'
                     )";
 
     $result = mysqli_query($db, $insertQuery);

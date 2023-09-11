@@ -202,7 +202,19 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <!-- PAGINATION -->
                             <div class="pagination-container">
                                 <ul class="pagination pagination-lg">
-                                    <?php for ($p = 1; $p <= $totalPagesSearchDateFilter; $p++) : ?>
+                                    <?php if ($page > 1) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page - 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
+                                    <?php
+                                    $startPage = max(1, $page - 1);
+                                    $endPage = min($totalPagesSearchDateFilter, $startPage + 4);
+                                        for ($p = $startPage; $p <= $endPage; $p++) :
+                                     ?>
                                     <li class="<?php if ($p == $page) echo 'active'; ?>">
                                         <a
                                             href="?page=<?php echo $p; ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>">
@@ -210,6 +222,15 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                         </a>
                                     </li>
                                     <?php endfor; ?>
+
+                                    <?php if ($page < $totalPagesSearchDateFilter) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page + 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -244,6 +265,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <th scope="col">Article Name</th>
                             <th scope="col">Size</th>
                             <th scope="col">Stock</th>
+                            <th scope="col">Kirim</th>
                         </tr>
 
                         <!-- Table and Pagination -->
@@ -260,6 +282,32 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <td><?= $row["article_name"]; ?></td>
                             <td><?= $row["size"]; ?></td>
                             <td><?= $row["stock"]; ?></td>
+                            <td>
+                                <div class="btn-group text-center" style="display: flex; justify-content: center;">
+                                    <!-- Button untuk mengirim data ke tabel barangqc -->
+                                    <form action="kirim_lolosqc.php" method="post" style="margin: 0;">
+                                        <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
+                                        <button type="submit" class="btn btn-warning">Lolos QC</button>
+                                    </form>
+                                    <!-- Button untuk mengirim data ke tabel barangpayet -->
+                                    <form action="kirim_reject.php" method="post" style="margin: 0;">
+                                        <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
+                                        <button type="submit" class="btn btn-primary">Reject</button>
+                                    </form>
+                                </div>
+                                <div class="btn-group text-center" style="display: flex; justify-content: center;">
+                                    <!-- Button untuk mengirim data ke tabel barangqc -->
+                                    <form action="kirim_minor.php" method="post" style="margin: 0;">
+                                        <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
+                                        <button type="submit" class="btn btn-success">Minor</button>
+                                    </form>
+                                    <!-- Button untuk mengirim data ke tabel barangpayet -->
+                                    <form action="kirim_revisi.php" method="post" style="margin: 0;">
+                                        <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
+                                        <button type="submit" class="btn btn-info">Revisi</button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
 
                         <?php $i++; ?>

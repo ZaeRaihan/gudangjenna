@@ -228,7 +228,19 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <!-- PAGINATION -->
                             <div class="pagination-container">
                                 <ul class="pagination pagination-lg">
-                                    <?php for ($p = 1; $p <= $totalPagesSearchDateFilter; $p++) : ?>
+                                    <?php if ($page > 1) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page - 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
+                                    <?php
+                                    $startPage = max(1, $page - 1);
+                                    $endPage = min($totalPagesSearchDateFilter, $startPage + 4);
+                                        for ($p = $startPage; $p <= $endPage; $p++) :
+                                     ?>
                                     <li class="<?php if ($p == $page) echo 'active'; ?>">
                                         <a
                                             href="?page=<?php echo $p; ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>">
@@ -236,6 +248,15 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                         </a>
                                     </li>
                                     <?php endfor; ?>
+
+                                    <?php if ($page < $totalPagesSearchDateFilter) : ?>
+                                    <li>
+                                        <a href="?page=<?php echo ($page + 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
+                                            aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -243,9 +264,9 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                 </div>
 
                 <!-- Date Filter Form -->
-                <!--    <div class="row" style="margin-top: 5px; margin-bottom: 5px">
-                    <div class="col-md-12">
-                        <form action="" method="GET" class="form-inline">
+                <div class="row" style="margin-top: 5px; margin-bottom: 5px">
+                    <div class="col-md-10">
+                        <!-- <form action="" method="GET" class="form-inline">
                             <label for="start_date">Start Date:</label>
                             <input type="date" class="form-control mx-2" id="start_date" name="start_date"
                                 value="<?php echo $_GET['start_date'] ?? ''; ?>">
@@ -255,12 +276,14 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                 value="<?php echo $_GET['end_date'] ?? ''; ?>">
 
                             <button type="submit" class="btn btn-success">Apply Filter</button>
-                            <a href="gudangminor.php" class="btn btn-warning mx-2">Clear Filter</a>
-                        </form>
+                            <a href="baranginpayet.php" class="btn btn-warning mx-2">Clear Filter</a>
+                        </form> -->
                     </div>
-                </div> -->
-
-
+                    <div class="col-md-2 text-right">
+                        <!-- "text-right" untuk menggeser teks ke kanan -->
+                        <a href="gudangminor_history.php" class="btn btn-info mx-2" target="_blank">History</a>
+                    </div>
+                </div>
 
                 <!-- Modal -->
                 <div class="modal fade" id="tambahBarangModal" tabindex="-1" role="dialog"
@@ -327,11 +350,13 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     </div>
                                     <div class="form-group">
                                         <label for="stock">Stock</label>
-                                        <input type="text" class="form-control" id="stock" name="stock" required>
+                                        <input type="number" class="form-control" id="stock" name="stock"
+                                            pattern="[0-9]*">
                                     </div>
                                     <div class="form-group">
-                                        <label for="stock">Harga</label>
-                                        <input type="text" class="form-control" id="harga" name="harga" required>
+                                        <label for="harga">Harga</label>
+                                        <input type="number" class="form-control" id="harga" name="harga"
+                                            pattern="[0-9]*" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="lokasi">Lokasi</label>
@@ -350,7 +375,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             name="lokasi_input" style="display: none;" placeholder="Masukkan Lokasi">
                                     </div>
                                     <div class="form-group">
-                                        <label for="stock">Rak</label>
+                                        <label for="rak">Rak</label>
                                         <input type="text" class="form-control" id="rak" name="rak" required>
                                     </div>
                                     <div class="form-group">
@@ -387,6 +412,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <th scope="col">Lokasi</th>
                             <th scope="col">Rak</th>
                             <th scope="col">Umur</th>
+                            <th scope="col">Kirim</th>
                             <th scope="col">Aksi</th>
                         </tr>
 
@@ -409,9 +435,23 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <td><?= $row["umur"]; ?></td>
                             <td>
                                 <div class="btn-group text-center" style="display: flex; justify-content: center;">
+                                    <!-- Button untuk mengirim data ke tabel barang keluar -->
+                                    <form action="kirim_keluar.php" method="post" style="margin: 0;">
+                                        <input type="hidden" name="idstock_minor" value="<?= $row["idstock_minor"]; ?>">
+                                        <button type="submit" class="btn btn-info">Keluar</button>
+                                    </form>
+                                    <!-- Button untuk mengirim data ke tabel barang pinjam -->
+                                    <form action="kirim_pinjam.php" method="post" style="margin: 0;">
+                                        <input type="hidden" name="idstock_minor" value="<?= $row["idstock_minor"]; ?>">
+                                        <button type="submit" class="btn btn-warning">Dipinjam</button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group text-center" style="display: flex; justify-content: center;">
                                     <button type="button" class="btn btn-warning delete-button"
                                         data-id="<?= $row["idstock_minor"]; ?>">Hapus</button>
-                                    <button type="button" class="btn btn-primary update-button" data-toggle="modal"
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#ubahBarangModal<?= $row["idstock_minor"]; ?>"
                                         data-id="<?= $row["idstock_minor"]; ?>" data-page="<?= $page; ?>">Ubah</button>
                                     <button type="button" class="btn btn-success copy-button"
@@ -435,7 +475,8 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <div class="modal-body">
                                         <!-- Form untuk mengubah data barang -->
                                         <form action="proses_ubah.php" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="url" value="<?= basename($_SERVER['PHP_SELF']) . "?" . $_SERVER['QUERY_STRING'] ?>">    
+                                            <input type="hidden" name="url"
+                                                value="<?= basename($_SERVER['PHP_SELF']) . "?" . $_SERVER['QUERY_STRING'] ?>">
                                             <input type="hidden" name="id" value="<?= $row["idstock_minor"]; ?>">
                                             <div class="form-group">
                                                 <label for="kode">Kode Barang</label>
@@ -449,9 +490,51 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             </div>
                                             <div class="form-group">
                                                 <label for="kategori">Kategori</label>
-                                                <input type="text" class="form-control" id="kategori" name="kategori"
-                                                    value="<?= $row["kategori"]; ?>" required>
+                                                <select class="form-control" id="kategori" name="kategori" required
+                                                    onchange="checkOtherOption(this);">
+                                                    <option value="BAG">BAG</option>
+                                                    <option value="BROOCH">BROOCH</option>
+                                                    <option value="BUCKET HAT">BUCKET HAT</option>
+                                                    <option value="BUNDLING">BUNDLING</option>
+                                                    <option value="CLOTH MASK">CLOTH MASK</option>
+                                                    <option value="DRESS">DRESS</option>
+                                                    <option value="INNER">INNER</option>
+                                                    <option value="OUTER">OUTER</option>
+                                                    <option value="PANTS">PANTS</option>
+                                                    <option value="PRAYER SET">PRAYER SET</option>
+                                                    <option value="QURAN">QURAN</option>
+                                                    <option value="SANDAL">SANDAL</option>
+                                                    <option value="SCARF">SCARF</option>
+                                                    <option value="SCRUNCHIE">SCRUNCHIE</option>
+                                                    <option value="SHIRT">SHIRT</option>
+                                                    <option value="SHOES">SHOES</option>
+                                                    <option value="SKIRT">SKIRT</option>
+                                                    <option value="TOP">TOP</option>
+                                                    <option value="TUNIC">TUNIC</option>
+                                                    <!-- Opsi "Other" -->
+                                                    <option value="OTHER">OTHER</option>
+                                                </select>
                                             </div>
+                                            <!-- Kolom input tambahan untuk kategori lainnya -->
+                                            <div class="form-group" id="otherCategoryInput" style="display:none;">
+                                                <label for="otherKategori">Kategori Lainnya</label>
+                                                <input class="form-control" type="text" id="otherKategori"
+                                                    name="otherKategori">
+                                            </div>
+                                            <script>
+                                            function checkOtherOption(select) {
+                                                var otherCategoryInput = document.getElementById("otherCategoryInput");
+                                                var otherKategori = document.getElementById("otherKategori");
+
+                                                if (select.value === "OTHER") {
+                                                    otherCategoryInput.style.display = "block";
+                                                    otherKategori.setAttribute("required", "true");
+                                                } else {
+                                                    otherCategoryInput.style.display = "none";
+                                                    otherKategori.removeAttribute("required");
+                                                }
+                                            }
+                                            </script>
                                             <div class="form-group">
                                                 <label for="article_name">Article Name</label>
                                                 <input type="text" class="form-control" id="article_name"
@@ -464,19 +547,46 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             </div>
                                             <div class="form-group">
                                                 <label for="stock">Stock</label>
-                                                <input type="text" class="form-control" id="stock" name="stock"
-                                                    value="<?= $row["stock"]; ?>" required>
+                                                <input type="number" class="form-control" id="stock" name="stock"
+                                                    value="<?= $row["stock"]; ?>" pattern="[0-9]*">
                                             </div>
                                             <div class="form-group">
                                                 <label for="harga">Harga</label>
-                                                <input type="text" class="form-control" id="harga" name="harga"
-                                                    value="<?= $row["harga"]; ?>" required>
+                                                <input type="number" class="form-control" id="harga" name="harga"
+                                                    value="<?= $row["harga"]; ?>" pattern="[0-9]*" required>
                                             </div>
                                             <div class="form-group">
-                                                <label for="rak">Lokasi</label>
-                                                <input type="text" class="form-control" id="lokasi" name="lokasi"
-                                                    value="<?= $row["lokasi"]; ?>" required>
+                                                <label for="lokasi">Lokasi</label>
+                                                <select class="form-control" id="lokasi" name="lokasi" required
+                                                    onchange="checkOtherOptionLokasi(this);">
+                                                    <option value="Karton">Karton</option>
+                                                    <option value="Rak">Rak</option>
+                                                    <option value="Kontainer">Kontainer</option>
+                                                    <option value="Karung">Karung</option>
+                                                    <!-- Opsi "Other" -->
+                                                    <option value="OTHER">Other</option>
+                                                </select>
                                             </div>
+                                            <!-- Kolom input tambahan untuk lokasi lainnya -->
+                                            <div class="form-group" id="otherLocationInput" style="display:none;">
+                                                <label for="otherLokasi">Lokasi Lainnya</label>
+                                                <input class="form-control" type="text" id="otherLokasi"
+                                                    name="otherLokasi">
+                                            </div>
+                                            <script>
+                                            function checkOtherOptionLokasi(select) {
+                                                var otherLocationInput = document.getElementById("otherLocationInput");
+                                                var otherLokasi = document.getElementById("otherLokasi");
+
+                                                if (select.value === "OTHER") {
+                                                    otherLocationInput.style.display = "block";
+                                                    otherLokasi.setAttribute("required", "true");
+                                                } else {
+                                                    otherLocationInput.style.display = "none";
+                                                    otherLokasi.removeAttribute("required");
+                                                }
+                                            }
+                                            </script>
                                             <div class="form-group">
                                                 <label for="rak">Rak</label>
                                                 <input type="text" class="form-control" id="rak" name="rak"

@@ -57,12 +57,20 @@ function ubahBarang($data, $idstock_minor)
     $kode = htmlspecialchars($data['kode']);
     $collection = htmlspecialchars($data['collection']);
     $kategori = htmlspecialchars($data['kategori']);
+    if ($kategori === 'OTHER') {
+        $otherKategori = htmlspecialchars($data['otherKategori']);
+        $kategori = $otherKategori;
+    }
     $article_name = htmlspecialchars($data['article_name']);
     $size = htmlspecialchars($data['size']);
     $stock = htmlspecialchars($data['stock']);
     $harga = htmlspecialchars($data['harga']);
     $rak = htmlspecialchars($data['rak']);
     $lokasi = htmlspecialchars($data['lokasi']);
+    if ($lokasi === 'OTHER') {
+        $otherLokasi = htmlspecialchars($data['otherLokasi']);
+        $lokasi = $otherLokasi;
+    }
     $umur = htmlspecialchars($data['umur']);
 
     // Convert the date values to the correct format (YYYY-MM-DD)

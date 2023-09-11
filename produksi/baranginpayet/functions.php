@@ -28,15 +28,19 @@ function tambahBarang($data)
     $stock_inpayet = htmlspecialchars($data['stock_inpayet']);
     $stock_hasilpayet = htmlspecialchars($data['stock_hasilpayet']);
     $vendor_payet = htmlspecialchars($data['vendor_payet']);
+    $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
+    $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
+    $totalstock = htmlspecialchars($data['totalstock']);
+    $status = htmlspecialchars($data['status']);
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
     $launching_date = date('Y-m-d', strtotime($launching_date));
-    //$tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
+    $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
 
     // Query tambah barang
-    $query = "INSERT INTO baranginpayet (tgl_brg_keluar, sj_for_vendor , launching_date, collection, article_name, size, stock_inpayet , stock_hasilpayet,  vendor_payet)
-    VALUES ('$tgl_brg_keluar', '$sj_for_vendor', '$launching_date', '$collection', '$article_name', '$size', '$stock_inpayet', '$stock_hasilpayet', '$vendor_payet')";
+    $query = "INSERT INTO baranginpayet (tgl_brg_keluar, sj_for_vendor, launching_date, collection, article_name, size, stock_inpayet, stock_hasilpayet, vendor_payet, tgl_brg_masuk, sj_from_vendor, totalstock, status)
+    VALUES ('$tgl_brg_keluar', '$sj_for_vendor', '$launching_date', '$collection', '$article_name', '$size', '$stock_inpayet', '$stock_hasilpayet', '$vendor_payet', '$tgl_brg_masuk', '$sj_from_vendor', '$totalstock', '$status')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -57,14 +61,47 @@ function ubahBarang($data, $idbarang_inpayet)
     $stock_inpayet = htmlspecialchars($data['stock_inpayet']);
     $stock_hasilpayet = htmlspecialchars($data['stock_hasilpayet']);
     $vendor_payet = htmlspecialchars($data['vendor_payet']);
+    $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
+    $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
+    $status = htmlspecialchars($data['status']);
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
     $launching_date = date('Y-m-d', strtotime($launching_date));
-    //$tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
+    $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
+
+    // Query untuk mendapatkan total stock masuk sebelum perubahan
+    $query = "SELECT totalstock, stock_inpayet FROM baranginpayet WHERE idbarang_inpayet = $idbarang_inpayet";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    $totalstock_sebelumnya = $row['totalstock'];
+    $stock_inpayet_sebelumnya = $row['stock_inpayet'];
+
+    // Tambahkan kondisi untuk memeriksa apakah total stock baru tidak sama dengan stock in payet
+    if ($totalstock_sebelumnya != $stock_inpayet) {
+        // Hitung total stock masuk baru berdasarkan perubahan stock hasil payet
+        $totalstock_baru = $totalstock_sebelumnya + $stock_hasilpayet;
+    } else {
+        // Jika total stock sama dengan stock in payet, maka total stock baru tetap sama dengan total stock sebelumnya
+        $totalstock_baru = $totalstock_sebelumnya;
+    }
 
     // Query ubah barang
-    $query = "UPDATE baranginpayet SET tgl_brg_keluar = '$tgl_brg_keluar', launching_date = '$launching_date', collection = '$collection', article_name = '$article_name', size = '$size', stock_inpayet = '$stock_inpayet', stock_hasilpayet = '$stock_hasilpayet',vendor_payet = '$vendor_payet' , sj_for_vendor = '$sj_for_vendor' WHERE idbarang_inpayet = $idbarang_inpayet";
+    $query = "UPDATE baranginpayet SET 
+        tgl_brg_keluar = '$tgl_brg_keluar',
+        sj_for_vendor = '$sj_for_vendor',
+        launching_date = '$launching_date',
+        collection = '$collection',
+        article_name = '$article_name',
+        size = '$size',
+        stock_inpayet = '$stock_inpayet',
+        stock_hasilpayet = '$stock_hasilpayet',
+        vendor_payet = '$vendor_payet',
+        tgl_brg_masuk = '$tgl_brg_masuk',
+        sj_from_vendor = '$sj_from_vendor',
+        totalstock = '$totalstock_baru',
+        status = '$status'
+    WHERE idbarang_inpayet = $idbarang_inpayet";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -123,7 +160,7 @@ function proses_copy($id)
     }
 
     // Insert the copied data as a new entry
-    $insertQuery = "INSERT INTO baranginpayet (tgl_brg_keluar, sj_for_vendor , launching_date, collection, article_name, size, stock_inpayet ,stock_hasilpayet, vendor_payet)
+    $insertQuery = "INSERT INTO baranginpayet (tgl_brg_keluar, sj_for_vendor, launching_date, collection, article_name, size, stock_inpayet, stock_hasilpayet, vendor_payet, tgl_brg_masuk, sj_from_vendor, totalstock, status)
                     VALUES (
                         '{$dataToCopy['tgl_brg_keluar']}',
                         '{$dataToCopy['sj_for_vendor']}',
@@ -133,7 +170,11 @@ function proses_copy($id)
                         '{$dataToCopy['size']}',
                         '{$dataToCopy['stock_inpayet']}',
                         '{$dataToCopy['stock_hasilpayet']}',
-                        '{$dataToCopy['vendor_payet']}'
+                        '{$dataToCopy['vendor_payet']}',
+                        '{$dataToCopy['tgl_brg_masuk']}',
+                        '{$dataToCopy['sj_from_vendor']}',
+                        '{$dataToCopy['totalstock']}',
+                        '{$dataToCopy['status']}'
                     )";
 
     $result = mysqli_query($db, $insertQuery);

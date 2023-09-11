@@ -57,7 +57,7 @@ function ubahBarang($data, $idbarang_keluar)
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
 
     // Query ubah barang
-    $query = "UPDATE barangkeluar SET tgl_brg_keluar = '$tgl_brg_keluar', sj_keluar = '$sj_keluar', article_name = '$article_name', 
+    $query = "UPDATE barangkeluar SET tgl_brg_keluar = '$tgl_brg_keluar', sj_keluar = '$sj_keluar', gudang = '$gudang', article_name = '$article_name', 
     size = '$size', stock = '$stock', status = '$status', keterangan = '$keterangan' WHERE idbarang_keluar = $idbarang_keluar";
     
     mysqli_query($db, $query);
