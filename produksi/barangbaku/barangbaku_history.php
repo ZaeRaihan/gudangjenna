@@ -71,10 +71,12 @@ if ($rowCount > 10) {
     <table class="table table-hover">
         <tr>
             <th>Edit Timestamp</th>
-            <th>Tanggal Barang Masuk</th>
-            <th>SJ From Vendor</th>
-            <th>Nama</th>>
-            <th>Stock(ROLL)</th>
+            <th scope="col">Tanggal Barang Masuk</th>
+            <th scope="col">SJ From Supplier</th>
+            <th scope="col">Nama Bahan</th>
+            <th scope="col">Yard</th>
+            <th scope="col">Roll</th>
+            <th scope="col">Supplier</th>
         </tr>
         <?php
         // Loop untuk menampilkan data dari tabel
@@ -84,7 +86,9 @@ if ($rowCount > 10) {
             echo "<td>" . $row['tgl_brg_masuk'] . "</td>";
             echo "<td>" . $row['sj_from_vendor'] . "</td>";
             echo "<td>" . $row['nama'] . "</td>";
+            echo "<td>" . $row['inyard'] . "</td>";
             echo "<td>" . $row['stock'] . "</td>";
+            echo "<td>" . $row['supplier'] . "</td>";
             echo "</tr>";
         }
         ?>

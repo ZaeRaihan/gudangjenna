@@ -27,11 +27,12 @@ if (!empty($data_barangpayet)) {
     $article_name = $data_barangpayet[0]["article_name"];
     $size = $data_barangpayet[0]["size"];
     $stock = $data_barangpayet[0]["stock"];
+    $vendor = $data_barangpayet[0]["vendor"];
 
     // Masukkan data ke dalam tabel baranginpayet
     $query_insert_baranginpayet = "INSERT INTO baranginpayet (tgl_brg_keluar, sj_for_vendor, launching_date, collection, article_name, size, stock_inpayet, stock_hasilpayet, vendor_payet,
      tgl_brg_masuk, sj_from_vendor, totalstock, status, idbarang_payet) 
-                              VALUES (NOW(), '', '$launching_date', '$collection', '$article_name', '$size', '$stock', '', '', NOW(), '', '', 'On progress', $idbarang_payet)";
+                              VALUES (NOW(), '', '$launching_date', '$collection', '$article_name', '$size', '$stock', '', '$vendor', NOW(), '', '', 'On progress', $idbarang_payet)";
 
     if (mysqli_query($db, $query_insert_baranginpayet)) {
         // Data berhasil dikirimkan

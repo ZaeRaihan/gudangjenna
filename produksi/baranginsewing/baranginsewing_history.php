@@ -74,16 +74,16 @@ if ($rowCount > 10) {
             <th scope="col">Tanggal Barang Keluar</th>
             <th scope="col">SJ For Sewing</th>
             <th scope="col">Nama Bahan</th>
+            <th scope="col">Out Yard</th>
+            <th scope="col">Out Roll</th>
+            <th scope="col">Vendor Sewing</th>
             <th scope="col">Launching Date</th>
             <th scope="col">Collection</th>
             <th scope="col">Article Name</th>
             <th scope="col">Size</th>
-            <th scope="col">Stock In Sewing(ROLL)</th>
-            <th scope="col">Vendor Sewing</th>
             <th scope="col">Tanggal Barang Masuk</th>
             <th scope="col">SJ From Sewing</th>
             <th scope="col">Stock Hasil Sewing</th>
-            <th scope="col">Total Stock Masuk</th>
             <th scope="col">Status</th>
         </tr>
         <?php
@@ -94,16 +94,16 @@ if ($rowCount > 10) {
             echo "<td>" . $row['tgl_brg_keluar'] . "</td>";
             echo "<td>" . $row['sj_for_vendor'] . "</td>";
             echo "<td>" . $row['nama'] . "</td>";
+            echo "<td>" . $row['inyard'] . "</td>";
+            echo "<td>" . $row['stock_insewing'] . "</td>";
+            echo "<td>" . $row['vendor_sewing'] . "</td>";
             echo "<td>" . $row['launching_date'] . "</td>";
             echo "<td>" . $row['collection'] . "</td>";
             echo "<td>" . $row['article_name'] . "</td>";
             echo "<td>" . $row['size'] . "</td>";
-            echo "<td>" . $row['stock_insewing'] . "</td>";
-            echo "<td>" . $row['stock_hasilsewing'] . "</td>";
-            echo "<td>" . $row['vendor_sewing'] . "</td>";
             echo "<td>" . $row['tgl_brg_masuk'] . "</td>";
             echo "<td>" . $row['sj_from_vendor'] . "</td>";
-            echo "<td>" . $row['totalstock'] . "</td>";
+            echo "<td>" . $row['stock_hasilsewing'] . "</td>";
             echo "<td>" . $row['status'] . "</td>";
             echo "</tr>";
         }

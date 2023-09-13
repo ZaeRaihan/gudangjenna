@@ -48,6 +48,7 @@ if (!empty($search)) {
     LOWER(collection) LIKE '%$search%' OR
     LOWER(article_name) LIKE '%$search%' OR
     LOWER(size) LIKE '%$search%' OR
+    LOWER(inyard) LIKE '%$search%' OR
     LOWER(stock_insewing) LIKE '%$search%' OR
     LOWER(vendor_sewing) LIKE '%$search%' OR
     LOWER(tgl_brg_masuk) LIKE '%$search%' OR
@@ -324,6 +325,62 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                         <input type="text" class="form-control" id="nama" name="nama">
                                     </div>
                                     <div class="form-group">
+                                        <label for="inyard">Out Yard</label>
+                                        <input type="number" class="form-control" id="inyard" name="inyard"
+                                            pattern="[0-9]*">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stock_insewing">Out Roll</label>
+                                        <input type="number" class="form-control" id="stock_insewing"
+                                            name="stock_insewing" pattern="[0-9]*">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vendor_sewing">Vendor Sewing</label>
+                                        <select class="form-control" id="vendor_sewing" name="vendor_sewing" required
+                                            onchange="checkLainnya('vendor_sewing')">
+                                            <option value="" disabled selected>Pilih Vendor Sewing</option>
+                                            <option value="Alia Digital Printex">Alia Digital Printex</option>
+                                            <option value="Atfemale">Atfemale</option>
+                                            <option value="Atmosfira Dekatama">Atmosfira Dekatama</option>
+                                            <option value="Baju Kertas">Baju Kertas</option>
+                                            <option value="Bandanaira">Bandanaira</option>
+                                            <option value="Bu Citra">Bu Citra</option>
+                                            <option value="Bu Dewi">Bu Dewi</option>
+                                            <option value="Bu Elis">Bu Elis</option>
+                                            <option value="Bu Hany">Bu Hany</option>
+                                            <option value="Bu Icha">Bu Icha</option>
+                                            <option value="Bu Kartika">Bu Kartika</option>
+                                            <option value="Bu Linda">Bu Linda</option>
+                                            <option value="Bu Lilis">Bu Lilis</option>
+                                            <option value="Bu Rini">Bu Rini</option>
+                                            <option value="Bu Riri">Bu Riri</option>
+                                            <option value="Bu Ussy">Bu Ussy</option>
+                                            <option value="Bu Yani">Bu Yani</option>
+                                            <option value="Bu Yuli">Bu Yuli</option>
+                                            <option value="CV SBB">CV SBB</option>
+                                            <option value="Kensby Research Co.">Kensby Research Co.</option>
+                                            <option value="Muara Global">Muara Global</option>
+                                            <option value="Ophie Rever">Ophie Rever</option>
+                                            <option value="Pak Edi">Pak Edi</option>
+                                            <option value="Pak Giri">Pak Giri</option>
+                                            <option value="Pak Sunar">Pak Sunar</option>
+                                            <option value="Pa Ohid">Pa Ohid</option>
+                                            <option value="Penjahit Rapi">Penjahit Rapi</option>
+                                            <option value="PT Jaya Mitra Kurnia">PT Jaya Mitra Kurnia</option>
+                                            <option value="PT Thonnamaz">PT Thonnamaz</option>
+                                            <option value="PT.SJS">PT.SJS</option>
+                                            <option value="RB Manufacturing">RB Manufacturing</option>
+                                            <option value="Rumah Renza">Rumah Renza</option>
+                                            <option value="Sakh Konveksi">Sakh Konveksi</option>
+                                            <option value="Three and Me">Three and Me</option>
+                                            <!-- Opsi vendor_sewing lainnya -->
+                                            <option value="LAINNYA">Lainnya</option>>
+                                        </select>
+                                        <input type="text" class="form-control mt-2" id="vendor_sewing_input"
+                                            name="vendor_sewing_input" style="display: none;"
+                                            placeholder="Masukkan Vendor Sewing">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="launching_date">Launching Date</label>
                                         <input type="date" class="form-control" id="launching_date"
                                             name="launching_date">
@@ -339,17 +396,16 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     </div>
                                     <div class="form-group">
                                         <label for="size">Size</label>
-                                        <input type="text" class="form-control" id="size" name="size" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="stock_insewing">Stock In Sewing(ROLL)</label>
-                                        <input type="number" class="form-control" id="stock_insewing"
-                                            name="stock_insewing" pattern="[0-9]*">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="vendor_sewing">Vendor Sewing</label>
-                                        <input type="text" class="form-control" id="vendor_sewing" name="vendor_sewing"
-                                            required>
+                                        <select class="form-control" id="size" name="size" required>
+                                            <option value="" disabled selected>Pilih Size</option>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="S-M">S-M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                            <option value="L-XL">L-XL</option>
+                                            <option value="All Size">All Size</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="tgl_brg_masuk">Tanggal Barang Masuk</label>
@@ -366,16 +422,11 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             name="stock_hasilsewing" pattern="[0-9]*">
                                     </div>
                                     <div class="form-group">
-                                        <label for="totalstock">Total Stock Masuk</label>
-                                        <input type="number" class="form-control" id="totalstock" name="totalstock"
-                                            pattern="[0-9]*">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="status">Status</label>
                                         <select class="form-control" id="status" name="status" required>
                                             <option value="" disabled selected>Pilih Status Barang</option>
                                             <option value="Finished">Finished</option>
-                                            <option value="on progress">On progress</option>
+                                            <option value="On Progress">On Progress</option>
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-success">Tambah</button>
@@ -393,16 +444,16 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <th scope="col">Tanggal Barang Keluar</th>
                             <th scope="col">SJ For Sewing</th>
                             <th scope="col">Nama Bahan</th>
+                            <th scope="col">Out Yard</th>
+                            <th scope="col">Out Roll</th>
+                            <th scope="col">Vendor Sewing</th>
                             <th scope="col">Launching Date</th>
                             <th scope="col">Collection</th>
                             <th scope="col">Article Name</th>
                             <th scope="col">Size</th>
-                            <th scope="col">Stock In Sewing(ROLL)</th>
-                            <th scope="col">Vendor Sewing</th>
                             <th scope="col">Tanggal Barang Masuk</th>
                             <th scope="col">SJ From Sewing</th>
                             <th scope="col">Stock Hasil Sewing</th>
-                            <th scope="col">Total Stock Masuk</th>
                             <th scope="col">Status</th>
                             <th scope="col">Kirim</th>
                             <th scope="col">Aksi</th>
@@ -420,17 +471,17 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <td><?= $i; ?></td>
                             <td><?= formatDate($row["tgl_brg_keluar"]); ?></td>
                             <td><?= $row["sj_for_vendor"]; ?></td>
-                            <td><?= formatDate($row["launching_date"]); ?></td>
                             <td><?= $row["nama"]; ?></td>
+                            <td><?= $row["inyard"]; ?></td>
+                            <td><?= $row["stock_insewing"]; ?></td>
+                            <td><?= $row["vendor_sewing"]; ?></td>
+                            <td><?= formatDate($row["launching_date"]); ?></td>
                             <td><?= $row["collection"]; ?></td>
                             <td><?= $row["article_name"]; ?></td>
                             <td><?= $row["size"]; ?></td>
-                            <td><?= $row["stock_insewing"]; ?></td>
-                            <td><?= $row["vendor_sewing"]; ?></td>
                             <td><?= formatDate($row["tgl_brg_masuk"]); ?></td>
                             <td><?= $row["sj_from_vendor"]; ?></td>
                             <td><?= $row["stock_hasilsewing"]; ?></td>
-                            <td><?= $row["totalstock"]; ?></td>
                             <td><?= $row["status"]; ?></td>
                             <td>
                                 <div class="btn-group text-center" style="display: flex; justify-content: center;">
@@ -492,6 +543,188 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                     value="<?= $row["nama"]; ?>">
                                             </div>
                                             <div class="form-group">
+                                                <label for="inyard">Out Yard</label>
+                                                <input type="number" class="form-control" id="inyard" name="inyard"
+                                                    pattern="[0-9]*" value="<?= $row["inyard"]; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="stock_insewing">Out Roll</label>
+                                                <input type="number" class="form-control" id="stock_insewing"
+                                                    name="stock_insewing" pattern="[0-9]*"
+                                                    value="<?= $row["stock_insewing"]; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="vendor_sewing">Vendor Sewing</label>
+                                                <select class="form-control" id="vendor_sewing" name="vendor_sewing"
+                                                    required onchange="checkOtherOptionVendor_sewing(this);">
+                                                    <option value="<?= $row["vendor_sewing"]; ?>"
+                                                        <?= ($row["vendor_sewing"] == $row["vendor_sewing"]) ? "selected" : ""; ?>>
+                                                        <?= $row["vendor_sewing"]; ?>
+                                                    </option>
+                                                    <option value="Alia Digital Printex"
+                                                        <?= ($row["vendor_sewing"] == "Alia Digital Printex") ? "selected" : ""; ?>>
+                                                        Alia Digital Printex
+                                                    </option>
+                                                    <option value="Atfemale"
+                                                        <?= ($row["vendor_sewing"] == "Atfemale") ? "selected" : ""; ?>>
+                                                        Atfemale
+                                                    </option>
+                                                    <option value="Atmosfira Dekatama"
+                                                        <?= ($row["vendor_sewing"] == "Atmosfira Dekatama") ? "selected" : ""; ?>>
+                                                        Atmosfira Dekatama
+                                                    </option>
+                                                    <option value="Baju Kertas"
+                                                        <?= ($row["vendor_sewing"] == "Baju Kertas") ? "selected" : ""; ?>>
+                                                        Baju Kertas
+                                                    </option>
+                                                    <option value="Bandanaira"
+                                                        <?= ($row["vendor_sewing"] == "Bandanaira") ? "selected" : ""; ?>>
+                                                        Bandanaira
+                                                    </option>
+                                                    <option value="Bu Citra"
+                                                        <?= ($row["vendor_sewing"] == "Bu Citra") ? "selected" : ""; ?>>
+                                                        Bu Citra
+                                                    </option>
+                                                    <option value="Bu Dewi"
+                                                        <?= ($row["vendor_sewing"] == "Bu Dewi") ? "selected" : ""; ?>>
+                                                        Bu Dewi
+                                                    </option>
+                                                    <option value="Bu Elis"
+                                                        <?= ($row["vendor_sewing"] == "Bu Elis") ? "selected" : ""; ?>>
+                                                        Bu Elis
+                                                    </option>
+                                                    <option value="Bu Hany"
+                                                        <?= ($row["vendor_sewing"] == "Bu Hany") ? "selected" : ""; ?>>
+                                                        Bu Hany
+                                                    </option>
+                                                    <option value="Bu Icha"
+                                                        <?= ($row["vendor_sewing"] == "Bu Icha") ? "selected" : ""; ?>>
+                                                        Bu Icha
+                                                    </option>
+                                                    <option value="Bu Kartika"
+                                                        <?= ($row["vendor_sewing"] == "Bu Kartika") ? "selected" : ""; ?>>
+                                                        Bu Kartika
+                                                    </option>
+                                                    <option value="Bu Linda"
+                                                        <?= ($row["vendor_sewing"] == "Bu Linda") ? "selected" : ""; ?>>
+                                                        Bu Linda
+                                                    </option>
+                                                    <option value="Bu Lilis"
+                                                        <?= ($row["vendor_sewing"] == "Bu Lilis") ? "selected" : ""; ?>>
+                                                        Bu Lilis
+                                                    </option>
+                                                    <option value="Bu Rini"
+                                                        <?= ($row["vendor_sewing"] == "Bu Rini") ? "selected" : ""; ?>>
+                                                        Bu Rini
+                                                    </option>
+                                                    <option value="Bu Riri"
+                                                        <?= ($row["vendor_sewing"] == "Bu Riri") ? "selected" : ""; ?>>
+                                                        Bu Riri
+                                                    </option>
+                                                    <option value="Bu Ussy"
+                                                        <?= ($row["vendor_sewing"] == "Bu Ussy") ? "selected" : ""; ?>>
+                                                        Bu Ussy
+                                                    </option>
+                                                    <option value="Bu Yani"
+                                                        <?= ($row["vendor_sewing"] == "Bu Yani") ? "selected" : ""; ?>>
+                                                        Bu Yani
+                                                    </option>
+                                                    <option value="Bu Yuli"
+                                                        <?= ($row["vendor_sewing"] == "Bu Yuli") ? "selected" : ""; ?>>
+                                                        Bu Yuli
+                                                    </option>
+                                                    <option value="CV SBB"
+                                                        <?= ($row["vendor_sewing"] == "CV SBB") ? "selected" : ""; ?>>
+                                                        CV SBB
+                                                    </option>
+                                                    <option value="Kensby Research Co."
+                                                        <?= ($row["vendor_sewing"] == "Kensby Research Co.") ? "selected" : ""; ?>>
+                                                        Kensby Research Co.
+                                                    </option>
+                                                    <option value="Muara Global"
+                                                        <?= ($row["vendor_sewing"] == "Muara Global") ? "selected" : ""; ?>>
+                                                        Muara Global
+                                                    </option>
+                                                    <option value="Ophie Rever"
+                                                        <?= ($row["vendor_sewing"] == "Ophie Rever") ? "selected" : ""; ?>>
+                                                        Ophie Rever
+                                                    </option>
+                                                    <option value="Pak Edi"
+                                                        <?= ($row["vendor_sewing"] == "Pak Edi") ? "selected" : ""; ?>>
+                                                        Pak Edi
+                                                    </option>
+                                                    <option value="Pak Giri"
+                                                        <?= ($row["vendor_sewing"] == "Pak Giri") ? "selected" : ""; ?>>
+                                                        Pak Giri
+                                                    </option>
+                                                    <option value="Pak Sunar"
+                                                        <?= ($row["vendor_sewing"] == "Pak Sunar") ? "selected" : ""; ?>>
+                                                        Pak Sunar
+                                                    </option>
+                                                    <option value="Pa Ohid"
+                                                        <?= ($row["vendor_sewing"] == "Pa Ohid") ? "selected" : ""; ?>>
+                                                        Pa Ohid
+                                                    </option>
+                                                    <option value="Penjahit Rapi"
+                                                        <?= ($row["vendor_sewing"] == "Penjahit Rapi") ? "selected" : ""; ?>>
+                                                        Penjahit Rapi
+                                                    </option>
+                                                    <option value="PT Jaya Mitra Kurnia"
+                                                        <?= ($row["vendor_sewing"] == "PT Jaya Mitra Kurnia") ? "selected" : ""; ?>>
+                                                        PT Jaya Mitra Kurnia
+                                                    </option>
+                                                    <option value="PT Thonnamaz"
+                                                        <?= ($row["vendor_sewing"] == "PT Thonnamaz") ? "selected" : ""; ?>>
+                                                        PT Thonnamaz
+                                                    </option>
+                                                    <option value="PT.SJS"
+                                                        <?= ($row["vendor_sewing"] == "PT.SJS") ? "selected" : ""; ?>>
+                                                        PT.SJS
+                                                    </option>
+                                                    <option value="RB Manufacturing"
+                                                        <?= ($row["vendor_sewing"] == "RB Manufacturing") ? "selected" : ""; ?>>
+                                                        RB Manufacturing
+                                                    </option>
+                                                    <option value="Rumah Renza"
+                                                        <?= ($row["vendor_sewing"] == "Rumah Renza") ? "selected" : ""; ?>>
+                                                        Rumah Renza
+                                                    </option>
+                                                    <option value="Sakh Konveksi"
+                                                        <?= ($row["vendor_sewing"] == "Sakh Konveksi") ? "selected" : ""; ?>>
+                                                        Sakh Konveksi
+                                                    </option>
+                                                    <option value="Three and Me"
+                                                        <?= ($row["vendor_sewing"] == "Three and Me") ? "selected" : ""; ?>>
+                                                        Three and Me
+                                                    </option>
+                                                    <option value="OTHER"
+                                                        <?= ($row["vendor_sewing"] == "OTHER") ? "selected" : ""; ?>>
+                                                        Other
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <!-- Kolom input tambahan untuk vendor_sewing lainnya -->
+                                            <div class="form-group" id="otherVendor_sewingInput" style="display:none;">
+                                                <label for="otherVendor_sewing">Vendor Sewing Lainnya</label>
+                                                <input class="form-control" type="text" id="otherVendor_sewing"
+                                                    name="otherVendor_sewing">
+                                            </div>
+                                            <script>
+                                            function checkOtherOptionVendor_sewing(select) {
+                                                var otherVendor_sewingInput = document.getElementById(
+                                                    "otherVendor_sewingInput");
+                                                var otherVendor_sewing = document.getElementById("otherVendor_sewing");
+
+                                                if (select.value === "OTHER") {
+                                                    otherVendor_sewingInput.style.display = "block";
+                                                    otherVendor_sewing.setAttribute("required", "true");
+                                                } else {
+                                                    otherVendor_sewingInput.style.display = "none";
+                                                    otherVendor_sewing.removeAttribute("required");
+                                                }
+                                            }
+                                            </script>
+                                            <div class="form-group">
                                                 <label for="launching_date">Launching Date</label>
                                                 <input type="date" class="form-control" id="launching_date"
                                                     name="launching_date" value="<?= $row["launching_date"]; ?>">
@@ -508,19 +741,28 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             </div>
                                             <div class="form-group">
                                                 <label for="size">Size</label>
-                                                <input type="text" class="form-control" id="size" name="size"
-                                                    value="<?= $row["size"]; ?>" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="stock_insewing">Stock In Sewing(ROLL)</label>
-                                                <input type="number" class="form-control" id="stock_insewing"
-                                                    name="stock_insewing" pattern="[0-9]*"
-                                                    value="<?= $row["stock_insewing"]; ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="vendor_sewing">Vendor Sewing</label>
-                                                <input type="text" class="form-control" id="vendor_sewing"
-                                                    name="vendor_sewing" value="<?= $row["vendor_sewing"]; ?>">
+                                                <select class="form-control" id="size" name="size" required>
+                                                    <option value="<?= $row["size"]; ?>"
+                                                        <?= ($row["size"] == $row["size"]) ? "selected" : ""; ?>>
+                                                        <?= $row["size"]; ?>
+                                                    </option>
+                                                    <option value="S" <?= ($row["size"] == "S") ? "selected" : ""; ?>>
+                                                        S</option>
+                                                    <option value="M" <?= ($row["size"] == "M") ? "selected" : ""; ?>>
+                                                        M</option>
+                                                    <option value="S-M"
+                                                        <?= ($row["size"] == "S-M") ? "selected" : ""; ?>>S-M</option>
+                                                    <option value="L" <?= ($row["size"] == "L") ? "selected" : ""; ?>>
+                                                        L</option>
+                                                    <option value="XL" <?= ($row["size"] == "XL") ? "selected" : ""; ?>>
+                                                        XL</option>
+                                                    <option value="L-XL"
+                                                        <?= ($row["size"] == "L-XL") ? "selected" : ""; ?>>L-XL
+                                                    </option>
+                                                    <option value="All Size"
+                                                        <?= ($row["size"] == "All Size") ? "selected" : ""; ?>>All
+                                                        Size</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="tgl_brg_masuk">Tanggal Barang Masuk</label>
@@ -539,22 +781,19 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                     value="<?= $row["stock_hasilsewing"]; ?>">
                                             </div>
                                             <div class="form-group">
-                                                <label for="totalstock">Total Stock Masuk</label>
-                                                <input type="number" class="form-control" id="totalstock"
-                                                    name="totalstock" pattern="[0-9]*"
-                                                    value="<?= $row["totalstock"]; ?>">
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="status">Status</label>
                                                 <select class="form-control" id="status" name="status" required>
-                                                    <option value="" disabled>Pilih Status Barang</option>
+                                                    <option value="<?= $row["status"]; ?>"
+                                                        <?= ($row["status"] == $row["status"]) ? "selected" : ""; ?>>
+                                                        <?= $row["status"]; ?>
+                                                    </option>
                                                     <option value="Finished"
                                                         <?= ($row["status"] == "Finished") ? "selected" : ""; ?>>
                                                         Finished
                                                     </option>
-                                                    <option value="on progress"
-                                                        <?= ($row["status"] == "on progress") ? "selected" : ""; ?>>
-                                                        On progress</option>
+                                                    <option value="On Progress"
+                                                        <?= ($row["status"] == "On Progress") ? "selected" : ""; ?>>
+                                                        On Progress</option>
                                                 </select>
                                             </div>
                                             <input type="hidden" name="page" value="<?= $page; ?>">
@@ -611,6 +850,21 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
             window.open(printPageUrl, '_blank');
         } else {
             alert('No rows selected for printing.');
+        }
+    }
+    </script>
+
+    <script>
+    function checkLainnya(field) {
+        const dropdown = document.getElementById(field);
+        const inputField = document.getElementById(field + "_input");
+
+        if (dropdown.value === "LAINNYA") {
+            inputField.style.display = "block";
+            inputField.setAttribute("required", "required");
+        } else {
+            inputField.style.display = "none";
+            inputField.removeAttribute("required");
         }
     }
     </script>

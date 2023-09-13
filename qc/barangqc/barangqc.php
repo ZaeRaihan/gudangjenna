@@ -265,6 +265,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <th scope="col">Article Name</th>
                             <th scope="col">Size</th>
                             <th scope="col">Stock</th>
+                            <th scope="col">Vendor</th>
                             <th scope="col">Kirim</th>
                         </tr>
 
@@ -282,6 +283,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <td><?= $row["article_name"]; ?></td>
                             <td><?= $row["size"]; ?></td>
                             <td><?= $row["stock"]; ?></td>
+                            <td><?= $row["vendor"]; ?></td>
                             <td>
                                 <div class="btn-group text-center" style="display: flex; justify-content: center;">
                                     <!-- Button untuk mengirim data ke tabel barangqc -->

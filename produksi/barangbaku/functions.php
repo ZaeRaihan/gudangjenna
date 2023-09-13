@@ -25,7 +25,9 @@ function tambahBarang($data)
     $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
     $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
     $nama = htmlspecialchars($data['nama']);
+    $inyard = htmlspecialchars($data['inyard']);
     $stock = htmlspecialchars($data['stock']);
+    $supplier = htmlspecialchars($data['supplier']);
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
@@ -33,7 +35,7 @@ function tambahBarang($data)
     // $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
 
     // Query tambah barang
-    $query = "INSERT INTO barangbaku (tgl_brg_masuk,  sj_from_vendor, nama , stock) VALUES ('$tgl_brg_masuk', '$sj_from_vendor', '$nama', '$stock')";
+    $query = "INSERT INTO barangbaku (tgl_brg_masuk, sj_from_vendor, nama, inyard, stock, supplier) VALUES ('$tgl_brg_masuk', '$sj_from_vendor', '$nama', '$inyard', '$stock', '$supplier')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -48,7 +50,9 @@ function ubahBarang($data, $idbarang_baku)
     $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
     $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
     $nama = htmlspecialchars($data['nama']);
+    $inyard = htmlspecialchars($data['inyard']);
     $stock = htmlspecialchars($data['stock']);
+    $supplier = htmlspecialchars($data['supplier']);
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
@@ -56,7 +60,7 @@ function ubahBarang($data, $idbarang_baku)
     // $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
 
     // Query ubah barang
-    $query = "UPDATE barangbaku SET tgl_brg_masuk = '$tgl_brg_masuk', sj_from_vendor = '$sj_from_vendor', nama = '$nama', stock = '$stock' WHERE idbarang_baku = $idbarang_baku";
+    $query = "UPDATE barangbaku SET tgl_brg_masuk = '$tgl_brg_masuk', sj_from_vendor = '$sj_from_vendor', nama = '$nama',  inyard = '$inyard', stock = '$stock', supplier = '$supplier' WHERE idbarang_baku = $idbarang_baku";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -115,12 +119,14 @@ function proses_copy($id)
     }
 
     // Insert the copied data as a new entry
-    $insertQuery = "INSERT INTO barangbaku (tgl_brg_masuk, sj_from_vendor, nama, stock )
+    $insertQuery = "INSERT INTO barangbaku (tgl_brg_masuk, sj_from_vendor, nama, inyard, stock, supplier)
                     VALUES (
                         '{$dataToCopy['tgl_brg_masuk']}',
                         '{$dataToCopy['sj_from_vendor']}',
                         '{$dataToCopy['nama']}',
-                        '{$dataToCopy['stock']}')";
+                        '{$dataToCopy['inyard']}',
+                        '{$dataToCopy['stock']}',
+                        '{$dataToCopy['supplier']}')";
 
     $result = mysqli_query($db, $insertQuery);
 

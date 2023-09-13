@@ -28,10 +28,14 @@ function tambahBarang($data)
     $stock_inrevisi = htmlspecialchars($data['stock_inrevisi']);
     $stock_hasilrevisi = htmlspecialchars($data['stock_hasilrevisi']);
     $vendor_revisi = htmlspecialchars($data['vendor_revisi']);
+    $vendor_revisi_input = htmlspecialchars($data['vendor_revisi_input']);
     $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
     $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
     $totalstock = htmlspecialchars($data['totalstock']);
     $status = htmlspecialchars($data['status']);
+
+    // Menggunakan ternary operator untuk memilih antara nilai dropdown atau input teks
+    $vendor_revisiToUse = ($vendor_revisi === "LAINNYA") ? $vendor_revisi_input : $vendor_revisi;
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
@@ -40,7 +44,7 @@ function tambahBarang($data)
 
     // Query tambah barang
     $query = "INSERT INTO baranginrevisi (tgl_brg_keluar, sj_for_vendor, launching_date, collection, article_name, size, stock_inrevisi, stock_hasilrevisi, vendor_revisi, tgl_brg_masuk, sj_from_vendor, totalstock, status)
-    VALUES ('$tgl_brg_keluar', '$sj_for_vendor', '$launching_date', '$collection', '$article_name', '$size', '$stock_inrevisi', '$stock_hasilrevisi', '$vendor_revisi', '$tgl_brg_masuk', '$sj_from_vendor', '$totalstock', '$status')";
+    VALUES ('$tgl_brg_keluar', '$sj_for_vendor', '$launching_date', '$collection', '$article_name', '$size', '$stock_inrevisi', '$stock_hasilrevisi', '$vendor_revisiToUse', '$tgl_brg_masuk', '$sj_from_vendor', '$totalstock', '$status')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -61,9 +65,12 @@ function ubahBarang($data, $idbarang_inrevisi)
     $stock_inrevisi = htmlspecialchars($data['stock_inrevisi']);
     $stock_hasilrevisi = htmlspecialchars($data['stock_hasilrevisi']);
     $vendor_revisi = htmlspecialchars($data['vendor_revisi']);
+    if ($vendor_revisi === 'OTHER') {
+        $otherVendor_revisi = htmlspecialchars($data['otherVendor_revisi']);
+        $vendor_revisi = $otherVendor_revisi;
+    }
     $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
     $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
-    $totalstock = htmlspecialchars($data['totalstock']);
     $status = htmlspecialchars($data['status']);
 
 // Convert the date values to the correct format (YYYY-MM-DD)

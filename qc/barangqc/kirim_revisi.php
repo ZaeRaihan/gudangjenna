@@ -28,10 +28,11 @@ if (!empty($data_barangqc)) {
     $article_name = $data_barangqc[0]["article_name"];
     $size = $data_barangqc[0]["size"];
     $stock = $data_barangqc[0]["stock"];
+    $vendor = $data_barangqc[0]["vendor"];
 
     // Masukkan data ke dalam tabel barangrevisi
-    $query_insert_barangrevisi = "INSERT INTO barangrevisi (tgl_brg_masuk, launching_date, collection, article_name, size, stock, tgl_brg_keluar, sj_for_produksi, idbarang_qc) 
-                              VALUES ('$tgl_brg_keluar', '$launching_date', '$collection', '$article_name', '$size', '', NOW(), '', $idbarang_qc)";
+    $query_insert_barangrevisi = "INSERT INTO barangrevisi (tgl_brg_masuk, launching_date, collection, article_name, size, stock, vendor, tgl_brg_keluar, sj_for_produksi, idbarang_qc) 
+                              VALUES ('$tgl_brg_keluar', '$launching_date', '$collection', '$article_name', '$size', '', '$vendor', NOW(), '', $idbarang_qc)";
     
     if (mysqli_query($db, $query_insert_barangrevisi)) {
         // Data berhasil dikirimkan

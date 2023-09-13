@@ -28,10 +28,14 @@ function tambahBarang($data)
     $stock_inpayet = htmlspecialchars($data['stock_inpayet']);
     $stock_hasilpayet = htmlspecialchars($data['stock_hasilpayet']);
     $vendor_payet = htmlspecialchars($data['vendor_payet']);
+    $vendor_payet_input = htmlspecialchars($data['vendor_payet_input']);
     $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
     $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
     $totalstock = htmlspecialchars($data['totalstock']);
     $status = htmlspecialchars($data['status']);
+
+    // Menggunakan ternary operator untuk memilih antara nilai dropdown atau input teks
+    $vendor_payetToUse = ($vendor_payet === "LAINNYA") ? $vendor_payet_input : $vendor_payet;
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
@@ -40,7 +44,7 @@ function tambahBarang($data)
 
     // Query tambah barang
     $query = "INSERT INTO baranginpayet (tgl_brg_keluar, sj_for_vendor, launching_date, collection, article_name, size, stock_inpayet, stock_hasilpayet, vendor_payet, tgl_brg_masuk, sj_from_vendor, totalstock, status)
-    VALUES ('$tgl_brg_keluar', '$sj_for_vendor', '$launching_date', '$collection', '$article_name', '$size', '$stock_inpayet', '$stock_hasilpayet', '$vendor_payet', '$tgl_brg_masuk', '$sj_from_vendor', '$totalstock', '$status')";
+    VALUES ('$tgl_brg_keluar', '$sj_for_vendor', '$launching_date', '$collection', '$article_name', '$size', '$stock_inpayet', '$stock_hasilpayet', '$vendor_payetToUse', '$tgl_brg_masuk', '$sj_from_vendor', '$totalstock', '$status')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -61,6 +65,10 @@ function ubahBarang($data, $idbarang_inpayet)
     $stock_inpayet = htmlspecialchars($data['stock_inpayet']);
     $stock_hasilpayet = htmlspecialchars($data['stock_hasilpayet']);
     $vendor_payet = htmlspecialchars($data['vendor_payet']);
+    if ($vendor_payet === 'OTHER') {
+        $otherVendor_payet = htmlspecialchars($data['otherVendor_payet']);
+        $vendor_payet = $otherVendor_payet;
+    }
     $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
     $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
     $status = htmlspecialchars($data['status']);

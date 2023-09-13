@@ -38,7 +38,8 @@ $selectedRowsData = query($query);
             <th scope="col">Tanggal Barang Keluar</th>
             <th scope="col">SJ For Sewing</th>
             <th scope="col">Nama Bahan</th>
-            <th scope="col">Stock In Sewing(ROLL)</th>
+            <th scope="col">Out Yard</th>
+            <th scope="col">Out Roll</th>
             <th scope="col">Vendor Sewing</th>
         </tr>
 
@@ -49,6 +50,7 @@ $selectedRowsData = query($query);
             <td><?= formatDate($row["tgl_brg_keluar"]); ?></td>
             <td><?= $row["sj_for_vendor"]; ?></td>
             <td><?= $row["nama"]; ?></td>
+            <td><?= $row["inyard"]; ?></td>
             <td><?= $row["stock_insewing"]; ?></td>
             <td><?= $row["vendor_sewing"]; ?></td>
         </tr>

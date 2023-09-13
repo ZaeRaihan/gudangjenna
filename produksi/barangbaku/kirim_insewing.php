@@ -23,12 +23,13 @@ $data_barangbaku = query($query_barangbaku);
 if (!empty($data_barangbaku)) {
     // Ambil data dari tabel barangbaku
     $nama = $data_barangbaku[0]["nama"];
+    $inyard = $data_barangbaku[0]["inyard"];
     $stock = $data_barangbaku[0]["stock"];
 
     // Masukkan data ke dalam tabel baranginsewing
-    $query_insert_baranginsewing = "INSERT INTO baranginsewing (tgl_brg_keluar, sj_for_vendor, nama, launching_date, collection, article_name, size, stock_insewing, stock_hasilsewing, vendor_sewing,
-     tgl_brg_masuk, sj_from_vendor, totalstock, status, idbarang_baku) 
-                              VALUES (NOW(), '', '$nama', NOW(), '$collection', '$article_name', '$size', '$stock', '', '', NOW(), '', '', 'On progress', $idbarang_baku)";
+    $query_insert_baranginsewing = "INSERT INTO baranginsewing (tgl_brg_keluar, sj_for_vendor, nama, inyard, stock_insewing, launching_date, collection, article_name, size, stock_hasilsewing, vendor_sewing,
+     tgl_brg_masuk, sj_from_vendor, status, idbarang_baku) 
+                              VALUES (NOW(), '', '$nama', '$inyard', '$stock', NOW(), '$collection', '$article_name', '$size', '', '', NOW(), '', 'On progress', $idbarang_baku)";
 
     if (mysqli_query($db, $query_insert_baranginsewing)) {
         // Data berhasil dikirimkan

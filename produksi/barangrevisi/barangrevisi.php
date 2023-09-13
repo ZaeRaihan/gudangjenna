@@ -46,6 +46,7 @@ if (!empty($search)) {
         LOWER(article_name) LIKE '%$search%' OR
         LOWER(size) LIKE '%$search%' OR
         LOWER(stock) LIKE '%$search%' OR
+        LOWER(vendor) LIKE '%$search%' OR
         LOWER(tgl_brg_keluar) LIKE '%$search%' OR
         LOWER(sj_for_produksi) LIKE '%$search%' OR
         DATE_FORMAT(launching_date, '%d-%m-%Y') LIKE '%$search%' OR
@@ -279,6 +280,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <th scope="col">Article Name</th>
                             <th scope="col">Size</th>
                             <th scope="col">Stock</th>
+                            <th scope="col">Vendor</th>
                             <th scope="col">Kirim</th>
                         </tr>
 
@@ -296,6 +298,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <td><?= $row["article_name"]; ?></td>
                             <td><?= $row["size"]; ?></td>
                             <td><?= $row["stock"]; ?></td>
+                            <td><?= $row["vendor"]; ?></td>
                             <td>
                                 <div class="btn-group text-center" style="display: flex; justify-content: center;">
                                     <!-- Button untuk mengirim data ke tabel baranginpayet -->

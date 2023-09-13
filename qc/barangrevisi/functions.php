@@ -25,8 +25,13 @@ function tambahBarang($data)
     $article_name = htmlspecialchars($data['article_name']);
     $size = htmlspecialchars($data['size']);
     $stock = htmlspecialchars($data['stock']);
+    $vendor = htmlspecialchars($data['vendor']);
+    $vendor_input = htmlspecialchars($data['vendor_input']);
     $tgl_brg_keluar = htmlspecialchars($data['tgl_brg_keluar']);
     $sj_for_produksi = htmlspecialchars($data['sj_for_produksi']);
+
+    // Menggunakan ternary operator untuk memilih antara nilai dropdown atau input teks
+    $vendorToUse = ($vendor === "LAINNYA") ? $vendor_input : $vendor;
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
@@ -34,7 +39,8 @@ function tambahBarang($data)
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
 
     // Query tambah barang
-    $query = "INSERT INTO barangrevisi (tgl_brg_masuk, launching_date, collection, article_name, size, stock, tgl_brg_keluar, sj_for_produksi) VALUES ('$tgl_brg_masuk', '$launching_date', '$collection', '$article_name', '$size', '$stock', '$tgl_brg_keluar', '$sj_for_produksi')";
+    $query = "INSERT INTO barangrevisi (tgl_brg_masuk, launching_date, collection, article_name, size, stock, vendor, tgl_brg_keluar, sj_for_produksi) VALUES 
+    ('$tgl_brg_masuk', '$launching_date', '$collection', '$article_name', '$size', '$stock', '$vendorToUse', '$tgl_brg_keluar', '$sj_for_produksi')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -52,6 +58,11 @@ function ubahBarang($data, $idbarang_revisi)
     $article_name = htmlspecialchars($data['article_name']);
     $size = htmlspecialchars($data['size']);
     $stock = htmlspecialchars($data['stock']);
+    $vendor = htmlspecialchars($data['vendor']);
+    if ($vendor === 'OTHER') {
+        $otherVendor = htmlspecialchars($data['otherVendor']);
+        $vendor = $otherVendor;
+    }
     $tgl_brg_keluar = htmlspecialchars($data['tgl_brg_keluar']);
     $sj_for_produksi = htmlspecialchars($data['sj_for_produksi']);
 
@@ -61,7 +72,8 @@ function ubahBarang($data, $idbarang_revisi)
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
 
     // Query ubah barang
-    $query = "UPDATE barangrevisi SET tgl_brg_masuk = '$tgl_brg_masuk', launching_date = '$launching_date', collection = '$collection', article_name = '$article_name', size = '$size', stock = '$stock', tgl_brg_keluar = '$tgl_brg_keluar', sj_for_produksi = '$sj_for_produksi' WHERE idbarang_revisi = $idbarang_revisi";
+    $query = "UPDATE barangrevisi SET tgl_brg_masuk = '$tgl_brg_masuk', launching_date = '$launching_date', collection = '$collection', article_name = '$article_name', size = '$size', 
+    stock = '$stock', vendor = '$vendor', tgl_brg_keluar = '$tgl_brg_keluar', sj_for_produksi = '$sj_for_produksi' WHERE idbarang_revisi = $idbarang_revisi";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -120,7 +132,7 @@ function proses_copy($id)
     }
 
     // Insert the copied data as a new entry
-    $insertQuery = "INSERT INTO barangrevisi (tgl_brg_masuk, launching_date, collection, article_name, size, stock, tgl_brg_keluar, sj_for_produksi)
+    $insertQuery = "INSERT INTO barangrevisi (tgl_brg_masuk, launching_date, collection, article_name, size, stock, vendor, tgl_brg_keluar, sj_for_produksi)
                     VALUES (
                         '{$dataToCopy['tgl_brg_masuk']}',
                         '{$dataToCopy['launching_date']}',
@@ -128,6 +140,7 @@ function proses_copy($id)
                         '{$dataToCopy['article_name']}',
                         '{$dataToCopy['size']}',
                         '{$dataToCopy['stock']}',
+                        '{$dataToCopy['vendor']}',
                         '{$dataToCopy['tgl_brg_keluar']}',
                         '{$dataToCopy['sj_for_produksi']}'
                     )";
