@@ -75,7 +75,7 @@ function ubahBarang($data, $idbarang_inpayet)
     $result = mysqli_query($db, $query);
     $row = mysqli_fetch_assoc($result);
     $totalstock_sebelumnya = $row['totalstock'];
-    $stock_inpayet_sebelumnya = $row['stock_inpayet'];
+    
 
     // Tambahkan kondisi untuk memeriksa apakah total stock baru tidak sama dengan stock in payet
     if ($totalstock_sebelumnya != $stock_inpayet) {

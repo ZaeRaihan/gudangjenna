@@ -333,7 +333,6 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             <option value="TUNIC">Tunic</option>
                                             <!-- Opsi kategori lainnya -->
                                             <option value="LAINNYA">Lainnya</option>
-                                            <!-- ... (opsi lainnya seperti sebelumnya) ... -->
                                         </select>
                                         <input type="text" class="form-control mt-2" id="kategori_input"
                                             name="kategori_input" style="display: none;"
@@ -346,7 +345,16 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     </div>
                                     <div class="form-group">
                                         <label for="size">Size</label>
-                                        <input type="text" class="form-control" id="size" name="size" required>
+                                        <select class="form-control" id="size" name="size" required>
+                                            <option value="" disabled selected>Pilih Size</option>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="S-M">S-M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                            <option value="L-XL">L-XL</option>
+                                            <option value="All Size">All Size</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="stock">Stock</label>
@@ -369,7 +377,6 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             <option value="Karung">Karung</option>
                                             <!-- Opsi lokasi lainnya -->
                                             <option value="LAINNYA">Lainnya</option>
-                                            <!-- ... (opsi lainnya seperti sebelumnya) ... -->
                                         </select>
                                         <input type="text" class="form-control mt-2" id="lokasi_input"
                                             name="lokasi_input" style="display: none;" placeholder="Masukkan Lokasi">
@@ -492,45 +499,90 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                 <label for="kategori">Kategori</label>
                                                 <select class="form-control" id="kategori" name="kategori" required
                                                     onchange="checkOtherOption(this);">
-                                                    <option value="BAG">BAG</option>
-                                                    <option value="BROOCH">BROOCH</option>
-                                                    <option value="BUCKET HAT">BUCKET HAT</option>
-                                                    <option value="BUNDLING">BUNDLING</option>
-                                                    <option value="CLOTH MASK">CLOTH MASK</option>
-                                                    <option value="DRESS">DRESS</option>
-                                                    <option value="INNER">INNER</option>
-                                                    <option value="OUTER">OUTER</option>
-                                                    <option value="PANTS">PANTS</option>
-                                                    <option value="PRAYER SET">PRAYER SET</option>
-                                                    <option value="QURAN">QURAN</option>
-                                                    <option value="SANDAL">SANDAL</option>
-                                                    <option value="SCARF">SCARF</option>
-                                                    <option value="SCRUNCHIE">SCRUNCHIE</option>
-                                                    <option value="SHIRT">SHIRT</option>
-                                                    <option value="SHOES">SHOES</option>
-                                                    <option value="SKIRT">SKIRT</option>
-                                                    <option value="TOP">TOP</option>
-                                                    <option value="TUNIC">TUNIC</option>
+                                                    <option value="<?= $row["kategori"]; ?>"
+                                                        <?= ($row["kategori"] == $row["kategori"]) ? "selected" : ""; ?>>
+                                                        <?= $row["kategori"]; ?>
+                                                    </option>
+                                                    <option value="BAG"
+                                                        <?= ($row["kategori"] == "BAG") ? "selected" : ""; ?>>BAG
+                                                    </option>
+                                                    <option value="BROOCH"
+                                                        <?= ($row["kategori"] == "BROOCH") ? "selected" : ""; ?>>BROOCH
+                                                    </option>
+                                                    <option value="BUCKET HAT"
+                                                        <?= ($row["kategori"] == "BUCKET HAT") ? "selected" : ""; ?>>
+                                                        BUCKET HAT</option>
+                                                    <option value="BUNDLING"
+                                                        <?= ($row["kategori"] == "BUNDLING") ? "selected" : ""; ?>>
+                                                        BUNDLING</option>
+                                                    <option value="CLOTH MASK"
+                                                        <?= ($row["kategori"] == "CLOTH MASK") ? "selected" : ""; ?>>
+                                                        CLOTH MASK</option>
+                                                    <option value="DRESS"
+                                                        <?= ($row["kategori"] == "DRESS") ? "selected" : ""; ?>>DRESS
+                                                    </option>
+                                                    <option value="INNER"
+                                                        <?= ($row["kategori"] == "INNER") ? "selected" : ""; ?>>INNER
+                                                    </option>
+                                                    <option value="OUTER"
+                                                        <?= ($row["kategori"] == "OUTER") ? "selected" : ""; ?>>OUTER
+                                                    </option>
+                                                    <option value="PANTS"
+                                                        <?= ($row["kategori"] == "PANTS") ? "selected" : ""; ?>>PANTS
+                                                    </option>
+                                                    <option value="PRAYER SET"
+                                                        <?= ($row["kategori"] == "PRAYER SET") ? "selected" : ""; ?>>
+                                                        PRAYER SET</option>
+                                                    <option value="QURAN"
+                                                        <?= ($row["kategori"] == "QURAN") ? "selected" : ""; ?>>QURAN
+                                                    </option>
+                                                    <option value="SANDAL"
+                                                        <?= ($row["kategori"] == "SANDAL") ? "selected" : ""; ?>>SANDAL
+                                                    </option>
+                                                    <option value="SCARF"
+                                                        <?= ($row["kategori"] == "SCARF") ? "selected" : ""; ?>>SCARF
+                                                    </option>
+                                                    <option value="SCRUNCHIE"
+                                                        <?= ($row["kategori"] == "SCRUNCHIE") ? "selected" : ""; ?>>
+                                                        SCRUNCHIE</option>
+                                                    <option value="SHIRT"
+                                                        <?= ($row["kategori"] == "SHIRT") ? "selected" : ""; ?>>SHIRT
+                                                    </option>
+                                                    <option value="SHOES"
+                                                        <?= ($row["kategori"] == "SHOES") ? "selected" : ""; ?>>SHOES
+                                                    </option>
+                                                    <option value="SKIRT"
+                                                        <?= ($row["kategori"] == "SKIRT") ? "selected" : ""; ?>>SKIRT
+                                                    </option>
+                                                    <option value="TOP"
+                                                        <?= ($row["kategori"] == "TOP") ? "selected" : ""; ?>>TOP
+                                                    </option>
+                                                    <option value="TUNIC"
+                                                        <?= ($row["kategori"] == "TUNIC") ? "selected" : ""; ?>>TUNIC
+                                                    </option>
                                                     <!-- Opsi "Other" -->
-                                                    <option value="OTHER">OTHER</option>
+                                                    <option value="OTHER"
+                                                        <?= ($row["kategori"] == "OTHER") ? "selected" : ""; ?>>
+                                                        Other
+                                                    </option>
                                                 </select>
                                             </div>
                                             <!-- Kolom input tambahan untuk kategori lainnya -->
-                                            <div class="form-group" id="otherCategoryInput" style="display:none;">
+                                            <div class="form-group" id="otherKategoriInput" style="display:none;">
                                                 <label for="otherKategori">Kategori Lainnya</label>
                                                 <input class="form-control" type="text" id="otherKategori"
                                                     name="otherKategori">
                                             </div>
                                             <script>
                                             function checkOtherOption(select) {
-                                                var otherCategoryInput = document.getElementById("otherCategoryInput");
+                                                var otherKategoriInput = document.getElementById("otherKategoriInput");
                                                 var otherKategori = document.getElementById("otherKategori");
 
                                                 if (select.value === "OTHER") {
-                                                    otherCategoryInput.style.display = "block";
+                                                    otherKategoriInput.style.display = "block";
                                                     otherKategori.setAttribute("required", "true");
                                                 } else {
-                                                    otherCategoryInput.style.display = "none";
+                                                    otherKategoriInput.style.display = "none";
                                                     otherKategori.removeAttribute("required");
                                                 }
                                             }
@@ -542,8 +594,28 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             </div>
                                             <div class="form-group">
                                                 <label for="size">Size</label>
-                                                <input type="text" class="form-control" id="size" name="size"
-                                                    value="<?= $row["size"]; ?>" required>
+                                                <select class="form-control" id="size" name="size" required>
+                                                    <option value="<?= $row["size"]; ?>"
+                                                        <?= ($row["size"] == $row["size"]) ? "selected" : ""; ?>>
+                                                        <?= $row["size"]; ?>
+                                                    </option>
+                                                    <option value="S" <?= ($row["size"] == "S") ? "selected" : ""; ?>>
+                                                        S</option>
+                                                    <option value="M" <?= ($row["size"] == "M") ? "selected" : ""; ?>>
+                                                        M</option>
+                                                    <option value="S-M"
+                                                        <?= ($row["size"] == "S-M") ? "selected" : ""; ?>>S-M</option>
+                                                    <option value="L" <?= ($row["size"] == "L") ? "selected" : ""; ?>>
+                                                        L</option>
+                                                    <option value="XL" <?= ($row["size"] == "XL") ? "selected" : ""; ?>>
+                                                        XL</option>
+                                                    <option value="L-XL"
+                                                        <?= ($row["size"] == "L-XL") ? "selected" : ""; ?>>L-XL
+                                                    </option>
+                                                    <option value="All Size"
+                                                        <?= ($row["size"] == "All Size") ? "selected" : ""; ?>>All
+                                                        Size</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="stock">Stock</label>
@@ -559,12 +631,26 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                 <label for="lokasi">Lokasi</label>
                                                 <select class="form-control" id="lokasi" name="lokasi" required
                                                     onchange="checkOtherOptionLokasi(this);">
-                                                    <option value="Karton">Karton</option>
-                                                    <option value="Rak">Rak</option>
-                                                    <option value="Kontainer">Kontainer</option>
-                                                    <option value="Karung">Karung</option>
+                                                    <option value="<?= $row["lokasi"]; ?>"
+                                                        <?= ($row["lokasi"] == $row["lokasi"]) ? "selected" : ""; ?>>
+                                                        <?= $row["lokasi"]; ?>
+                                                    </option>
+                                                    <option value="Karton"
+                                                        <?= ($row["lokasi"] == "Karton") ? "selected" : ""; ?>>Karton
+                                                    </option>
+                                                    <option value="Rak"
+                                                        <?= ($row["lokasi"] == "Rak") ? "selected" : ""; ?>>Rak</option>
+                                                    <option value="Kontainer"
+                                                        <?= ($row["lokasi"] == "Kontainer") ? "selected" : ""; ?>>
+                                                        Kontainer</option>
+                                                    <option value="Karung"
+                                                        <?= ($row["lokasi"] == "Karung") ? "selected" : ""; ?>>Karung
+                                                    </option>
                                                     <!-- Opsi "Other" -->
-                                                    <option value="OTHER">Other</option>
+                                                    <option value="OTHER"
+                                                        <?= ($row["lokasi"] == "OTHER") ? "selected" : ""; ?>>
+                                                        Other
+                                                    </option>
                                                 </select>
                                             </div>
                                             <!-- Kolom input tambahan untuk lokasi lainnya -->
@@ -596,13 +682,14 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                 <label for="umur">Umur</label>
                                                 <select class="form-control" id="umur" name="umur" required>
                                                     <option value="" disabled>Pilih Umur Barang</option>
+                                                    <option value="<?= $row["umur"]; ?>"
+                                                        <?= ($row["umur"] == $row["umur"]) ? "selected" : ""; ?>>
+                                                        <?= $row["umur"]; ?>
+                                                    </option>
                                                     <option value="0 - 3 BULAN"
                                                         <?= ($row["umur"] == "0 - 3 BULAN") ? "selected" : ""; ?>>
                                                         0 - 3 BULAN
                                                     </option>
-                                                    <option value="4 - 6 BULAN"
-                                                        <?= ($row["umur"] == "4 - 6 BULAN") ? "selected" : ""; ?>>
-                                                        4 - 6 BULAN</option>
                                                     <option value="4 - 6 BULAN"
                                                         <?= ($row["umur"] == "4 - 6 BULAN") ? "selected" : ""; ?>>
                                                         4 - 6 BULAN</option>

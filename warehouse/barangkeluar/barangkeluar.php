@@ -327,7 +327,16 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     </div>
                                     <div class="form-group">
                                         <label for="size">Size</label>
-                                        <input type="text" class="form-control" id="size" name="size" required>
+                                        <select class="form-control" id="size" name="size" required>
+                                            <option value="" disabled selected>Pilih Size</option>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="S-M">S-M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                            <option value="L-XL">L-XL</option>
+                                            <option value="All Size">All Size</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="stock">Stock</label>
@@ -434,7 +443,10 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             <div class="form-group">
                                                 <label for="gudang">Gudang</label>
                                                 <select class="form-control" id="gudang" name="gudang" required>
-                                                    <option value="" disabled>Pilih Gudang Asal</option>
+                                                    <option value="<?= $row["gudang"]; ?>"
+                                                        <?= ($row["gudang"] == $row["gudang"]) ? "selected" : ""; ?>>
+                                                        <?= $row["gudang"]; ?>
+                                                    </option>
                                                     <option value="Stock Gudang"
                                                         <?= ($row["gudang"] == "Stock Gudang") ? "selected" : ""; ?>>
                                                         Stock Gudang
@@ -454,8 +466,28 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             </div>
                                             <div class="form-group">
                                                 <label for="size">Size</label>
-                                                <input type="text" class="form-control" id="size" name="size"
-                                                    value="<?= $row["size"]; ?>" required>
+                                                <select class="form-control" id="size" name="size" required>
+                                                    <option value="<?= $row["size"]; ?>"
+                                                        <?= ($row["size"] == $row["size"]) ? "selected" : ""; ?>>
+                                                        <?= $row["size"]; ?>
+                                                    </option>
+                                                    <option value="S" <?= ($row["size"] == "S") ? "selected" : ""; ?>>
+                                                        S</option>
+                                                    <option value="M" <?= ($row["size"] == "M") ? "selected" : ""; ?>>
+                                                        M</option>
+                                                    <option value="S-M"
+                                                        <?= ($row["size"] == "S-M") ? "selected" : ""; ?>>S-M</option>
+                                                    <option value="L" <?= ($row["size"] == "L") ? "selected" : ""; ?>>
+                                                        L</option>
+                                                    <option value="XL" <?= ($row["size"] == "XL") ? "selected" : ""; ?>>
+                                                        XL</option>
+                                                    <option value="L-XL"
+                                                        <?= ($row["size"] == "L-XL") ? "selected" : ""; ?>>L-XL
+                                                    </option>
+                                                    <option value="All Size"
+                                                        <?= ($row["size"] == "All Size") ? "selected" : ""; ?>>All
+                                                        Size</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="stock">Stock</label>
@@ -465,7 +497,10 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             <div class="form-group">
                                                 <label for="status">Status Keluar</label>
                                                 <select class="form-control" id="status" name="status" required>
-                                                    <option value="" disabled>Pilih Status Keluar</option>
+                                                    <option value="<?= $row["status"]; ?>"
+                                                        <?= ($row["status"] == $row["status"]) ? "selected" : ""; ?>>
+                                                        <?= $row["status"]; ?>
+                                                    </option>
                                                     <option value="Online"
                                                         <?= ($row["status"] == "Online") ? "selected" : ""; ?>>
                                                         Online

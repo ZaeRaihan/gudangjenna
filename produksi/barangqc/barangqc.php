@@ -335,7 +335,50 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     </div>
                                     <div class="form-group">
                                         <label for="vendor">Vendor</label>
-                                        <input type="text" class="form-control" id="vendor" name="vendor" required>
+                                        <select class="form-control" id="vendor" name="vendor" required
+                                            onchange="checkLainnya('vendor')">
+                                            <option value="" disabled selected>Pilih Vendor</option>
+                                            <option value="Alia Digital Printex">Alia Digital Printex</option>
+                                            <option value="Atfemale">Atfemale</option>
+                                            <option value="Atmosfira Dekatama">Atmosfira Dekatama</option>
+                                            <option value="Baju Kertas">Baju Kertas</option>
+                                            <option value="Bandanaira">Bandanaira</option>
+                                            <option value="Bu Citra">Bu Citra</option>
+                                            <option value="Bu Dewi">Bu Dewi</option>
+                                            <option value="Bu Elis">Bu Elis</option>
+                                            <option value="Bu Hany">Bu Hany</option>
+                                            <option value="Bu Icha">Bu Icha</option>
+                                            <option value="Bu Kartika">Bu Kartika</option>
+                                            <option value="Bu Linda">Bu Linda</option>
+                                            <option value="Bu Lilis">Bu Lilis</option>
+                                            <option value="Bu Rini">Bu Rini</option>
+                                            <option value="Bu Riri">Bu Riri</option>
+                                            <option value="Bu Ussy">Bu Ussy</option>
+                                            <option value="Bu Yani">Bu Yani</option>
+                                            <option value="Bu Yuli">Bu Yuli</option>
+                                            <option value="CV SBB">CV SBB</option>
+                                            <option value="Kensby Research Co.">Kensby Research Co.</option>
+                                            <option value="Muara Global">Muara Global</option>
+                                            <option value="Ophie Rever">Ophie Rever</option>
+                                            <option value="Pak Edi">Pak Edi</option>
+                                            <option value="Pak Giri">Pak Giri</option>
+                                            <option value="Pak Sunar">Pak Sunar</option>
+                                            <option value="Pa Ohid">Pa Ohid</option>
+                                            <option value="Penjahit Rapi">Penjahit Rapi</option>
+                                            <option value="PT Jaya Mitra Kurnia">PT Jaya Mitra Kurnia</option>
+                                            <option value="PT Thonnamaz">PT Thonnamaz</option>
+                                            <option value="PT.SJS">PT.SJS</option>
+                                            <option value="RB Manufacturing">RB Manufacturing</option>
+                                            <option value="Rumah Renza">Rumah Renza</option>
+                                            <option value="Sakh Konveksi">Sakh Konveksi</option>
+                                            <option value="Three and Me">Three and Me</option>
+
+                                            <!-- Opsi vendor lainnya -->
+                                            <option value="LAINNYA">Lainnya</option>
+                                            <!-- ... (opsi lainnya seperti sebelumnya) ... -->
+                                        </select>
+                                        <input type="text" class="form-control mt-2" id="vendor_input"
+                                            name="vendor_input" style="display: none;" placeholder="Masukkan Vendor">
                                     </div>
                                     <div class="form-group">
                                         <label for="tgl_brg_keluar">Tanggal Barang Keluar</label>
@@ -452,9 +495,67 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             </div>
                                             <div class="form-group">
                                                 <label for="vendor">Vendor</label>
-                                                <input type="text" class="form-control" id="vendor" name="vendor"
-                                                    value="<?= $row["vendor"]; ?>" required>
+                                                <select class="form-control" id="vendor" name="vendor" required
+                                                    onchange="checkOtherOptionVendor(this);">
+                                                    <option value="Alia Digital Printex">Alia Digital Printex</option>
+                                                    <option value="Atfemale">Atfemale</option>
+                                                    <option value="Atmosfira Dekatama">Atmosfira Dekatama</option>
+                                                    <option value="Baju Kertas">Baju Kertas</option>
+                                                    <option value="Bandanaira">Bandanaira</option>
+                                                    <option value="Bu Citra">Bu Citra</option>
+                                                    <option value="Bu Dewi">Bu Dewi</option>
+                                                    <option value="Bu Elis">Bu Elis</option>
+                                                    <option value="Bu Hany">Bu Hany</option>
+                                                    <option value="Bu Icha">Bu Icha</option>
+                                                    <option value="Bu Kartika">Bu Kartika</option>
+                                                    <option value="Bu Linda">Bu Linda</option>
+                                                    <option value="Bu Lilis">Bu Lilis</option>
+                                                    <option value="Bu Rini">Bu Rini</option>
+                                                    <option value="Bu Riri">Bu Riri</option>
+                                                    <option value="Bu Ussy">Bu Ussy</option>
+                                                    <option value="Bu Yani">Bu Yani</option>
+                                                    <option value="Bu Yuli">Bu Yuli</option>
+                                                    <option value="CV SBB">CV SBB</option>
+                                                    <option value="Kensby Research Co.">Kensby Research Co.</option>
+                                                    <option value="Muara Global">Muara Global</option>
+                                                    <option value="Ophie Rever">Ophie Rever</option>
+                                                    <option value="Pak Edi">Pak Edi</option>
+                                                    <option value="Pak Giri">Pak Giri</option>
+                                                    <option value="Pak Sunar">Pak Sunar</option>
+                                                    <option value="Pa Ohid">Pa Ohid</option>
+                                                    <option value="Penjahit Rapi">Penjahit Rapi</option>
+                                                    <option value="PT Jaya Mitra Kurnia">PT Jaya Mitra Kurnia</option>
+                                                    <option value="PT Thonnamaz">PT Thonnamaz</option>
+                                                    <option value="PT.SJS">PT.SJS</option>
+                                                    <option value="RB Manufacturing">RB Manufacturing</option>
+                                                    <option value="Rumah Renza">Rumah Renza</option>
+                                                    <option value="Sakh Konveksi">Sakh Konveksi</option>
+                                                    <option value="Three and Me">Three and Me</option>
+
+                                                    <!-- Opsi "Other" -->
+                                                    <option value="OTHER">Other</option>
+                                                </select>
                                             </div>
+                                            <!-- Kolom input tambahan untuk vendor lainnya -->
+                                            <div class="form-group" id="otherVendorInput" style="display:none;">
+                                                <label for="otherVendor">Vendor Lainnya</label>
+                                                <input class="form-control" type="text" id="otherVendor"
+                                                    name="otherVendor">
+                                            </div>
+                                            <script>
+                                            function checkOtherOptionVendor(select) {
+                                                var otherVendorInput = document.getElementById("otherVendorInput");
+                                                var otherVendor = document.getElementById("otherVendor");
+
+                                                if (select.value === "OTHER") {
+                                                    otherVendorInput.style.display = "block";
+                                                    otherVendor.setAttribute("required", "true");
+                                                } else {
+                                                    otherVendorInput.style.display = "none";
+                                                    otherVendor.removeAttribute("required");
+                                                }
+                                            }
+                                            </script>
                                             <div class="form-group">
                                                 <label for="tgl_brg_keluar">Tanggal Barang Keluar</label>
                                                 <input type="date" class="form-control" id="tgl_brg_keluar"
@@ -520,6 +621,21 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
             window.open(printPageUrl, '_blank');
         } else {
             alert('No rows selected for printing.');
+        }
+    }
+    </script>
+
+    <script>
+    function checkLainnya(field) {
+        const dropdown = document.getElementById(field);
+        const inputField = document.getElementById(field + "_input");
+
+        if (dropdown.value === "LAINNYA") {
+            inputField.style.display = "block";
+            inputField.setAttribute("required", "required");
+        } else {
+            inputField.style.display = "none";
+            inputField.removeAttribute("required");
         }
     }
     </script>

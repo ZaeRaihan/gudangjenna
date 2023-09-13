@@ -27,7 +27,11 @@ function tambahBarang($data)
     $size = htmlspecialchars($data['size']);
     $stock = htmlspecialchars($data['stock']);
     $vendor = htmlspecialchars($data['vendor']);
+    $vendor_input = htmlspecialchars($data['vendor_input']);
     $status = htmlspecialchars($data['status']);
+
+    // Menggunakan ternary operator untuk memilih antara nilai dropdown atau input teks
+    $vendorToUse = ($vendor === "LAINNYA") ? $vendor_input : $vendor;
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
@@ -35,7 +39,7 @@ function tambahBarang($data)
 
     // Query tambah barang
     $query = "INSERT INTO barangvendor (tgl_brg_masuk, sj_from_vendor, launching_date, collection, article_name, size, stock, vendor, status) VALUES
-    ('$tgl_brg_masuk',  '$sj_from_vendor' ,'$launching_date', '$collection', '$article_name', '$size', '$stock', '$vendor', '$status')";
+    ('$tgl_brg_masuk',  '$sj_from_vendor' ,'$launching_date', '$collection', '$article_name', '$size', '$stock', '$vendorToUse', '$status')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -55,6 +59,10 @@ function ubahBarang($data, $idbarang_vendor)
      $size = htmlspecialchars($data['size']);
      $stock = htmlspecialchars($data['stock']);
      $vendor = htmlspecialchars($data['vendor']);
+    if ($vendor === 'OTHER') {
+        $otherVendor = htmlspecialchars($data['otherVendor']);
+        $vendor = $otherVendor;
+    }
      $status = htmlspecialchars($data['status']);
  
      // Convert the date values to the correct format (YYYY-MM-DD)

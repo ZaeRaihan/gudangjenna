@@ -76,7 +76,6 @@ function ubahBarang($data, $idbarang_inrevisi)
     $result = mysqli_query($db, $query);
     $row = mysqli_fetch_assoc($result);
     $totalstock_sebelumnya = $row['totalstock'];
-    $stock_inrevisi_sebelumnya = $row['stock_inrevisi'];
 
     // Tambahkan kondisi untuk memeriksa apakah total stock baru tidak sama dengan stock in revisi
     if ($totalstock_sebelumnya != $stock_inrevisi) {
