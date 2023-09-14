@@ -366,7 +366,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                 <div class="table-responsive">
                     <table id="data-table" class="table table-hover">
                         <tr>
-                            <th scope="col"></th>
+                            <th scope="col"><button onclick="checkAll()"></button></th>
                             <th scope="col">No</th>
                             <th scope="col">Tanggal Barang Keluar</th>
                             <th scope="col">Surat keluar</th>
@@ -553,6 +553,13 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
     <script src="script.js"></script>
 
     <script>
+    function checkAll() {
+        var checkboxes = document.querySelectorAll('.print-checkbox');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = true;
+        });
+    }
+
     function printTable() {
         const selectedRows = [];
         const checkboxes = document.querySelectorAll('.print-checkbox:checked');

@@ -433,7 +433,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                 <div class="table-responsive">
                     <table id="data-table" class="table table-hover">
                         <tr>
-                            <th scope="col"></th>
+                            <th scope="col"><button onclick="checkAll()"></button></th>
                             <th scope="col">No</th>
                             <th scope="col">Tanggal Barang Keluar</th>
                             <th scope="col">SJ For Revisi</th>
@@ -826,6 +826,13 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
     <script src="script.js"></script>
 
     <script>
+    function checkAll() {
+        var checkboxes = document.querySelectorAll('.print-checkbox');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = true;
+        });
+    }
+
     function printTable() {
         const selectedRows = [];
         const checkboxes = document.querySelectorAll('.print-checkbox:checked');
@@ -844,9 +851,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
             alert('No rows selected for printing.');
         }
     }
-    </script>
 
-    <script>
     function checkLainnya(field) {
         const dropdown = document.getElementById(field);
         const inputField = document.getElementById(field + "_input");
