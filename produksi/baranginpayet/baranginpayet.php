@@ -726,23 +726,27 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                 </select>
                                             </div>
                                             <!-- Kolom input tambahan untuk vendor_payet lainnya -->
-                                            <div class="form-group" id="otherVendor_payetInput" style="display:none;">
+                                            <div class="form-group" id="otherVendor_payetInput">
                                                 <label for="otherVendor_payet">Vendor Payet Lainnya</label>
                                                 <input class="form-control" type="text" id="otherVendor_payet"
-                                                    name="otherVendor_payet">
+                                                    name="otherVendor_payet"
+                                                    placeholder="Pilih Other Pada Dropdown Untuk Memasukkan Vendor Payet Lainnya">
                                             </div>
                                             <script>
                                             function checkOtherOptionVendor_payet(select) {
                                                 var otherVendor_payetInput = document.getElementById(
                                                     "otherVendor_payetInput");
-                                                var otherVendor_payet = document.getElementById("otherVendor_payet");
 
                                                 if (select.value === "OTHER") {
                                                     otherVendor_payetInput.style.display = "block";
-                                                    otherVendor_payet.setAttribute("required", "true");
+                                                    document.getElementById("otherVendor_payet").setAttribute(
+                                                        "required",
+                                                        "true");
                                                 } else {
-                                                    otherVendor_payetInput.style.display = "none";
-                                                    otherVendor_payet.removeAttribute("required");
+                                                    otherVendor_payetInput.style.display =
+                                                        "block";
+                                                    document.getElementById("otherVendor_payet").removeAttribute(
+                                                        "required");
                                                 }
                                             }
                                             </script>

@@ -703,23 +703,27 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                 </select>
                                             </div>
                                             <!-- Kolom input tambahan untuk vendor_sewing lainnya -->
-                                            <div class="form-group" id="otherVendor_sewingInput" style="display:none;">
+                                            <div class="form-group" id="otherVendor_sewingInput">
                                                 <label for="otherVendor_sewing">Vendor Sewing Lainnya</label>
                                                 <input class="form-control" type="text" id="otherVendor_sewing"
-                                                    name="otherVendor_sewing">
+                                                    name="otherVendor_sewing"
+                                                    placeholder="Pilih Other Pada Dropdown Untuk Memasukkan Vendor Sewing Lainnya">
                                             </div>
                                             <script>
                                             function checkOtherOptionVendor_sewing(select) {
                                                 var otherVendor_sewingInput = document.getElementById(
                                                     "otherVendor_sewingInput");
-                                                var otherVendor_sewing = document.getElementById("otherVendor_sewing");
 
                                                 if (select.value === "OTHER") {
                                                     otherVendor_sewingInput.style.display = "block";
-                                                    otherVendor_sewing.setAttribute("required", "true");
+                                                    document.getElementById("otherVendor_sewing").setAttribute(
+                                                        "required",
+                                                        "true");
                                                 } else {
-                                                    otherVendor_sewingInput.style.display = "none";
-                                                    otherVendor_sewing.removeAttribute("required");
+                                                    otherVendor_sewingInput.style.display =
+                                                        "block";
+                                                    document.getElementById("otherVendor_sewing").removeAttribute(
+                                                        "required");
                                                 }
                                             }
                                             </script>

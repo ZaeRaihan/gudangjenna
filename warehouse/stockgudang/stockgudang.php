@@ -567,22 +567,25 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                 </select>
                                             </div>
                                             <!-- Kolom input tambahan untuk kategori lainnya -->
-                                            <div class="form-group" id="otherKategoriInput" style="display:none;">
+                                            <div class="form-group" id="otherKategoriInput">
                                                 <label for="otherKategori">Kategori Lainnya</label>
                                                 <input class="form-control" type="text" id="otherKategori"
-                                                    name="otherKategori">
+                                                    name="otherKategori"
+                                                    placeholder="Pilih Other Pada Dropdown Untuk Memasukkan Kategori Lainnya">
                                             </div>
                                             <script>
-                                            function checkOtherOption(select) {
+                                            function checkOtherOptionKategori(select) {
                                                 var otherKategoriInput = document.getElementById("otherKategoriInput");
-                                                var otherKategori = document.getElementById("otherKategori");
 
                                                 if (select.value === "OTHER") {
                                                     otherKategoriInput.style.display = "block";
-                                                    otherKategori.setAttribute("required", "true");
+                                                    document.getElementById("otherKategori").setAttribute("required",
+                                                        "true");
                                                 } else {
-                                                    otherKategoriInput.style.display = "none";
-                                                    otherKategori.removeAttribute("required");
+                                                    otherKategoriInput.style.display =
+                                                        "block";
+                                                    document.getElementById("otherKategori").removeAttribute(
+                                                        "required");
                                                 }
                                             }
                                             </script>
@@ -653,22 +656,25 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                 </select>
                                             </div>
                                             <!-- Kolom input tambahan untuk lokasi lainnya -->
-                                            <div class="form-group" id="otherLocationInput" style="display:none;">
+                                            <div class="form-group" id="otherLokasiInput">
                                                 <label for="otherLokasi">Lokasi Lainnya</label>
                                                 <input class="form-control" type="text" id="otherLokasi"
-                                                    name="otherLokasi">
+                                                    name="otherLokasi"
+                                                    placeholder="Pilih Other Pada Dropdown Untuk Memasukkan Lokasi Lainnya">
                                             </div>
                                             <script>
                                             function checkOtherOptionLokasi(select) {
-                                                var otherLocationInput = document.getElementById("otherLocationInput");
-                                                var otherLokasi = document.getElementById("otherLokasi");
+                                                var otherLokasiInput = document.getElementById("otherLokasiInput");
 
                                                 if (select.value === "OTHER") {
-                                                    otherLocationInput.style.display = "block";
-                                                    otherLokasi.setAttribute("required", "true");
+                                                    otherLokasiInput.style.display = "block";
+                                                    document.getElementById("otherLokasi").setAttribute("required",
+                                                        "true");
                                                 } else {
-                                                    otherLocationInput.style.display = "none";
-                                                    otherLokasi.removeAttribute("required");
+                                                    otherLokasiInput.style.display =
+                                                        "block";
+                                                    document.getElementById("otherLokasi").removeAttribute(
+                                                        "required");
                                                 }
                                             }
                                             </script>

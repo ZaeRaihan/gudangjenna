@@ -726,23 +726,27 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                 </select>
                                             </div>
                                             <!-- Kolom input tambahan untuk vendor_revisi lainnya -->
-                                            <div class="form-group" id="otherVendor_revisiInput" style="display:none;">
+                                            <div class="form-group" id="otherVendor_revisiInput">
                                                 <label for="otherVendor_revisi">Vendor Revisi Lainnya</label>
                                                 <input class="form-control" type="text" id="otherVendor_revisi"
-                                                    name="otherVendor_revisi">
+                                                    name="otherVendor_revisi"
+                                                    placeholder="Pilih Other Pada Dropdown Untuk Memasukkan Vendor Revisi Lainnya">
                                             </div>
                                             <script>
                                             function checkOtherOptionVendor_revisi(select) {
                                                 var otherVendor_revisiInput = document.getElementById(
                                                     "otherVendor_revisiInput");
-                                                var otherVendor_revisi = document.getElementById("otherVendor_revisi");
 
                                                 if (select.value === "OTHER") {
                                                     otherVendor_revisiInput.style.display = "block";
-                                                    otherVendor_revisi.setAttribute("required", "true");
+                                                    document.getElementById("otherVendor_revisi").setAttribute(
+                                                        "required",
+                                                        "true");
                                                 } else {
-                                                    otherVendor_revisiInput.style.display = "none";
-                                                    otherVendor_revisi.removeAttribute("required");
+                                                    otherVendor_revisiInput.style.display =
+                                                        "block";
+                                                    document.getElementById("otherVendor_revisi").removeAttribute(
+                                                        "required");
                                                 }
                                             }
                                             </script>

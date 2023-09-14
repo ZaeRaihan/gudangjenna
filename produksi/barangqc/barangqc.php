@@ -671,22 +671,24 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                 </select>
                                             </div>
                                             <!-- Kolom input tambahan untuk vendor lainnya -->
-                                            <div class="form-group" id="otherVendorInput" style="display:none;">
+                                            <div class="form-group" id="otherVendorInput">
                                                 <label for="otherVendor">Vendor Lainnya</label>
                                                 <input class="form-control" type="text" id="otherVendor"
-                                                    name="otherVendor">
+                                                    name="otherVendor"
+                                                    placeholder="Pilih Other Pada Dropdown Untuk Memasukkan Vendor Lainnya">
                                             </div>
                                             <script>
                                             function checkOtherOptionVendor(select) {
                                                 var otherVendorInput = document.getElementById("otherVendorInput");
-                                                var otherVendor = document.getElementById("otherVendor");
 
                                                 if (select.value === "OTHER") {
                                                     otherVendorInput.style.display = "block";
-                                                    otherVendor.setAttribute("required", "true");
+                                                    document.getElementById("otherVendor").setAttribute("required",
+                                                        "true");
                                                 } else {
-                                                    otherVendorInput.style.display = "none";
-                                                    otherVendor.removeAttribute("required");
+                                                    otherVendorInput.style.display =
+                                                        "block";
+                                                    document.getElementById("otherVendor").removeAttribute("required");
                                                 }
                                             }
                                             </script>
