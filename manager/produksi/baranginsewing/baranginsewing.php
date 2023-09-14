@@ -48,12 +48,12 @@ if (!empty($search)) {
     LOWER(collection) LIKE '%$search%' OR
     LOWER(article_name) LIKE '%$search%' OR
     LOWER(size) LIKE '%$search%' OR
+    LOWER(inyard) LIKE '%$search%' OR
     LOWER(stock_insewing) LIKE '%$search%' OR
     LOWER(vendor_sewing) LIKE '%$search%' OR
     LOWER(tgl_brg_masuk) LIKE '%$search%' OR
     LOWER(sj_from_vendor) LIKE '%$search%' OR
     LOWER(stock_hasilsewing) LIKE '%$search%' OR
-    LOWER(totalstock) LIKE '%$search%' OR
     LOWER(status) LIKE '%$search%' OR
     DATE_FORMAT(launching_date, '%d-%m-%Y') LIKE '%$search%' OR
     DATE_FORMAT(tgl_brg_keluar, '%d-%m-%Y') LIKE '%$search%' OR
@@ -281,16 +281,16 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <th scope="col">Tanggal Barang Keluar</th>
                             <th scope="col">SJ For Sewing</th>
                             <th scope="col">Nama Bahan</th>
+                            <th scope="col">Out Yard</th>
+                            <th scope="col">Out Roll</th>
+                            <th scope="col">Vendor Sewing</th>
                             <th scope="col">Launching Date</th>
                             <th scope="col">Collection</th>
                             <th scope="col">Article Name</th>
                             <th scope="col">Size</th>
-                            <th scope="col">Stock In Sewing(ROLL)</th>
-                            <th scope="col">Vendor Sewing</th>
                             <th scope="col">Tanggal Barang Masuk</th>
                             <th scope="col">SJ From Sewing</th>
                             <th scope="col">Stock Hasil Sewing</th>
-                            <th scope="col">Total Stock Masuk</th>
                             <th scope="col">Status</th>
                         </tr>
 
@@ -303,17 +303,17 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <td><?= $i; ?></td>
                             <td><?= formatDate($row["tgl_brg_keluar"]); ?></td>
                             <td><?= $row["sj_for_vendor"]; ?></td>
-                            <td><?= formatDate($row["launching_date"]); ?></td>
                             <td><?= $row["nama"]; ?></td>
+                            <td><?= $row["inyard"]; ?></td>
+                            <td><?= $row["stock_insewing"]; ?></td>
+                            <td><?= $row["vendor_sewing"]; ?></td>
+                            <td><?= formatDate($row["launching_date"]); ?></td>
                             <td><?= $row["collection"]; ?></td>
                             <td><?= $row["article_name"]; ?></td>
                             <td><?= $row["size"]; ?></td>
-                            <td><?= $row["stock_insewing"]; ?></td>
-                            <td><?= $row["vendor_sewing"]; ?></td>
                             <td><?= formatDate($row["tgl_brg_masuk"]); ?></td>
                             <td><?= $row["sj_from_vendor"]; ?></td>
                             <td><?= $row["stock_hasilsewing"]; ?></td>
-                            <td><?= $row["totalstock"]; ?></td>
                             <td><?= $row["status"]; ?></td>
                         </tr>
 

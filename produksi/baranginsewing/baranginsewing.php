@@ -54,7 +54,6 @@ if (!empty($search)) {
     LOWER(tgl_brg_masuk) LIKE '%$search%' OR
     LOWER(sj_from_vendor) LIKE '%$search%' OR
     LOWER(stock_hasilsewing) LIKE '%$search%' OR
-    LOWER(totalstock) LIKE '%$search%' OR
     LOWER(status) LIKE '%$search%' OR
     DATE_FORMAT(launching_date, '%d-%m-%Y') LIKE '%$search%' OR
     DATE_FORMAT(tgl_brg_keluar, '%d-%m-%Y') LIKE '%$search%' OR
