@@ -28,14 +28,17 @@ function tambahBarang($data)
     $inyard = htmlspecialchars($data['inyard']);
     $stock = htmlspecialchars($data['stock']);
     $supplier = htmlspecialchars($data['supplier']);
+    $supplier_input = htmlspecialchars($data['supplier_input']);
+
+    // Menggunakan ternary operator untuk memilih antara nilai dropdown atau input teks
+    $supplierToUse = ($supplier === "LAINNYA") ? $supplier_input : $supplier;
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
-    //$launching_date = date('Y-m-d', strtotime($launching_date));
-    // $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
 
     // Query tambah barang
-    $query = "INSERT INTO barangbaku (tgl_brg_masuk, sj_from_vendor, nama, inyard, stock, supplier) VALUES ('$tgl_brg_masuk', '$sj_from_vendor', '$nama', '$inyard', '$stock', '$supplier')";
+    $query = "INSERT INTO barangbaku (tgl_brg_masuk, sj_from_vendor, nama, inyard, stock, supplier) VALUES 
+    ('$tgl_brg_masuk', '$sj_from_vendor', '$nama', '$inyard', '$stock', '$supplierToUse')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -53,11 +56,13 @@ function ubahBarang($data, $idbarang_baku)
     $inyard = htmlspecialchars($data['inyard']);
     $stock = htmlspecialchars($data['stock']);
     $supplier = htmlspecialchars($data['supplier']);
+    if ($supplier === 'OTHER') {
+        $otherSupplier = htmlspecialchars($data['otherSupplier']);
+        $supplier = $otherSupplier;
+    }
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
-    // $launching_date = date('Y-m-d', strtotime($launching_date));
-    // $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
 
     // Query ubah barang
     $query = "UPDATE barangbaku SET tgl_brg_masuk = '$tgl_brg_masuk', sj_from_vendor = '$sj_from_vendor', nama = '$nama',  inyard = '$inyard', stock = '$stock', supplier = '$supplier' WHERE idbarang_baku = $idbarang_baku";

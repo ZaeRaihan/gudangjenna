@@ -374,7 +374,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             <option value="Sakh Konveksi">Sakh Konveksi</option>
                                             <option value="Three and Me">Three and Me</option>
                                             <!-- Opsi vendor_sewing lainnya -->
-                                            <option value="LAINNYA">Lainnya</option>>
+                                            <option value="LAINNYA">Lainnya</option>
                                         </select>
                                         <input type="text" class="form-control mt-2" id="vendor_sewing_input"
                                             name="vendor_sewing_input" style="display: none;"
