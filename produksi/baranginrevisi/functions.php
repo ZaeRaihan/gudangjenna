@@ -93,6 +93,9 @@ function ubahBarang($data, $idbarang_inrevisi)
         $totalstock_baru = $totalstock_sebelumnya;
     }
 
+    // Tambahkan kondisi untuk mengubah status menjadi 'Finished' jika total stock sudah mencapai atau melebihi stock in revisi
+    $status = ($totalstock_baru >= $stock_inrevisi) ? 'Finished' : $status;
+
     // Query ubah barang
     $query = "UPDATE baranginrevisi SET 
         tgl_brg_keluar = '$tgl_brg_keluar',

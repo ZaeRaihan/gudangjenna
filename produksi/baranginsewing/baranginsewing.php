@@ -11,7 +11,7 @@ if (!isset($_SESSION['usernamepr'])) {
 $baranginsewing = query("SELECT * FROM baranginsewing");
 
 // Pagination
-$limit = 10;
+$limit = 20;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $totalRecords = count(query("SELECT * FROM baranginsewing"));
 $totalPages = ceil($totalRecords / $limit);

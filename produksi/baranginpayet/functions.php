@@ -83,7 +83,6 @@ function ubahBarang($data, $idbarang_inpayet)
     $result = mysqli_query($db, $query);
     $row = mysqli_fetch_assoc($result);
     $totalstock_sebelumnya = $row['totalstock'];
-    
 
     // Tambahkan kondisi untuk memeriksa apakah total stock baru tidak sama dengan stock in payet
     if ($totalstock_sebelumnya != $stock_inpayet) {
@@ -93,6 +92,9 @@ function ubahBarang($data, $idbarang_inpayet)
         // Jika total stock sama dengan stock in payet, maka total stock baru tetap sama dengan total stock sebelumnya
         $totalstock_baru = $totalstock_sebelumnya;
     }
+
+    // Tambahkan kondisi untuk mengubah status menjadi 'Finished' jika total stock sudah mencapai atau melebihi stock in payet
+    $status = ($totalstock_baru >= $stock_inpayet) ? 'Finished' : $status;
 
     // Query ubah barang
     $query = "UPDATE baranginpayet SET 
