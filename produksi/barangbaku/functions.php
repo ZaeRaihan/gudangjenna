@@ -23,12 +23,15 @@ function tambahBarang($data)
 
     // Ambil data dari form
     $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
-    $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
+    $kode = htmlspecialchars($data['kode']);
     $nama = htmlspecialchars($data['nama']);
+    $warna = htmlspecialchars($data['warna']);
     $inyard = htmlspecialchars($data['inyard']);
     $stock = htmlspecialchars($data['stock']);
+    $harga = htmlspecialchars($data['harga']);
     $supplier = htmlspecialchars($data['supplier']);
     $supplier_input = htmlspecialchars($data['supplier_input']);
+    $status = htmlspecialchars($data['status']);
 
     // Menggunakan ternary operator untuk memilih antara nilai dropdown atau input teks
     $supplierToUse = ($supplier === "LAINNYA") ? $supplier_input : $supplier;
@@ -37,8 +40,8 @@ function tambahBarang($data)
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
 
     // Query tambah barang
-    $query = "INSERT INTO barangbaku (tgl_brg_masuk, sj_from_vendor, nama, inyard, stock, supplier) VALUES 
-    ('$tgl_brg_masuk', '$sj_from_vendor', '$nama', '$inyard', '$stock', '$supplierToUse')";
+    $query = "INSERT INTO barangbaku (tgl_brg_masuk, kode, nama, warna, inyard, stock, harga, supplier, status) VALUES 
+    ('$tgl_brg_masuk', '$kode', '$nama', '$warna', '$inyard', '$stock', '$harga', '$supplierToUse', '$status')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -51,21 +54,25 @@ function ubahBarang($data, $idbarang_baku)
 
     // Ambil data dari form
     $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
-    $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
+    $kode = htmlspecialchars($data['kode']);
     $nama = htmlspecialchars($data['nama']);
+    $warna = htmlspecialchars($data['warna']);
     $inyard = htmlspecialchars($data['inyard']);
     $stock = htmlspecialchars($data['stock']);
+    $harga = htmlspecialchars($data['harga']);
     $supplier = htmlspecialchars($data['supplier']);
     if ($supplier === 'OTHER') {
         $otherSupplier = htmlspecialchars($data['otherSupplier']);
         $supplier = $otherSupplier;
     }
+    $status = htmlspecialchars($data['status']);
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
 
     // Query ubah barang
-    $query = "UPDATE barangbaku SET tgl_brg_masuk = '$tgl_brg_masuk', sj_from_vendor = '$sj_from_vendor', nama = '$nama',  inyard = '$inyard', stock = '$stock', supplier = '$supplier' WHERE idbarang_baku = $idbarang_baku";
+    $query = "UPDATE barangbaku SET tgl_brg_masuk = '$tgl_brg_masuk', kode = '$kode', nama = '$nama', warna = '$warna',  inyard = '$inyard', stock = '$stock', harga = '$harga',
+    supplier = '$supplier', status = '$status' WHERE idbarang_baku = $idbarang_baku";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -124,14 +131,18 @@ function proses_copy($id)
     }
 
     // Insert the copied data as a new entry
-    $insertQuery = "INSERT INTO barangbaku (tgl_brg_masuk, sj_from_vendor, nama, inyard, stock, supplier)
+    $insertQuery = "INSERT INTO barangbaku (tgl_brg_masuk, kode, nama, warna, inyard, stock, harga, supplier, status)
                     VALUES (
                         '{$dataToCopy['tgl_brg_masuk']}',
-                        '{$dataToCopy['sj_from_vendor']}',
+                        '{$dataToCopy['kode']}',
                         '{$dataToCopy['nama']}',
+                        '{$dataToCopy['warna']}',
                         '{$dataToCopy['inyard']}',
                         '{$dataToCopy['stock']}',
-                        '{$dataToCopy['supplier']}')";
+                        '{$dataToCopy['harga']}',
+                        '{$dataToCopy['supplier']}',
+                        '{$dataToCopy['status']}')
+                        ";
 
     $result = mysqli_query($db, $insertQuery);
 
@@ -146,4 +157,8 @@ function formatDate($dateString)
 {
     $timestamp = strtotime($dateString);
     return date('d F Y', $timestamp);
+}
+
+function format_rupiah($angka) {
+    return 'Rp ' . number_format($angka, 0, ',', '.');
 }
