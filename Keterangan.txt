@@ -1,2 +1,3 @@
 Gudang Jenna adalah solusi peningkatan Efisiensi Manajemen Stok Barang pada Gudang Perusahaan Jenna and Kaia. 
-Yang awal mula nya perusahaan menggunakan spreadsheet, kini menggunakan Aplikasi Berbasis Website
+Yang awal mula nya perusahaan menggunakan spreadsheet, kini menggunakan Aplikasi Berbasis Website.
+Pembuatan Aplikasi Berbasis Website ini diharapkan dapat meningkatan sistem manajemen stok barang pada Perusahaan Jenna and Kaia.
