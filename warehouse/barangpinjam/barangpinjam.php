@@ -45,6 +45,7 @@ if (!empty($search)) {
     $search_filter = "WHERE
             LOWER(tgl_brg_keluar) LIKE '%$search%' OR 
             LOWER(surat_retur) LIKE '%$search%' OR
+            LOWER(gudang) LIKE '%$search%' OR
             LOWER(article_name) LIKE '%$search%' OR
             LOWER(size) LIKE '%$search%' OR
             LOWER(stock) LIKE '%$search%' OR
@@ -310,6 +311,15 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                         <input type="text" class="form-control" id="surat_retur" name="surat_retur">
                                     </div>
                                     <div class="form-group">
+                                        <label for="gudang">Gudang</label>
+                                        <select class="form-control" id="gudang" name="gudang" required>
+                                            <option value="" disabled selected>Pilih Gudang Asal</option>
+                                            <option value="Stock Gudang">Stock Gudang</option>
+                                            <option value="Gudang Barang Reject">Gudang Barang Reject</option>
+                                            <option value="Gudang Barang Minor">Gudang Barang Minor</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="article_name">Article Name</label>
                                         <input type="text" class="form-control" id="article_name" name="article_name"
                                             required>
@@ -350,6 +360,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <th scope="col">No</th>
                             <th scope="col">Tanggal Barang Keluar</th>
                             <th scope="col">Surat pinjam</th>
+                            <th scope="col">Gudang</th>
                             <th scope="col">Article Name</th>
                             <th scope="col">Size</th>
                             <th scope="col">Stock</th>
@@ -368,6 +379,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <td><?= $i; ?></td>
                             <td><?= formatDate($row["tgl_brg_keluar"]); ?></td>
                             <td><?= $row["surat_retur"]; ?></td>
+                            <td><?= $row["gudang"]; ?></td>
                             <td><?= $row["article_name"]; ?></td>
                             <td><?= $row["size"]; ?></td>
                             <td><?= $row["stock"]; ?></td>
@@ -415,6 +427,25 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                 <label for="surat_retur">Surat Pinjam</label>
                                                 <input type="text" class="form-control" id="surat_retur"
                                                     name="surat_retur" value="<?= $row["surat_retur"]; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="gudang">Gudang</label>
+                                                <select class="form-control" id="gudang" name="gudang" required>
+                                                    <option value="<?= $row["gudang"]; ?>"
+                                                        <?= ($row["gudang"] == $row["gudang"]) ? "selected" : ""; ?>>
+                                                        <?= $row["gudang"]; ?>
+                                                    </option>
+                                                    <option value="Stock Gudang"
+                                                        <?= ($row["gudang"] == "Stock Gudang") ? "selected" : ""; ?>>
+                                                        Stock Gudang
+                                                    </option>
+                                                    <option value="Gudang Barang Reject"
+                                                        <?= ($row["gudang"] == "Gudang Barang Reject") ? "selected" : ""; ?>>
+                                                        Gudang Barang Reject</option>
+                                                    <option value="Gudang Barang Minor"
+                                                        <?= ($row["gudang"] == "Gudang Barang Minor") ? "selected" : ""; ?>>
+                                                        Gudang Barang Minor</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="article_name">Article Name</label>

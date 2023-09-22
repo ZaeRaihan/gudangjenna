@@ -73,6 +73,7 @@ if ($rowCount > 10) {
             <th>Edit Timestamp</th>
             <th scope="col">Tanggal Barang Keluar</th>
             <th scope="col">Surat pinjam</th>
+            <th scope="col">Gudang</th>
             <th scope="col">Article Name</th>
             <th scope="col">Size</th>
             <th scope="col">Stock</th>
@@ -85,6 +86,7 @@ if ($rowCount > 10) {
             echo "<td>" . $row['edit_timestamp'] . "</td>";
             echo "<td>" . $row['tgl_brg_keluar'] . "</td>";
             echo "<td>" . $row['surat_retur'] . "</td>";
+            echo "<td>" . $row['gudang'] . "</td>";
             echo "<td>" . $row['article_name'] . "</td>";
             echo "<td>" . $row['size'] . "</td>";
             echo "<td>" . $row['stock'] . "</td>";

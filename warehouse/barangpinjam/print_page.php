@@ -36,7 +36,8 @@ $selectedRowsData = query($query);
         <tr>
             <th scope="col">No</th>
             <th scope="col">Tanggal Barang Keluar</th>
-            <th scope="col">Surat pinjam</th>
+            <th scope="col">Surat Pinjam</th>
+            <th scope="col">Gudang</th>
             <th scope="col">Article Name</th>
             <th scope="col">Size</th>
             <th scope="col">Stock</th>
@@ -49,6 +50,7 @@ $selectedRowsData = query($query);
             <td><?= $i; ?></td>
             <td><?= formatDate($row["tgl_brg_keluar"]); ?></td>
             <td><?= $row["surat_retur"]; ?></td>
+            <td><?= $row["gudang"]; ?></td>
             <td><?= $row["article_name"]; ?></td>
             <td><?= $row["size"]; ?></td>
             <td><?= $row["stock"]; ?></td>

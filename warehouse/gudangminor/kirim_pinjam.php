@@ -26,8 +26,8 @@ if (!empty($data_gudangminor)) {
     $size = $data_gudangminor[0]["size"];
 
     // Masukkan data ke dalam tabel barangpinjam
-    $query_insert_barangpinjam = "INSERT INTO barangpinjam (tgl_brg_keluar, surat_retur, article_name, size, stock, dipinjam, idstock_minor) 
-                              VALUES (NOW(), '', '$article_name', '$size', '', '', $idstock_minor)";
+    $query_insert_barangpinjam = "INSERT INTO barangpinjam (tgl_brg_keluar, surat_retur, gudang, article_name, size, stock, dipinjam, idstock_minor) 
+                              VALUES (NOW(), '', 'Gudang Barang Minor', '$article_name', '$size', '', '', $idstock_minor)";
     
     if (mysqli_query($db, $query_insert_barangpinjam)) {
         // Data berhasil dikirimkan

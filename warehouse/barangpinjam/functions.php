@@ -20,6 +20,7 @@ function tambahBarang($data) {
     // Ambil data dari form
     $tgl_brg_keluar = htmlspecialchars($data['tgl_brg_keluar']);
     $surat_retur = htmlspecialchars($data['surat_retur']);
+    $gudang = htmlspecialchars($data['gudang']);
     $article_name = htmlspecialchars($data['article_name']);
     $size = htmlspecialchars($data['size']);
     $stock = htmlspecialchars($data['stock']);
@@ -29,8 +30,8 @@ function tambahBarang($data) {
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
 
     // Query tambah barang
-    $query = "INSERT INTO barangpinjam (tgl_brg_keluar, surat_retur, article_name, size, stock, dipinjam) VALUES 
-    ('$tgl_brg_keluar', '$surat_retur', '$article_name', '$size', '$stock', '$dipinjam')";
+    $query = "INSERT INTO barangpinjam (tgl_brg_keluar, surat_retur, gudang, article_name, size, stock, dipinjam) VALUES 
+    ('$tgl_brg_keluar', '$surat_retur', '$gudang', '$article_name', '$size', '$stock', '$dipinjam')";
     
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -44,6 +45,7 @@ function ubahBarang($data, $idbarang_pinjam)
     // Ambil data dari form
     $tgl_brg_keluar = htmlspecialchars($data['tgl_brg_keluar']);
     $surat_retur = htmlspecialchars($data['surat_retur']);
+    $gudang = htmlspecialchars($data['gudang']);
     $article_name = htmlspecialchars($data['article_name']);
     $size = htmlspecialchars($data['size']);
     $stock = htmlspecialchars($data['stock']);
@@ -53,7 +55,7 @@ function ubahBarang($data, $idbarang_pinjam)
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
 
     // Query ubah barang
-    $query = "UPDATE barangpinjam SET tgl_brg_keluar = '$tgl_brg_keluar', surat_retur = '$surat_retur', article_name = '$article_name', 
+    $query = "UPDATE barangpinjam SET tgl_brg_keluar = '$tgl_brg_keluar', surat_retur = '$surat_retur', gudang = '$gudang', article_name = '$article_name', 
     size = '$size', stock = '$stock', dipinjam = '$dipinjam' WHERE idbarang_pinjam = $idbarang_pinjam";
     
     mysqli_query($db, $query);
@@ -110,10 +112,11 @@ function proses_copy($id) {
     }
 
     // Insert the copied data as a new entry
-    $insertQuery = "INSERT INTO barangpinjam (tgl_brg_keluar, surat_retur, article_name, size, stock, dipinjam)
+    $insertQuery = "INSERT INTO barangpinjam (tgl_brg_keluar, surat_retur, gudang, article_name, size, stock, dipinjam)
                     VALUES (
                         '{$dataToCopy['tgl_brg_keluar']}',
                         '{$dataToCopy['surat_retur']}',
+                        '{$dataToCopy['gudang']}',
                         '{$dataToCopy['article_name']}',
                         '{$dataToCopy['size']}',
                         '{$dataToCopy['stock']}',
