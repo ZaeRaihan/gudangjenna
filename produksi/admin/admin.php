@@ -250,6 +250,11 @@ $totalPages = ceil($totalRecords / $limit);
                                             enctype="multipart/form-data">
                                             <input type="hidden" name="id" value="<?= $row["id"]; ?>">
                                             <div class="form-group">
+                                                <label for="username">Username</label>
+                                                <input type="text" class="form-control" id="username" name="username"
+                                                    value="<?= $row["username"]; ?>" required readonly>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="nama">Nama</label>
                                                 <input type="text" class="form-control" id="nama" name="nama"
                                                     value="<?= $row["nama"]; ?>" required>
@@ -260,11 +265,27 @@ $totalPages = ceil($totalRecords / $limit);
                                                     value="<?= $row["telepon"]; ?>" required>
                                             </div>
                                             <div class="form-group">
+                                                <label for="password_lama">Password Lama</label>
+                                                <input type="password" class="form-control" id="password_lama"
+                                                    name="password_lama" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password_baru">Password Baru</label>
+                                                <input type="password" class="form-control" id="password_baru"
+                                                    name="password_baru" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="konfirmasi_password">Konfirmasi Password Baru</label>
+                                                <input type="password" class="form-control" id="konfirmasi_password"
+                                                    name="konfirmasi_password" required>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="foto">Foto</label>
                                                 <input type="file" class="form-control-file" id="foto" name="foto">
                                             </div>
                                             <button type="submit" class="btn btn-primary">Ubah</button>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>

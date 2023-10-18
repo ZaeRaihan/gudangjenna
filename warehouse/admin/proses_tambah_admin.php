@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<script>alert('Admin berhasil ditambahkan!');</script>";
         echo "<script>window.location.href = 'admin.php';</script>"; // Redirect kembali ke halaman admin
     } else {
-        echo "<script>alert('Admin gagal ditambahkan!');</script>";
+        echo "<script>alert('Gagal menambahkan admin. Username sudah ada!');</script>";
         echo "<script>window.location.href = 'admin.php';</script>"; // Redirect kembali ke halaman admin
     }
 }

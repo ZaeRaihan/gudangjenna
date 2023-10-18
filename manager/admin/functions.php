@@ -29,6 +29,12 @@ function tambahAdmin($data) {
         return false; // Jika upload foto gagal, hentikan proses tambahAdmin
     }
 
+    // Cek apakah username sudah ada dalam database
+    $result = mysqli_query($db, "SELECT * FROM admin_manager WHERE username='$username'");
+    if (mysqli_fetch_assoc($result)) {
+        return false; // Jika username sudah ada, hentikan proses tambahAdmin
+    }
+
     // Query tambah admin
     $query = "INSERT INTO admin_manager(username, password, nama, telepon, foto) VALUES ('$username', '$password', '$nama', '$telepon', '$foto')";
     mysqli_query($db, $query);
@@ -85,20 +91,48 @@ function ubahAdmin($data, $files, $id)
 
     $nama = htmlspecialchars($data['nama']);
     $telepon = htmlspecialchars($data['telepon']);
+    $password_lama = htmlspecialchars($data['password_lama']);
+    $password_baru = htmlspecialchars($data['password_baru']);
+    $konfirmasi_password = htmlspecialchars($data['konfirmasi_password']);
 
-    // Cek apakah ada file foto diupload
-    if ($files['foto']['error'] === 0) {
-        $foto = uploadFoto();
+    // Query untuk mendapatkan password admin
+    $admin = query("SELECT * FROM admin_manager WHERE id = $id")[0];
+    $password_admin = $admin['password'];
+
+    // Periksa apakah password lama cocok
+    if (password_verify($password_lama, $password_admin)) {
+        // Password lama cocok, lanjutkan dengan proses perubahan password
+        if ($password_baru === $konfirmasi_password) {
+            // Password baru cocok dengan konfirmasi
+            $password_hash = password_hash($password_baru, PASSWORD_DEFAULT);
+
+            // Cek apakah ada file foto diupload
+            if ($files['foto']['error'] === 0) {
+                $foto = uploadFoto();
+            } else {
+                // Jika tidak ada file diupload, gunakan foto yang sudah ada
+                $foto = $admin['foto'];
+            }
+
+            // Query ubah admin
+            $query = "UPDATE admin_manager SET nama = '$nama', telepon = '$telepon', password = '$password_hash', foto = '$foto' WHERE id = $id";
+            mysqli_query($db, $query);
+
+            // Hapus token atau sesi autentikasi di sini
+            // Misalnya, jika menggunakan session, Anda bisa gunakan:
+            session_start();
+            session_unset();
+            session_destroy();
+
+            return mysqli_affected_rows($db);
+        } else {
+            // Password baru tidak cocok dengan konfirmasi
+            return -1; // Kode error untuk password baru tidak cocok
+        }
     } else {
-        // Jika tidak ada file diupload, gunakan foto yang sudah ada
-        $admin = query("SELECT * FROM admin_manager WHERE id = $id")[0];
-        $foto = $admin['foto'];
+        // Password lama tidak cocok
+        return -2; // Kode error untuk password lama tidak cocok
     }
-
-    // Query ubah admin
-    $query = "UPDATE admin_manager SET nama = '$nama', telepon = '$telepon', foto = '$foto' WHERE id = $id";
-    mysqli_query($db, $query);
-    return mysqli_affected_rows($db);
 }
 
 // Fungsi untuk menghapus admin

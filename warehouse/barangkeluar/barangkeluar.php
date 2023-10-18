@@ -88,6 +88,9 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
     <!-- icon dan fonts -->
     <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- LIBRARY AJAX UNTUK EXPORT EXCEL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+
     <!-- tema css -->
     <link href="../../css/tabel.css" rel="stylesheet">
     <title>Barang Keluar</title>
@@ -226,6 +229,12 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <div style="margin-right: 5px;">
                                 <button class="btn btn-warning" onclick="printTable()">
                                     <i class="fa fa-print"></i> Print
+                                </button>
+                            </div>
+                            <!-- PRINT -->
+                            <div style="margin-right: 5px;">
+                                <button class="btn btn-success" onclick="exportSelectedToExcel()">
+                                    <i class="fa fa-file-excel-o"></i> Excel
                                 </button>
                             </div>
                             <!-- PAGINATION -->
@@ -578,7 +587,54 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
             alert('No rows selected for printing.');
         }
     }
+
+    function exportSelectedToExcel() {
+        // Dapatkan semua checkbox terpilih
+        var selectedRows = document.querySelectorAll('.print-checkbox:checked');
+
+        if (selectedRows.length === 0) {
+            alert('Tidak ada baris yang dipilih untuk diekspor.');
+            return;
+        }
+
+        // Menyusun kolom
+        var header = ["No", "Tanggal Barang Keluar", "Surat keluar", "Gudang", "Article Name", "Size", "Stock",
+            "Status Keluar", "Keterangan"
+        ];
+
+        // Buat array untuk menyimpan data baris yang terpilih
+        var data = [];
+
+        // Loop melalui baris terpilih
+        selectedRows.forEach(function(row) {
+            var rowData = [];
+            var cells = row.parentElement.parentElement.cells;
+
+            // Loop melalui sel di dalam baris, i=1 agar tidak menghitung kolom checkbox
+            for (var i = 1; i < cells.length - 1; i++) {
+                rowData.push(cells[i].textContent);
+            }
+
+            // Tambahkan data baris ke dalam array data
+            data.push(rowData);
+        });
+
+        // Gabungkan header dengan data
+        var finalData = [header].concat(data);
+
+        // Panggil fungsi untuk menghasilkan file Excel
+        generateExcel(finalData);
+    }
+
+    function generateExcel(data) {
+        var wb = XLSX.utils.book_new();
+        var ws = XLSX.utils.aoa_to_sheet(data);
+
+        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+        XLSX.writeFile(wb, 'exported_Barang_Keluar.xlsx');
+    }
     </script>
+
 
 </body>
 

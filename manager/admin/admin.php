@@ -214,11 +214,11 @@ $totalPages = ceil($totalRecords / $limit);
                             <td><img src="../../images/<?= $row["foto"]; ?>"></td>
                             <td>
                                 <div class="btn-group text-center" style="display: flex; justify-content: center;">
-                                    <form action="proses_hapus_admin.php" method="post" style="display: inline;">
+                                    <!-- <form action="proses_hapus_admin.php" method="post" style="display: inline;">
                                         <input type="hidden" name="id" value="<?= $row["id"]; ?>">
                                         <button type="submit" class="btn btn-warning"
                                             onclick="return confirm('Apakah Anda yakin ingin menghapus admin ini?')">Hapus</button>
-                                    </form>
+                                    </form> -->
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#ubahAdminModal<?= $row["id"]; ?>">Ubah</button>
                                 </div>
@@ -242,6 +242,11 @@ $totalPages = ceil($totalRecords / $limit);
                                             enctype="multipart/form-data">
                                             <input type="hidden" name="id" value="<?= $row["id"]; ?>">
                                             <div class="form-group">
+                                                <label for="username">Username</label>
+                                                <input type="text" class="form-control" id="username" name="username"
+                                                    value="<?= $row["username"]; ?>" required readonly>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="nama">Nama</label>
                                                 <input type="text" class="form-control" id="nama" name="nama"
                                                     value="<?= $row["nama"]; ?>" required>
@@ -250,6 +255,21 @@ $totalPages = ceil($totalRecords / $limit);
                                                 <label for="telepon">Telepon</label>
                                                 <input type="text" class="form-control" id="telepon" name="telepon"
                                                     value="<?= $row["telepon"]; ?>" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password_lama">Password Lama</label>
+                                                <input type="password" class="form-control" id="password_lama"
+                                                    name="password_lama" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password_baru">Password Baru</label>
+                                                <input type="password" class="form-control" id="password_baru"
+                                                    name="password_baru" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="konfirmasi_password">Konfirmasi Password Baru</label>
+                                                <input type="password" class="form-control" id="konfirmasi_password"
+                                                    name="konfirmasi_password" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="foto">Foto</label>

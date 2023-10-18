@@ -143,7 +143,7 @@ $totalPages = ceil($totalRecords / $limit);
     <div class="content">
         <div class="container-fluid">
             <!------- HEADER ------->
-            <h1 class="page-header">Data Admin QC
+            <h1 class="page-header">Data Admin Warehouse
                 <br><br><br>
 
                 <!-- TAMBAH DATA DENGAN MODAL -->
@@ -255,6 +255,11 @@ $totalPages = ceil($totalRecords / $limit);
                                             enctype="multipart/form-data">
                                             <input type="hidden" name="id" value="<?= $row["id"]; ?>">
                                             <div class="form-group">
+                                                <label for="username">Username</label>
+                                                <input type="text" class="form-control" id="username" name="username"
+                                                    value="<?= $row["username"]; ?>" required readonly>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="nama">Nama</label>
                                                 <input type="text" class="form-control" id="nama" name="nama"
                                                     value="<?= $row["nama"]; ?>" required>
@@ -263,6 +268,21 @@ $totalPages = ceil($totalRecords / $limit);
                                                 <label for="telepon">Telepon</label>
                                                 <input type="text" class="form-control" id="telepon" name="telepon"
                                                     value="<?= $row["telepon"]; ?>" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password_lama">Password Lama</label>
+                                                <input type="password" class="form-control" id="password_lama"
+                                                    name="password_lama" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password_baru">Password Baru</label>
+                                                <input type="password" class="form-control" id="password_baru"
+                                                    name="password_baru" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="konfirmasi_password">Konfirmasi Password Baru</label>
+                                                <input type="password" class="form-control" id="konfirmasi_password"
+                                                    name="konfirmasi_password" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="foto">Foto</label>
