@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2023 at 09:39 AM
+-- Generation Time: Oct 19, 2023 at 12:00 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,7 +42,7 @@ CREATE TABLE `admin_manager` (
 
 INSERT INTO `admin_manager` (`id`, `username`, `password`, `nama`, `telepon`, `foto`) VALUES
 (59, 'manager1', '$2y$10$Xf/OEG6s34kpgTbz3Xpo.Oh7JLFecshku1CAipqev7XGPGBFvqloi', 'Fitria', '089655680980', '64ecbff6be2f9.jpg'),
-(61, 'manager2', '$2y$10$m8PQEFE9IJn/W3gWhq8O3OGBZGkiykwrT1t7..9NqItmvQYzmw1u.', 'Reza', '085975244732', '64f9951bea3f7.png');
+(62, 'zae', '$2y$10$IyYJ2brkjymkxhNnLLD7YOucfhbijPbjsOAHhY3dmVveHxTC4KKzq', 'Maintenance', '085975244732', 'default.jpeg');
 
 -- --------------------------------------------------------
 
@@ -65,8 +65,8 @@ CREATE TABLE `admin_produksi` (
 
 INSERT INTO `admin_produksi` (`id`, `username`, `password`, `nama`, `telepon`, `foto`) VALUES
 (59, 'produksi1', '$2y$10$qn1xO1BL3wtuAeeHHUcvX.uvt1TLq5YeoBniUakWpmgUBWk3WZtk2', 'agung', '089530192639', '64e2370334172.jpg'),
-(65, 'zae', '$2y$10$cfmG4DcSu4eIBJ.Q.3Pwh.7qzSizg/23U97eMZDaGPTyrulj07A1m', 'Reza', '085975244732', 'default.jpeg'),
-(66, 'produksi1', '$2y$10$aFxhobRMrIDWY9KrtDc4RuDHI4S/iGeE73sAsVgQ3x13I1WxOfZy2', 'Yosep', '0878782132', 'default.jpeg');
+(69, 'zae', '$2y$10$aObWOD0TDUn88wl/bv6lU.PeqE3.p/3jpyUE6nLwb9MFaqLWCH4sG', 'Maintenance', '085975244732', 'default.jpeg'),
+(70, 'qc1', '$2y$10$rsF4Ljc7OehKlM4v2BAc1uDI4P.tYLLF5HZ31VKqmXFZabUSNQrP.', 'Yosep', '0821229320111', 'default.jpeg');
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,9 @@ CREATE TABLE `admin_qc` (
 --
 
 INSERT INTO `admin_qc` (`id`, `username`, `password`, `nama`, `telepon`, `foto`) VALUES
-(59, 'qc1', '$2y$10$cEkvs3qzGPbC273LBtQR5OcpZw8L0kpF1oweE4BcgGYPmG/cP2Nhu', 'Fahmi', '081214988946', '64ed79ed5c1b5.jpeg');
+(59, 'qc1', '$2y$10$cEkvs3qzGPbC273LBtQR5OcpZw8L0kpF1oweE4BcgGYPmG/cP2Nhu', 'Fahmi', '081214988946', '65116d0c2ac2b.jpg'),
+(61, 'zae', '$2y$10$I68C2yPNyTHhDQoiczsQhOdQUfgv7wWs/TRDJGGtM2ayleRGWCkXy', 'Maintenance', '085975244732', 'default.jpeg'),
+(62, 'wh1', '$2y$10$vl9GUarcG2Yz2DRgEPyp/O9vrkrEhOJHhwENgZn3lXYbo6cRkYAIK', 'za', 'za', 'default.jpeg');
 
 -- --------------------------------------------------------
 
@@ -110,7 +112,8 @@ CREATE TABLE `admin_wh` (
 --
 
 INSERT INTO `admin_wh` (`id`, `username`, `password`, `nama`, `telepon`, `foto`) VALUES
-(59, 'wh1', '$2y$10$2iyp1lyg5tT2rJhPurCqwe6phZteNqYRqpJDI48E.A7fY0Fxkeype', 'Nisa', '0895373888947', '64eb743c837c6.jpg');
+(59, 'wh1', '$2y$10$2iyp1lyg5tT2rJhPurCqwe6phZteNqYRqpJDI48E.A7fY0Fxkeype', 'Nisa', '0895373888947', '64eb743c837c6.jpg'),
+(62, 'zae', '$2y$10$TJkz1xxKQV1gc./27p91CeTvXo5Y.4ILZZmMQI7XMB8HP3USwJeXW', 'Maintenance', '085975244732', 'default.jpeg');
 
 -- --------------------------------------------------------
 
@@ -2753,25 +2756,25 @@ ALTER TABLE `stockgudang_history`
 -- AUTO_INCREMENT for table `admin_manager`
 --
 ALTER TABLE `admin_manager`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `admin_produksi`
 --
 ALTER TABLE `admin_produksi`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `admin_qc`
 --
 ALTER TABLE `admin_qc`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `admin_wh`
 --
 ALTER TABLE `admin_wh`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `barangbaku`
