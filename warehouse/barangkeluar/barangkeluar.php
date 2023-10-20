@@ -404,7 +404,12 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <td><?= $row["size"]; ?></td>
                             <td><?= $row["stock"]; ?></td>
                             <td><?= $row["status"]; ?></td>
-                            <td><?= $row["keterangan"]; ?></td>
+                            <td>
+                                <textarea name="keterangan" rows="2" cols="20" readonly
+                                    onmousedown="return false;"><?= $row["keterangan"]; ?></textarea>
+                            </td>
+                            <!-- Rows untuk tinggi kolom, cols untuk lebar. onmousedown false agar textarea tidak dapat diklik -->
+
                             <td>
                                 <div class="btn-group text-center" style="display: flex; justify-content: center;">
                                     <button type="button" class="btn btn-warning delete-button"
