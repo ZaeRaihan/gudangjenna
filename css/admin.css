@@ -50,7 +50,7 @@ body {
     position: fixed; /* agar navbar tetap menempel di atas */
     top: 0; /* agar navbar tetap menempel di atas */
     width: 100%; /* agar navbar menutupi seluruh lebar halaman */
-    z-index: 1; /* z-index agar navbar tidak tertutup konten */
+    z-index: 99; /* z-index agar navbar tidak tertutup konten */
   }
   .navbar-header .navbar-brand {
     color: whitesmoke;

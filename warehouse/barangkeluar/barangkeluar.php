@@ -231,7 +231,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <i class="fa fa-print"></i> Print
                                 </button>
                             </div>
-                            <!-- PRINT -->
+                            <!-- EXCEL -->
                             <div style="margin-right: 5px;">
                                 <button class="btn btn-success" onclick="exportSelectedToExcel()">
                                     <i class="fa fa-file-excel-o"></i> Excel
