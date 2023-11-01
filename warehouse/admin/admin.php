@@ -272,17 +272,19 @@ $totalPages = ceil($totalRecords / $limit);
                                             <div class="form-group">
                                                 <label for="password_lama">Password Lama</label>
                                                 <input type="password" class="form-control" id="password_lama"
-                                                    name="password_lama" required>
+                                                    name="password_lama" autocomplete="off"
+                                                    placeholder="Masukkan Password Ketika Ingin Melakukan Perubahan Data"
+                                                    required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="password_baru">Password Baru</label>
                                                 <input type="password" class="form-control" id="password_baru"
-                                                    name="password_baru" required>
+                                                    name="password_baru">
                                             </div>
                                             <div class="form-group">
                                                 <label for="konfirmasi_password">Konfirmasi Password Baru</label>
                                                 <input type="password" class="form-control" id="konfirmasi_password"
-                                                    name="konfirmasi_password" required>
+                                                    name="konfirmasi_password">
                                             </div>
                                             <div class="form-group">
                                                 <label for="foto">Foto</label>

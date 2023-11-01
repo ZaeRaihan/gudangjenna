@@ -85,6 +85,7 @@ function uploadFoto()
 
 
 // Fungsi untuk mengubah data admin
+// Fungsi untuk mengubah data admin
 function ubahAdmin($data, $files, $id)
 {
     global $db;
@@ -102,33 +103,36 @@ function ubahAdmin($data, $files, $id)
     // Periksa apakah password lama cocok
     if (password_verify($password_lama, $password_admin)) {
         // Password lama cocok, lanjutkan dengan proses perubahan password
-        if ($password_baru === $konfirmasi_password) {
-            // Password baru cocok dengan konfirmasi
+        if (!empty($password_baru) && $password_baru === $konfirmasi_password) {
+            // Password baru tidak kosong dan cocok dengan konfirmasi
             $password_hash = password_hash($password_baru, PASSWORD_DEFAULT);
-
-            // Cek apakah ada file foto diupload
-            if ($files['foto']['error'] === 0) {
-                $foto = uploadFoto();
-            } else {
-                // Jika tidak ada file diupload, gunakan foto yang sudah ada
-                $foto = $admin['foto'];
-            }
-
-            // Query ubah admin
-            $query = "UPDATE admin_qc SET nama = '$nama', telepon = '$telepon', password = '$password_hash', foto = '$foto' WHERE id = $id";
-            mysqli_query($db, $query);
-
-            // Hapus token atau sesi autentikasi di sini
-            // Misalnya, jika menggunakan session, Anda bisa gunakan:
-            session_start();
-            session_unset();
-            session_destroy();
-
-            return mysqli_affected_rows($db);
+        } elseif (empty($password_baru)) {
+            // Jika password baru kosong, gunakan password lama
+            $password_hash = $password_admin;
         } else {
             // Password baru tidak cocok dengan konfirmasi
             return -1; // Kode error untuk password baru tidak cocok
         }
+
+        // Cek apakah ada file foto diupload
+        if ($files['foto']['error'] === 0) {
+            $foto = uploadFoto();
+        } else {
+            // Jika tidak ada file diupload, gunakan foto yang sudah ada
+            $foto = $admin['foto'];
+        }
+
+        // Query ubah admin
+        $query = "UPDATE admin_qc SET nama = '$nama', telepon = '$telepon', password = '$password_hash', foto = '$foto' WHERE id = $id";
+        mysqli_query($db, $query);
+
+        // Hapus token atau sesi autentikasi di sini
+        // Misalnya, jika menggunakan session, Anda bisa gunakan:
+        session_start();
+        session_unset();
+        session_destroy();
+
+        return mysqli_affected_rows($db);
     } else {
         // Password lama tidak cocok
         return -2; // Kode error untuk password lama tidak cocok
