@@ -433,14 +433,16 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <form action="kirim_qc.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idbarang_vendor"
                                             value="<?= $row["idbarang_vendor"]; ?>">
-                                        <button type="submit" class="btn btn-info">QC</button>
+                                        <button type="submit" class="btn btn-info"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">QC</button>
                                     </form>
 
                                     <!-- Button untuk mengirim data ke tabel barangpayet -->
                                     <form action="kirim_payet.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idbarang_vendor"
                                             value="<?= $row["idbarang_vendor"]; ?>">
-                                        <button type="submit" class="btn btn-warning">Payet</button>
+                                        <button type="submit" class="btn btn-warning"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Payet</button>
                                     </form>
                                 </div>
                             </td>

@@ -423,7 +423,9 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <!-- Button untuk mengirim data ke tabel barangqc -->
                                     <form action="kirim_insewing.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idbarang_baku" value="<?= $row["idbarang_baku"]; ?>">
-                                        <button type="submit" class="btn btn-info">In Sewing</button>
+                                        <button type="submit" class="btn btn-info"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">In
+                                            Sewing</button>
                                     </form>
                                 </div>
                             </td>

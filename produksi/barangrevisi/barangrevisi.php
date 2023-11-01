@@ -305,7 +305,9 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <form action="kirim_inrevisi.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idbarang_revisi"
                                             value="<?= $row["idbarang_revisi"]; ?>">
-                                        <button type="submit" class="btn btn-warning">In Revisi</button>
+                                        <button type="submit" class="btn btn-warning"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">In
+                                            Revisi</button>
                                     </form>
                                 </div>
                             </td>

@@ -481,7 +481,8 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <form action="kirim_qc.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idbarang_inpayet"
                                             value="<?= $row["idbarang_inpayet"]; ?>">
-                                        <button type="submit" class="btn btn-info">QC</button>
+                                        <button type="submit" class="btn btn-info"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">QC</button>
                                     </form>
                                 </div>
                             </td>

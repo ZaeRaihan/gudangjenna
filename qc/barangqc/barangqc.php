@@ -289,24 +289,29 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <!-- Button untuk mengirim data ke tabel barangqc -->
                                     <form action="kirim_lolosqc.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
-                                        <button type="submit" class="btn btn-warning">Lolos QC</button>
+                                        <button type="submit" class="btn btn-warning"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Lolos
+                                            QC</button>
                                     </form>
                                     <!-- Button untuk mengirim data ke tabel barangpayet -->
                                     <form action="kirim_reject.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
-                                        <button type="submit" class="btn btn-primary">Reject</button>
+                                        <button type="submit" class="btn btn-primary"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Reject</button>
                                     </form>
                                 </div>
                                 <div class="btn-group text-center" style="display: flex; justify-content: center;">
                                     <!-- Button untuk mengirim data ke tabel barangqc -->
                                     <form action="kirim_minor.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
-                                        <button type="submit" class="btn btn-success">Minor</button>
+                                        <button type="submit" class="btn btn-success"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Minor</button>
                                     </form>
                                     <!-- Button untuk mengirim data ke tabel barangpayet -->
                                     <form action="kirim_revisi.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
-                                        <button type="submit" class="btn btn-info">Revisi</button>
+                                        <button type="submit" class="btn btn-info"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Revisi</button>
                                     </form>
                                 </div>
                             </td>

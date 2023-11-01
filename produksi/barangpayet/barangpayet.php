@@ -415,7 +415,9 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <form action="kirim_inpayet.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idbarang_payet"
                                             value="<?= $row["idbarang_payet"]; ?>">
-                                        <button type="submit" class="btn btn-warning">In Payet</button>
+                                        <button type="submit" class="btn btn-warning"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">In
+                                            Payet</button>
                                     </form>
                                 </div>
                             </td>

@@ -447,13 +447,15 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <form action="kirim_keluar.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idstock_reject"
                                             value="<?= $row["idstock_reject"]; ?>">
-                                        <button type="submit" class="btn btn-info">Keluar</button>
+                                        <button type="submit" class="btn btn-info"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Keluar</button>
                                     </form>
                                     <!-- Button untuk mengirim data ke tabel barang pinjam -->
                                     <form action="kirim_pinjam.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idstock_reject"
                                             value="<?= $row["idstock_reject"]; ?>">
-                                        <button type="submit" class="btn btn-warning">Dipinjam</button>
+                                        <button type="submit" class="btn btn-warning"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Dipinjam</button>
                                     </form>
                                 </div>
                             </td>

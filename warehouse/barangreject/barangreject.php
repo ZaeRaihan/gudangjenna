@@ -310,7 +310,9 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <form action="kirim_gudangreject.php" method="post" style="margin: 0;">
                                         <input type="hidden" name="idbarang_reject"
                                             value="<?= $row["idbarang_reject"]; ?>">
-                                        <button type="submit" class="btn btn-warning">Gudang Reject</button>
+                                        <button type="submit" class="btn btn-warning"
+                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Gudang
+                                            Reject</button>
                                     </form>
                                 </div>
                             </td>
