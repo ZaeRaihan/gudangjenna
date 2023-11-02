@@ -153,7 +153,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             BARANG REJECT
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="barangminor.php">
                             BARANG MINOR
                         </a>

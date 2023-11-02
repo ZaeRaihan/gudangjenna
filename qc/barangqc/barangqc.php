@@ -134,7 +134,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             ADMIN
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="barangqc.php">
                             BARANG QC
                         </a>

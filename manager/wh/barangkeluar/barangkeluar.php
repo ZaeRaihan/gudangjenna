@@ -155,7 +155,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <li><a href="../../qc/barangrevisi/barangrevisi.php">BARANG REVISI</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="active">
                         <a>
                             WAREHOUSE <span class="fa arrow"></span>
                         </a>
@@ -163,7 +163,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <li><a href="../stockgudang/stockgudang.php">STOCK GUDANG</a></li>
                             <li><a href="../gudangreject/gudangreject.php">GUDANG BARANG REJECT</a></li>
                             <li><a href="../gudangminor/gudangminor.php">GUDANG BARANG MINOR</a></li>
-                            <li><a href="barangkeluar.php">BARANG KELUAR</a></li>
+                            <li class="active"><a href="barangkeluar.php">BARANG KELUAR</a></li>
                         </ul>
                     </li>
                     <li>
@@ -291,7 +291,11 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <td><?= $row["size"]; ?></td>
                             <td><?= $row["stock"]; ?></td>
                             <td><?= $row["status"]; ?></td>
-                            <td><?= $row["keterangan"]; ?></td>
+                            <td>
+                                <textarea name="keterangan" rows="2" cols="20" readonly
+                                    onmousedown="return false;"><?= $row["keterangan"]; ?></textarea>
+                            </td>
+                            <!-- Rows untuk tinggi kolom, cols untuk lebar. onmousedown false agar textarea tidak dapat diklik -->
                         </tr>
 
                         <?php $i++; ?>

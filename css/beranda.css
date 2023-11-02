@@ -36,6 +36,17 @@ h1 {
 }
 
 /*                      NAVBAR                           */
+/* Tambahkan CSS untuk item sidebar aktif di sini */
+.navbar-default.sidebar .nav > li.active > a {
+  background-color: #f8f8f8; /* Warna latar belakang untuk item aktif */
+  color: #333; /* Warna teks untuk item aktif */
+}
+
+/* Tambahkan CSS untuk item sidebar ketika dihover */
+.navbar-default.sidebar .nav > li > a:hover {
+  background-color: #f4f4f4; /* Warna latar belakang saat dihover */
+}
+
 .navbar {
   background-color: #454545;
   font-size: large;

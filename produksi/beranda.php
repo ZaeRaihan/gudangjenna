@@ -61,7 +61,7 @@ if (!isset($_SESSION['usernamepr'])) {
         <div class="navbar-default sidebar" role="navigation" style="font-size: medium;">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li>
+                    <li class="active">
                         <a href="beranda.php">
                             BERANDA
                         </a>

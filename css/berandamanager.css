@@ -1,28 +1,26 @@
 body {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Menutupi seluruh viewport vertikal */
-
 }
 
 p {
-font-size: 15px;
+  font-size: 15px;
 }
 h1 {
-text-transform: uppercase;
-font-weight: 500;
+  text-transform: uppercase;
+  font-weight: 500;
 }
-
 
 /*                      HEADER                          */
 .page-header {
   font-weight: bold;
-  font-size: 24px; 
+  font-size: 24px;
 }
 
 /* pengaturan responsif untuk mobile devices */
@@ -30,7 +28,7 @@ font-weight: 500;
   .page-header {
     font-size: 18px;
   }
-  
+
   /* pengaturan responsif navbar-brand untuk mobile view */
   .navbar-brand {
     font-size: 18px;
@@ -38,12 +36,23 @@ font-weight: 500;
 }
 
 /*                      NAVBAR                           */
+/* Tambahkan CSS untuk item sidebar aktif di sini */
+.navbar-default.sidebar .nav > li.active > a {
+  background-color: #f8f8f8; /* Warna latar belakang untuk item aktif */
+  color: #333; /* Warna teks untuk item aktif */
+}
+
+/* Tambahkan CSS untuk item sidebar ketika dihover */
+.navbar-default.sidebar .nav > li > a:hover {
+  background-color: #f4f4f4; /* Warna latar belakang saat dihover */
+}
+
 .navbar {
   background-color: #454545;
   font-size: large;
   letter-spacing: 1px;
   font-weight: 700;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   text-transform: uppercase;
   border: none;
   height: 70px;
@@ -61,10 +70,12 @@ font-weight: 500;
   background-color: #454545;
   width: 100%;
 }
-.dropdown-user { /* NAVBAR LOGOUT UNTUK USER */
+.dropdown-user {
+  /* NAVBAR LOGOUT UNTUK USER */
   background-color: #454545;
-} 
-.dropdown-toggle { /* NAVBAR KANAN UNTUK USER */
+}
+.dropdown-toggle {
+  /* NAVBAR KANAN UNTUK USER */
   color: whitesmoke;
   margin-top: 10px;
 }
@@ -83,7 +94,7 @@ font-weight: 500;
   min-height: 50px;
 }
 .sidebar {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   text-align: center;
 }
 
@@ -103,7 +114,7 @@ font-weight: 500;
     z-index: 1;
     position: absolute;
     width: 200px;
-    
+
     margin-top: 70px;
   }
   .navbar-top-links {
@@ -135,7 +146,6 @@ font-weight: 500;
   }
 }
 
-
 /*                      KONTEN                           */
 .content {
   padding-top: 50px; /* Tambahkan padding agar konten tidak tertutup oleh navbar */
@@ -155,7 +165,9 @@ font-weight: 500;
 }
 
 /* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
+.row {
+  margin: 0 -5px;
+}
 
 /* Clear floats after the columns */
 .row:after {
@@ -171,7 +183,6 @@ font-weight: 500;
 /* CSS untuk sub-menu */
 .nav-second-level {
   display: none; /* Sembunyikan sub-menu secara default */
-  
 }
 
 /* CSS untuk tampilan sub-menu saat menu utama dihover */
@@ -192,17 +203,17 @@ font-weight: 500;
     display: none;
     position: static; /* Override the absolute positioning for mobile */
   }
-  
+
   #side-menu li.active .nav-second-level {
     display: block; /* Tampilkan sub-menu pada menu yang aktif */
   }
 }
 
-.dropdown-menu{
-width: 100%;
-height: auto;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-background-color: #D8D9DA;
+.dropdown-menu {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #d8d9da;
 }
 
 /* Responsive columns */
@@ -252,7 +263,7 @@ background-color: #D8D9DA;
 
 /* Hover effect untuk links */
 .card-footer a:hover {
-  color: #D8D9DA; /* Warna berubah pada hover */
+  color: #d8d9da; /* Warna berubah pada hover */
 }
 
 .text-left {
@@ -271,7 +282,6 @@ section {
   }
 }
 
-
 /*                      FOOTER                           */
 footer {
   text-transform: uppercase;
@@ -287,6 +297,6 @@ footer {
   /* z-index: 999; /* Tambahkan agar footer menutupi seluruh lebar halaman */
 }
 
-footer p{
- text-align: center;
+footer p {
+  text-align: center;
 }

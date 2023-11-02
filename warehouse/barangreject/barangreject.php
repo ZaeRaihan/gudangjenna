@@ -143,7 +143,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             STOCK GUDANG
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="barangreject.php">
                             BARANG REJECT MASUK
                         </a>

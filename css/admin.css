@@ -1,155 +1,165 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
-    text-transform: uppercase;
-    margin: 0;
-    padding: 0;
-    background-color: #F0F0F0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Menutupi seluruh viewport vertikal */
-  
-  }
-  
-  p {
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Menutupi seluruh viewport vertikal */
+}
+
+p {
   font-size: 15px;
-  }
-  h1 {
+}
+h1 {
   text-transform: uppercase;
   font-weight: 500;
-  }
-  
-  
-  /*                      HEADER                          */
+}
+
+/*                      HEADER                          */
+.page-header {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+/* pengaturan responsif untuk mobile devices */
+@media screen and (max-width: 768px) {
   .page-header {
-    font-weight: bold;
-    font-size: 24px; 
+    font-size: 18px;
   }
-  
-  /* pengaturan responsif untuk mobile devices */
-  @media screen and (max-width: 768px) {
-    .page-header {
-      font-size: 18px;
-    }
-    
-    /* pengaturan responsif untuk navbar-brand mobile view */
-    .navbar-brand {
-      font-size: 18px; /* Adjust font size */
-    }
+
+  /* pengaturan responsif untuk navbar-brand mobile view */
+  .navbar-brand {
+    font-size: 18px; /* Adjust font size */
   }
-  
-  /*                      NAVBAR                           */
-  .navbar {
-    background-color: #454545;
-    font-size: large;
-    letter-spacing: 1px;
-    font-weight: 700;
-    font-family: 'Courier New', Courier, monospace;
-    text-transform: uppercase;
-    border: none;
-    height: 70px;
-    position: fixed; /* agar navbar tetap menempel di atas */
-    top: 0; /* agar navbar tetap menempel di atas */
-    width: 100%; /* agar navbar menutupi seluruh lebar halaman */
-    z-index: 99; /* z-index agar navbar tidak tertutup konten */
-  }
-  .navbar-header .navbar-brand {
-    color: whitesmoke;
-    margin-top: 10px;
-  }
-  
-  .dropdown {
-    background-color: #454545;
-    width: 100%;
-  }
-  .dropdown-user { /* NAVBAR LOGOUT UNTUK USER */
-    background-color: #454545;
-  } 
-  .dropdown-toggle { /* NAVBAR KANAN UNTUK USER */
-    color: whitesmoke;
-    margin-top: 10px;
-  }
-  
-  .navbar-top-links {
-    margin-right: 0;
-  }
-  .navbar-top-links li {
-    display: inline-block;
-  }
-  .navbar-top-links li:last-child {
-    margin-right: 100px;
-  }
-  .navbar-top-links li a {
-    padding: 15px;
-    min-height: 50px;
-  }
+}
+
+/*                      NAVBAR                           */
+/* Tambahkan CSS untuk item sidebar aktif di sini */
+.navbar-default.sidebar .nav > li.active > a {
+  background-color: #f8f8f8; /* Warna latar belakang untuk item aktif */
+  color: #333; /* Warna teks untuk item aktif */
+}
+
+/* Tambahkan CSS untuk item sidebar ketika dihover */
+.navbar-default.sidebar .nav > li > a:hover {
+  background-color: #f4f4f4; /* Warna latar belakang saat dihover */
+}
+
+.navbar {
+  background-color: #454545;
+  font-size: large;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+  border: none;
+  height: 70px;
+  position: fixed; /* agar navbar tetap menempel di atas */
+  top: 0; /* agar navbar tetap menempel di atas */
+  width: 100%; /* agar navbar menutupi seluruh lebar halaman */
+  z-index: 99; /* z-index agar navbar tidak tertutup konten */
+}
+.navbar-header .navbar-brand {
+  color: whitesmoke;
+  margin-top: 10px;
+}
+
+.dropdown {
+  background-color: #454545;
+  width: 100%;
+}
+.dropdown-user {
+  /* NAVBAR LOGOUT UNTUK USER */
+  background-color: #454545;
+}
+.dropdown-toggle {
+  /* NAVBAR KANAN UNTUK USER */
+  color: whitesmoke;
+  margin-top: 10px;
+}
+
+.navbar-top-links {
+  margin-right: 0;
+}
+.navbar-top-links li {
+  display: inline-block;
+}
+.navbar-top-links li:last-child {
+  margin-right: 100px;
+}
+.navbar-top-links li a {
+  padding: 15px;
+  min-height: 50px;
+}
+.sidebar {
+  background-color: #d9d9d9;
+  text-align: center;
+}
+
+.sidebar .sidebar-nav.navbar-collapse {
+  padding-left: 0;
+  padding-right: 0;
+}
+.sidebar ul li {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+.sidebar ul li a.active {
+  background-color: whitesmoke;
+}
+@media (min-width: 768px) {
   .sidebar {
-    background-color: #D9D9D9;
-    text-align: center;
+    z-index: 1;
+    position: absolute;
+    width: 200px;
+
+    margin-top: 70px;
   }
-  
-  .sidebar .sidebar-nav.navbar-collapse {
-    padding-left: 0;
-    padding-right: 0;
+  .navbar-top-links {
+    margin-left: auto;
   }
-  .sidebar ul li {
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-  }
-  .sidebar ul li a.active {
-    background-color: whitesmoke;
-  }
-  @media (min-width: 768px) {
-    .sidebar {
-      z-index: 1;
-      position: absolute;
-      width: 200px;
-      
-      margin-top: 70px;
-    }
-    .navbar-top-links {
-      margin-left: auto;
-    }
-  }
-  
-  
-  /*                      KONTEN                           */
-  .content {
-    padding-top: 50px; /* agar konten tidak tertutup oleh navbar */
-    padding-bottom: 50px; 
-    flex: 1; /* Konten akan memenuhi sisa tinggi halaman */
-  }
-  
-  .container-fluid {
-    padding: 20px;
-  }
-  
-  .table {
-    border-collapse: collapse;
-    width: 100%;
+}
+
+/*                      KONTEN                           */
+.content {
+  padding-top: 50px; /* agar konten tidak tertutup oleh navbar */
+  padding-bottom: 50px;
+  flex: 1; /* Konten akan memenuhi sisa tinggi halaman */
+}
+
+.container-fluid {
+  padding: 20px;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
 .table th {
-    background-color: #9DB2BF;
-    border: 1px solid black;
-    text-align: center;
-    border-bottom: 2px solid black;
-    font-size: 18px;
+  background-color: #9db2bf;
+  border: 1px solid black;
+  text-align: center;
+  border-bottom: 2px solid black;
+  font-size: 18px;
 }
 
 .table td {
-  background-color: #EEE2DE;
-    border: 1px solid black;
-    text-align: center;
-    font-size: 14px;
+  background-color: #eee2de;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 14px;
 }
 
 .table tr:hover {
-    background-color: white; /* warna hover pada tabel */
+  background-color: white; /* warna hover pada tabel */
 }
 
 .table tr:hover td {
-    background-color: white; 
-    color: black; 
+  background-color: white;
+  color: black;
 }
 
 /* CSS for adjusting image size */
@@ -158,30 +168,28 @@ table img {
   width: auto; /* This will maintain the aspect ratio */
 }
 
-  
-  /* RESPONSIVE ADJUSTMENTS */
-  @media (min-width: 768px) {
-    .content {
-      margin-left: 250px; /* Sidebar width */
-    }
+/* RESPONSIVE ADJUSTMENTS */
+@media (min-width: 768px) {
+  .content {
+    margin-left: 250px; /* Sidebar width */
   }
-  
-  
-  /*                      FOOTER                           */
-  footer {
-    text-transform: uppercase;
-    padding: 20px;
-    color: whitesmoke;
-    background-color: #454545;
-    text-align: center;
-    font-weight: bold;
-    position: fixed; /* agar footer tetap berada di bawah */
-    bottom: 0; /* agar footer tetap berada di bawah */
-    left: 0;
-    width: 100%; /* agar footer menutupi seluruh lebar halaman */
-    /* z-index: 999; /* agar footer menutupi seluruh lebar halaman */
-  }
-  
-  footer p{
-   text-align: center;
-  }
+}
+
+/*                      FOOTER                           */
+footer {
+  text-transform: uppercase;
+  padding: 20px;
+  color: whitesmoke;
+  background-color: #454545;
+  text-align: center;
+  font-weight: bold;
+  position: fixed; /* agar footer tetap berada di bawah */
+  bottom: 0; /* agar footer tetap berada di bawah */
+  left: 0;
+  width: 100%; /* agar footer menutupi seluruh lebar halaman */
+  /* z-index: 999; /* agar footer menutupi seluruh lebar halaman */
+}
+
+footer p {
+  text-align: center;
+}

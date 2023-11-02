@@ -1,28 +1,26 @@
 body {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Menutupi seluruh viewport vertikal */
-
 }
 
 p {
-font-size: 15px;
+  font-size: 15px;
 }
 h1 {
-text-transform: uppercase;
-font-weight: 500;
+  text-transform: uppercase;
+  font-weight: 500;
 }
-
 
 /*                      HEADER                          */
 .page-header {
   font-weight: bold;
-  font-size: 24px; 
+  font-size: 24px;
 }
 
 /* Pengaturan responsif untuk mobile devices */
@@ -30,7 +28,7 @@ font-weight: 500;
   .page-header {
     font-size: 18px;
   }
-  
+
   /* Pengaturan responsif untuk .navbar-brand mobile view */
   .navbar-brand {
     font-size: 18px; /* Adjust font size */
@@ -38,12 +36,23 @@ font-weight: 500;
 }
 
 /*                      NAVBAR                           */
+/* Tambahkan CSS untuk item sidebar aktif di sini */
+.navbar-default.sidebar .nav > li.active > a {
+  background-color: #f8f8f8; /* Warna latar belakang untuk item aktif */
+  color: #333; /* Warna teks untuk item aktif */
+}
+
+/* Tambahkan CSS untuk item sidebar ketika dihover */
+.navbar-default.sidebar .nav > li > a:hover {
+  background-color: #f4f4f4; /* Warna latar belakang saat dihover */
+}
+
 .navbar {
   background-color: #454545;
   font-size: large;
   letter-spacing: 1px;
   font-weight: 700;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   text-transform: uppercase;
   border: none;
   height: 70px;
@@ -61,10 +70,12 @@ font-weight: 500;
   background-color: #454545;
   width: 100%;
 }
-.dropdown-user { /* NAVBAR LOGOUT UNTUK USER */
+.dropdown-user {
+  /* NAVBAR LOGOUT UNTUK USER */
   background-color: #454545;
-} 
-.dropdown-toggle { /* NAVBAR KANAN UNTUK USER */
+}
+.dropdown-toggle {
+  /* NAVBAR KANAN UNTUK USER */
   color: whitesmoke;
   margin-top: 10px;
 }
@@ -83,7 +94,7 @@ font-weight: 500;
   min-height: 50px;
 }
 .sidebar {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   text-align: center;
 }
 
@@ -103,7 +114,7 @@ font-weight: 500;
     z-index: 1;
     position: absolute;
     width: 200px;
-    
+
     margin-top: 70px;
   }
   .navbar-top-links {
@@ -135,11 +146,9 @@ font-weight: 500;
   }
 }
 
-
 /* CSS untuk sub-menu */
 .nav-second-level {
   display: none; /* Sembunyikan sub-menu secara default */
-  
 }
 
 /* CSS untuk tampilan sub-menu saat menu utama dihover */
@@ -160,24 +169,23 @@ font-weight: 500;
     display: none;
     position: static; /* Override the absolute positioning for mobile */
   }
-  
+
   #side-menu li.active .nav-second-level {
     display: block; /* Tampilkan sub-menu pada menu yang aktif */
   }
 }
 
-.dropdown-menu{
-width: 100%;
-height: auto;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-background-color: #D8D9DA;
+.dropdown-menu {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #d8d9da;
 }
-
 
 /*                      KONTEN                           */
 .content {
   padding-top: 50px; /* agar konten tidak tertutup oleh navbar */
-  padding-bottom: 50px; 
+  padding-bottom: 50px;
   flex: 1; /* Konten akan memenuhi sisa tinggi halaman */
 }
 
@@ -191,7 +199,7 @@ background-color: #D8D9DA;
 }
 
 .table th {
-  background-color: #9DB2BF;
+  background-color: #9db2bf;
   border: 1px solid black;
   text-align: center;
   border-bottom: 2px solid black;
@@ -199,20 +207,19 @@ background-color: #D8D9DA;
 }
 
 .table td {
-background-color: #EEE2DE;
+  background-color: #eee2de;
   border: 1px solid black;
   text-align: center;
   font-size: 14px;
 }
-
 
 .table tr:hover {
   background-color: white; /* Warba pada hover tabel */
 }
 
 .table tr:hover td {
-  background-color: white; 
-  color: black; 
+  background-color: white;
+  color: black;
 }
 
 /* RESPONSIVE ADJUSTMENTS */
@@ -221,7 +228,6 @@ background-color: #EEE2DE;
     margin-left: 250px; /* Sidebar width */
   }
 }
-
 
 /*                      FOOTER                           */
 footer {
@@ -238,27 +244,26 @@ footer {
   /* z-index: 999; /* agar footer menutupi seluruh lebar halaman */
 }
 
-footer p{
- text-align: center;
+footer p {
+  text-align: center;
 }
 
-
 /*                      PAGINATION                          */
-  .pagination-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
-    .pagination-container {
-        flex-direction: column;
-        margin-top: 10px;
-        text-align: center;
-    }
+  .pagination-container {
+    flex-direction: column;
+    margin-top: 10px;
+    text-align: center;
+  }
 
-    .button-group {
-      flex-direction: column;
-      align-items: flex-start;
+  .button-group {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

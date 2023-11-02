@@ -61,7 +61,7 @@ if (!isset($_SESSION['usernamewh'])) {
         <div class="navbar-default sidebar" role="navigation" style="font-size : 13.5px" ;>
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li>
+                    <li class="active">
                         <a href="beranda.php">
                             BERANDA
                         </a>
@@ -131,7 +131,8 @@ if (!isset($_SESSION['usernamewh'])) {
     <div class="content">
         <div class="container-fluid">
             <!------- HEADER ------->
-            <h1 class="page-header">Selamat Datang <?php echo getNama($_SESSION['usernamewh']); ?></h1> <!-- PAKE PHP -->
+            <h1 class="page-header">Selamat Datang <?php echo getNama($_SESSION['usernamewh']); ?></h1>
+            <!-- PAKE PHP -->
             <div class="row">
                 <!-- Cards di atas -->
                 <div class="column">

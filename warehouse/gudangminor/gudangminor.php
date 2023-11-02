@@ -155,7 +155,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             BARANG MINOR MASUK
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="gudangminor.php">
                             GUDANG BARANG MINOR
                         </a>

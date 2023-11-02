@@ -149,14 +149,14 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <li><a href="../../produksi/baranginrevisi/baranginrevisi.php">BARANG IN REVISI</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="active">
                         <a>
                             QC <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
                             <li><a href="../baranglolosqc/baranglolosqc.php">BARANG LOLOS QC</a></li>
                             <li><a href="../barangreject/barangreject.php">BARANG REJECT</a></li>
-                            <li><a href="barangminor.php">BARANG MINOR</a></li>
+                            <li class="active"><a href="barangminor.php">BARANG MINOR</a></li>
                             <li><a href="../barangrevisi/barangrevisi.php">BARANG REVISI</a></li>
                         </ul>
                     </li>

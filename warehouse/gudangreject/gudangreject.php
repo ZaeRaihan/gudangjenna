@@ -145,7 +145,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             BARANG REJECT MASUK
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="gudangreject.php">
                             GUDANG BARANG REJECT
                         </a>

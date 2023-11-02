@@ -78,7 +78,7 @@ $totalPages = ceil($totalRecords / $limit);
                             BERANDA
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="admin.php">
                             ADMIN
                         </a>

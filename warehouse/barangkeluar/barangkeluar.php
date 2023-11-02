@@ -166,7 +166,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             GUDANG BARANG MINOR
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="barangkeluar.php">
                             BARANG KELUAR
                         </a>
@@ -409,7 +409,6 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     onmousedown="return false;"><?= $row["keterangan"]; ?></textarea>
                             </td>
                             <!-- Rows untuk tinggi kolom, cols untuk lebar. onmousedown false agar textarea tidak dapat diklik -->
-
                             <td>
                                 <div class="btn-group text-center" style="display: flex; justify-content: center;">
                                     <button type="button" class="btn btn-warning delete-button"
