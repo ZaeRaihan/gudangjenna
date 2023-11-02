@@ -126,7 +126,8 @@ if (!isset($_SESSION['usernamepr'])) {
     <div class="content">
         <div class="container-fluid">
             <!------- HEADER ------->
-            <h1 class="page-header">Selamat Datang <?php echo getNama($_SESSION['usernamepr']); ?></h1> <!-- PAKE PHP -->
+            <h1 class="page-header">Selamat Datang <?php echo getNama($_SESSION['usernamepr']); ?></h1>
+            <!-- PAKE PHP -->
             <div class="row">
                 <!-- Cards di atas -->
                 <div class="column">
