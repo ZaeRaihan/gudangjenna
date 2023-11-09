@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2023 at 01:20 PM
+-- Generation Time: Nov 09, 2023 at 04:39 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,29 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `gudangjenna`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin_manager`
---
-
-CREATE TABLE `admin_manager` (
-  `id` int(25) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `telepon` varchar(255) NOT NULL,
-  `foto` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `admin_manager`
---
-
-INSERT INTO `admin_manager` (`id`, `username`, `password`, `nama`, `telepon`, `foto`) VALUES
-(59, 'manager1', '$2y$10$Xf/OEG6s34kpgTbz3Xpo.Oh7JLFecshku1CAipqev7XGPGBFvqloi', 'Fitria', '089655680980', '64ecbff6be2f9.jpg'),
-(62, 'zae', '$2y$10$IyYJ2brkjymkxhNnLLD7YOucfhbijPbjsOAHhY3dmVveHxTC4KKzq', 'Maintenance', '085975244732', 'default.jpeg');
 
 -- --------------------------------------------------------
 
@@ -2529,12 +2506,6 @@ INSERT INTO `stockgudang_history` (`id`, `idstock`, `kode`, `collection`, `kateg
 --
 
 --
--- Indexes for table `admin_manager`
---
-ALTER TABLE `admin_manager`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `admin_produksi`
 --
 ALTER TABLE `admin_produksi`
@@ -2759,12 +2730,6 @@ ALTER TABLE `stockgudang_history`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `admin_manager`
---
-ALTER TABLE `admin_manager`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `admin_produksi`
