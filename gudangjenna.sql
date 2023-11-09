@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2023 at 12:00 PM
+-- Generation Time: Nov 08, 2023 at 01:20 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -64,9 +64,8 @@ CREATE TABLE `admin_produksi` (
 --
 
 INSERT INTO `admin_produksi` (`id`, `username`, `password`, `nama`, `telepon`, `foto`) VALUES
-(59, 'produksi1', '$2y$10$qn1xO1BL3wtuAeeHHUcvX.uvt1TLq5YeoBniUakWpmgUBWk3WZtk2', 'agung', '089530192639', '64e2370334172.jpg'),
-(69, 'zae', '$2y$10$aObWOD0TDUn88wl/bv6lU.PeqE3.p/3jpyUE6nLwb9MFaqLWCH4sG', 'Maintenance', '085975244732', 'default.jpeg'),
-(70, 'qc1', '$2y$10$rsF4Ljc7OehKlM4v2BAc1uDI4P.tYLLF5HZ31VKqmXFZabUSNQrP.', 'Yosep', '0821229320111', 'default.jpeg');
+(72, 'produksi1', '$2y$10$aEbXwW2mSWsYsiKeugujlOspW4ycgQQKr5kmwTTvkOpD9ZouJTMBa', 'Agung', '0821229320111', '65425c453ff31.jpg'),
+(73, 'zae', '$2y$10$6PJpRb6CnFwcWbAYsaXcNeHetzZsxPe2uHXNWuoHrj11T94cnT6uW', 'Reza', '085975244732', 'default.jpeg');
 
 -- --------------------------------------------------------
 
@@ -89,8 +88,7 @@ CREATE TABLE `admin_qc` (
 
 INSERT INTO `admin_qc` (`id`, `username`, `password`, `nama`, `telepon`, `foto`) VALUES
 (59, 'qc1', '$2y$10$cEkvs3qzGPbC273LBtQR5OcpZw8L0kpF1oweE4BcgGYPmG/cP2Nhu', 'Fahmi', '081214988946', '65116d0c2ac2b.jpg'),
-(61, 'zae', '$2y$10$I68C2yPNyTHhDQoiczsQhOdQUfgv7wWs/TRDJGGtM2ayleRGWCkXy', 'Maintenance', '085975244732', 'default.jpeg'),
-(62, 'wh1', '$2y$10$vl9GUarcG2Yz2DRgEPyp/O9vrkrEhOJHhwENgZn3lXYbo6cRkYAIK', 'za', 'za', 'default.jpeg');
+(61, 'zae', '$2y$10$I68C2yPNyTHhDQoiczsQhOdQUfgv7wWs/TRDJGGtM2ayleRGWCkXy', 'Reza', '085975244732', 'default.jpeg');
 
 -- --------------------------------------------------------
 
@@ -112,8 +110,8 @@ CREATE TABLE `admin_wh` (
 --
 
 INSERT INTO `admin_wh` (`id`, `username`, `password`, `nama`, `telepon`, `foto`) VALUES
-(59, 'wh1', '$2y$10$2iyp1lyg5tT2rJhPurCqwe6phZteNqYRqpJDI48E.A7fY0Fxkeype', 'Nisa', '0895373888947', '64eb743c837c6.jpg'),
-(62, 'zae', '$2y$10$TJkz1xxKQV1gc./27p91CeTvXo5Y.4ILZZmMQI7XMB8HP3USwJeXW', 'Maintenance', '085975244732', 'default.jpeg');
+(59, 'wh1', '$2y$10$8o3/yemaLM84VKaSElS9T.PF8WO7lwdbTHid11NVt7RTqWmha2hCu', 'Nisa', '0895373888947', '64eb743c837c6.jpg'),
+(62, 'zae', '$2y$10$WeN2NZ4PoPMuUxIF3QLSdebUtc/mHVRZSAHbRDZX3ayCo2QFRczXS', 'zae', '085975244732', 'default.jpeg');
 
 -- --------------------------------------------------------
 
@@ -682,8 +680,7 @@ INSERT INTO `barangkeluar` (`idbarang_keluar`, `tgl_brg_keluar`, `sj_keluar`, `g
 (45, '2023-09-08', 'keluar-002', 'Stock Gudang', 'asuna', 'm', 201, 'Online', 'store', 0, 0, 0),
 (46, '2023-09-11', 'out-01', 'Stock Gudang', 'ayaka', 'm', 1, 'Offline', 'keluar untuk store tiktok', 58, 0, 0),
 (47, '2023-09-13', 'out-02', 'Gudang Barang Reject', 'black pink', 'S-M', 12, 'Offline', 'ke store surabaya', 0, 0, 0),
-(48, '2023-09-13', 'keluar-002', 'Gudang Barang Minor', 'ayaka', 'm', 1, 'Offline', 'ke store bandung', 0, 0, 40),
-(51, '2023-09-21', 'surat 1', 'Stock Gudang', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 'Online', 'toktok store', 72, 0, 0);
+(48, '2023-09-13', 'keluar-002', 'Gudang Barang Minor', 'ayaka', 'm', 1, 'Offline', '1. Offline ke Bandung\r\n2. Offline ke Surabaya\r\n3. Offline ke Jakarta ', 0, 0, 40);
 
 --
 -- Triggers `barangkeluar`
@@ -769,7 +766,15 @@ INSERT INTO `barangkeluar_history` (`id`, `idbarang_keluar`, `tgl_brg_keluar`, `
 (41, 50, '2023-09-20', '', 'Stock Gudang', 'haven black top', 'M', 0, '', '', 77, 0, 0, '2023-09-20 13:54:10'),
 (42, 50, '2023-09-20', '', 'Stock Gudang', 'haven black top', 'M', 11, 'Online', 'store tiktok\r\n', 77, 0, 0, '2023-09-20 13:54:29'),
 (43, 50, '2023-09-20', '', 'Stock Gudang', 'haven black top', 'M', 11, 'Online', 'store tiktok\r\n', 77, 0, 0, '2023-09-20 13:54:36'),
-(44, 51, '2023-09-21', '', 'Stock Gudang', 'MADYA TOP ASH PINK (XL)', 'XL', 0, '', '', 72, 0, 0, '2023-09-21 02:53:08');
+(44, 51, '2023-09-21', '', 'Stock Gudang', 'MADYA TOP ASH PINK (XL)', 'XL', 0, '', '', 72, 0, 0, '2023-09-21 02:53:08'),
+(45, 51, '2023-09-21', 'surat 1', 'Stock Gudang', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 'Online', 'toktok store', 72, 0, 0, '2023-10-19 10:11:21'),
+(46, 51, '2023-09-21', 'surat 1', 'Stock Gudang', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 'Online', 'toktok store', 72, 0, 0, '2023-10-19 10:11:27'),
+(47, 51, '2023-09-21', 'surat 1', 'Stock Gudang', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 'Online', 'toktok store', 72, 0, 0, '2023-10-19 10:59:42'),
+(48, 48, '2023-09-13', 'keluar-002', 'Gudang Barang Minor', 'ayaka', 'm', 1, 'Offline', 'ke store bandung', 0, 0, 40, '2023-10-19 14:38:52'),
+(49, 48, '2023-09-13', 'keluar-002', 'Gudang Barang Minor', 'ayaka', 'm', 1, 'Offline', '1. Offline ke Bandung\r\n2. Offline ke Surabaya\r\n3. Offline ke Jakarta', 0, 0, 40, '2023-10-19 14:40:22'),
+(50, 48, '2023-09-13', 'keluar-002', 'Gudang Barang Minor', 'ayaka', 'm', 1, 'Offline', '1. Offline ke Bandung\r\n2. Offline ke Surabaya\r\n3. Offline ke Jakarta', 0, 0, 40, '2023-10-19 14:48:48'),
+(51, 48, '2023-09-13', 'keluar-002', 'Gudang Barang Minor', 'ayaka', 'm', 1, 'Offline', '1. Offline ke Bandung\r\n2. Offline ke Surabaya Jakarta  Jakarta Jakarta Jakarta Jakarta Jakarta Jakarta Jakarta Jakarta Jakarta \r\n3. Offline ke Jakarta ', 0, 0, 40, '2023-10-19 14:51:46'),
+(52, 48, '2023-09-13', 'keluar-002', 'Gudang Barang Minor', 'ayaka', 'm', 1, 'Offline', '1. Offline ke Bandung\r\n2. Offline ke Surabaya\r\n\r\n3. Offline ke Jakarta ', 0, 0, 40, '2023-10-19 14:51:53');
 
 -- --------------------------------------------------------
 
@@ -991,7 +996,9 @@ INSERT INTO `barangpinjam_history` (`id`, `idbarang_pinjam`, `tgl_brg_keluar`, `
 (14, 42, '2023-09-22', '', 'Gudang Barang Minor', 'MADYA TOP ASH PINK (M)', 'M', 0, '', 0, 0, 70, '2023-09-22 07:19:23'),
 (15, 41, '2023-09-22', '', 'Gudang Barang Reject', 'MADYA TOP ASH PINK (L)', 'L', 0, '', 0, 71, 0, '2023-09-22 07:19:32'),
 (16, 40, '2023-09-22', '', 'Stock Gudang', 'MADYA TOP ASH PINK (XL)', 'XL', 0, '', 72, 0, 0, '2023-09-22 07:19:43'),
-(17, 42, '2023-09-22', 'pinjam-01', 'Gudang Barang Minor', 'MADYA TOP ASH PINK (M)', 'M', 3, 'budi', 0, 0, 70, '2023-09-22 07:20:49');
+(17, 42, '2023-09-22', 'pinjam-01', 'Gudang Barang Minor', 'MADYA TOP ASH PINK (M)', 'M', 3, 'budi', 0, 0, 70, '2023-09-22 07:20:49'),
+(18, 40, '2023-09-22', 'pinjam-01', 'Stock Gudang', 'MADYA TOP ASH PINK (XL)', 'XL', 1, 'pak somad', 72, 0, 0, '2023-10-27 13:06:04'),
+(19, 40, '2023-09-22', 'pinjam-01', 'Stock Gudang', 'MADYA TOP ASH PINK (XL)', 'XL', 1, 'pak somad', 72, 0, 0, '2023-10-27 13:06:22');
 
 -- --------------------------------------------------------
 
@@ -2416,8 +2423,7 @@ INSERT INTO `stockgudang` (`idstock`, `kode`, `collection`, `kategori`, `article
 (68, 'JNK-4255', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP CREME (XL)', 'XL', 42, 659000, '3I', 'RAK', '0 - 3 BULAN', 0),
 (69, 'JNK-4256', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (S)', 'S', 63, 659000, '1H', 'RAK', '0 - 3 BULAN', 0),
 (70, 'JNK-4257', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (M)', 'M', 67, 659000, '1H', 'RAK', '0 - 3 BULAN', 0),
-(71, 'JNK-4258', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (L)', 'L', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0),
-(72, 'JNK-4259', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0);
+(71, 'JNK-4258', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (L)', 'L', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0);
 
 --
 -- Triggers `stockgudang`
@@ -2514,7 +2520,9 @@ INSERT INTO `stockgudang_history` (`id`, `idstock`, `kode`, `collection`, `kateg
 (87, 75, 'JNK-4259', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-09-15 07:16:11'),
 (88, 77, '', 'Jennaka', '', 'haven black top', 'M', 5, 0, '', '', '0 - 3 bulan', 344, '2023-09-20 13:53:00'),
 (89, 77, 'jnk-01', 'Jennaka', 'TOP', 'haven black top', 'M', 5, 1000000, '3d', 'Rak', '0 - 3 bulan', 344, '2023-09-20 13:54:29'),
-(90, 77, 'jnk-01', 'Jennaka', 'TOP', 'haven black top', 'M', -5, 1000000, '3d', 'Rak', '0 - 3 bulan', 344, '2023-09-20 13:54:36');
+(90, 77, 'jnk-01', 'Jennaka', 'TOP', 'haven black top', 'M', -5, 1000000, '3d', 'Rak', '0 - 3 bulan', 344, '2023-09-20 13:54:36'),
+(91, 72, 'JNK-4259', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-10-27 13:06:04'),
+(92, 72, 'JNK-4259', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-10-27 13:06:22');
 
 --
 -- Indexes for dumped tables
@@ -2762,7 +2770,7 @@ ALTER TABLE `admin_manager`
 -- AUTO_INCREMENT for table `admin_produksi`
 --
 ALTER TABLE `admin_produksi`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `admin_qc`
@@ -2780,7 +2788,7 @@ ALTER TABLE `admin_wh`
 -- AUTO_INCREMENT for table `barangbaku`
 --
 ALTER TABLE `barangbaku`
-  MODIFY `idbarang_baku` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `idbarang_baku` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `barangbaku_history`
@@ -2792,7 +2800,7 @@ ALTER TABLE `barangbaku_history`
 -- AUTO_INCREMENT for table `baranginpayet`
 --
 ALTER TABLE `baranginpayet`
-  MODIFY `idbarang_inpayet` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `idbarang_inpayet` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT for table `baranginpayet_history`
@@ -2804,7 +2812,7 @@ ALTER TABLE `baranginpayet_history`
 -- AUTO_INCREMENT for table `baranginrevisi`
 --
 ALTER TABLE `baranginrevisi`
-  MODIFY `idbarang_inrevisi` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `idbarang_inrevisi` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `baranginrevisi_history`
@@ -2816,7 +2824,7 @@ ALTER TABLE `baranginrevisi_history`
 -- AUTO_INCREMENT for table `baranginsewing`
 --
 ALTER TABLE `baranginsewing`
-  MODIFY `idbarang_insewing` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `idbarang_insewing` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `baranginsewing_history`
@@ -2828,19 +2836,19 @@ ALTER TABLE `baranginsewing_history`
 -- AUTO_INCREMENT for table `barangkeluar`
 --
 ALTER TABLE `barangkeluar`
-  MODIFY `idbarang_keluar` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `idbarang_keluar` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `barangkeluar_history`
 --
 ALTER TABLE `barangkeluar_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `barangpayet`
 --
 ALTER TABLE `barangpayet`
-  MODIFY `idbarang_payet` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `idbarang_payet` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `barangpayet_history`
@@ -2852,19 +2860,19 @@ ALTER TABLE `barangpayet_history`
 -- AUTO_INCREMENT for table `barangpinjam`
 --
 ALTER TABLE `barangpinjam`
-  MODIFY `idbarang_pinjam` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `idbarang_pinjam` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `barangpinjam_history`
 --
 ALTER TABLE `barangpinjam_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `barangqc`
 --
 ALTER TABLE `barangqc`
-  MODIFY `idbarang_qc` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `idbarang_qc` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- AUTO_INCREMENT for table `barangqc_history`
@@ -2876,7 +2884,7 @@ ALTER TABLE `barangqc_history`
 -- AUTO_INCREMENT for table `barangretur`
 --
 ALTER TABLE `barangretur`
-  MODIFY `idbarang_retur` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idbarang_retur` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `barangretur_history`
@@ -2888,7 +2896,7 @@ ALTER TABLE `barangretur_history`
 -- AUTO_INCREMENT for table `barangrevisi`
 --
 ALTER TABLE `barangrevisi`
-  MODIFY `idbarang_revisi` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `idbarang_revisi` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `barangrevisi_history`
@@ -2900,7 +2908,7 @@ ALTER TABLE `barangrevisi_history`
 -- AUTO_INCREMENT for table `barangvendor`
 --
 ALTER TABLE `barangvendor`
-  MODIFY `idbarang_vendor` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `idbarang_vendor` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `barangvendor_history`
@@ -2912,7 +2920,7 @@ ALTER TABLE `barangvendor_history`
 -- AUTO_INCREMENT for table `barang_lolosqc`
 --
 ALTER TABLE `barang_lolosqc`
-  MODIFY `idbarang_lolosqc` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=347;
+  MODIFY `idbarang_lolosqc` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=349;
 
 --
 -- AUTO_INCREMENT for table `barang_lolosqc_history`
@@ -2924,7 +2932,7 @@ ALTER TABLE `barang_lolosqc_history`
 -- AUTO_INCREMENT for table `barang_minor`
 --
 ALTER TABLE `barang_minor`
-  MODIFY `idbarang_minor` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idbarang_minor` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `barang_minor_history`
@@ -2936,7 +2944,7 @@ ALTER TABLE `barang_minor_history`
 -- AUTO_INCREMENT for table `barang_reject`
 --
 ALTER TABLE `barang_reject`
-  MODIFY `idbarang_reject` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idbarang_reject` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `barang_reject_history`
@@ -2948,7 +2956,7 @@ ALTER TABLE `barang_reject_history`
 -- AUTO_INCREMENT for table `gudangminor`
 --
 ALTER TABLE `gudangminor`
-  MODIFY `idstock_minor` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `idstock_minor` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `gudangminor_history`
@@ -2960,7 +2968,7 @@ ALTER TABLE `gudangminor_history`
 -- AUTO_INCREMENT for table `gudangreject`
 --
 ALTER TABLE `gudangreject`
-  MODIFY `idstock_reject` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `idstock_reject` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `gudangreject_history`
@@ -2972,13 +2980,13 @@ ALTER TABLE `gudangreject_history`
 -- AUTO_INCREMENT for table `stockgudang`
 --
 ALTER TABLE `stockgudang`
-  MODIFY `idstock` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `idstock` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `stockgudang_history`
 --
 ALTER TABLE `stockgudang_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

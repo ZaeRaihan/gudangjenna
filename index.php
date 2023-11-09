@@ -67,9 +67,6 @@
                     <h1><strong> LOGIN </strong></h1>
                 </div>
                 <br>
-                <a href="manager/login.php" target="_blank"><button class="btn btn-danger"
-                        style="size: 50px;">MANAGER</button></a>
-                <br><br>
                 <a href="warehouse/login.php" target="_blank"><button class="btn btn-warning" style="size: 50px;">ADMIN
                         WAREHOUSE</button></a>
                 <br><br>
@@ -78,6 +75,7 @@
                 <br><br>
                 <a href="produksi/login.php" target="_blank"><button class="btn btn-primary" style="size: 50px;">ADMIN
                         PRODUKSI</button></a>
+                <br><br>
             </div>
         </div>
     </section>
