@@ -48,4 +48,3 @@ if (!empty($data_barangpayet)) {
 
 // Tampilkan pesan menggunakan JavaScript dan tetap berada pada halaman saat ini
 echo "<script>alert('$pesan'); window.history.back();</script>";
-?>
