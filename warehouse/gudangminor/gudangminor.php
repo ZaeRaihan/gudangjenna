@@ -41,7 +41,7 @@ if (!empty($search)) {
     $search = strtolower($search); // Ubah istilah penelusuran menjadi huruf kecil
     $search = str_replace('.', '', $search); // Menghapus tanda titik dari angka format Rupiah
     $search = str_replace('Rp ', '', $search); // Menghapus teks "Rp " dari angka format Rupiah
-    
+
     $search_filter = "WHERE 
             LOWER(kode) LIKE '%$search%' OR
             LOWER(collection) LIKE '%$search%' OR
@@ -239,8 +239,8 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <?php
                                     $startPage = max(1, $page - 1);
                                     $endPage = min($totalPagesSearchDateFilter, $startPage + 4);
-                                        for ($p = $startPage; $p <= $endPage; $p++) :
-                                     ?>
+                                    for ($p = $startPage; $p <= $endPage; $p++) :
+                                    ?>
                                     <li class="<?php if ($p == $page) echo 'active'; ?>">
                                         <a
                                             href="?page=<?php echo $p; ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>">
@@ -359,7 +359,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <div class="form-group">
                                         <label for="stock">Stock</label>
                                         <input type="number" class="form-control" id="stock" name="stock"
-                                            pattern="[0-9]*">
+                                            pattern="[0-9]*" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="harga">Harga</label>
@@ -424,7 +424,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                         </tr>
 
                         <!-- Table and Pagination -->
-                        <?php $i = $start + 1;?>
+                        <?php $i = $start + 1; ?>
                         <!-- Hitung indeks awal saat ini berdasarkan halaman dan limit -->
                         <?php foreach ($gudangminor as $row) : ?>
 
@@ -625,7 +625,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             <div class="form-group">
                                                 <label for="stock">Stock</label>
                                                 <input type="number" class="form-control" id="stock" name="stock"
-                                                    value="<?= $row["stock"]; ?>" pattern="[0-9]*">
+                                                    value="<?= $row["stock"]; ?>" pattern="[0-9]*" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="harga">Harga</label>

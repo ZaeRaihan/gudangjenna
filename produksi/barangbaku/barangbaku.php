@@ -312,12 +312,12 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     <div class="form-group">
                                         <label for="inyard">In Yard</label>
                                         <input type="number" class="form-control" id="inyard" name="inyard"
-                                            pattern="[0-9]*">
+                                            pattern="[0-9]*" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="stock">Roll</label>
                                         <input type="number" class="form-control" id="stock" name="stock"
-                                            pattern="[0-9]*">
+                                            pattern="[0-9]*" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="harga">Harga</label>
@@ -483,12 +483,12 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             <div class="form-group">
                                                 <label for="inyard">In Yard</label>
                                                 <input type="number" class="form-control" id="inyard" name="inyard"
-                                                    pattern="[0-9]*" value="<?= $row["inyard"]; ?>">
+                                                    pattern="[0-9]*" value="<?= $row["inyard"]; ?>" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="stock">Roll</label>
                                                 <input type="number" class="form-control" id="stock" name="stock"
-                                                    pattern="[0-9]*" value="<?= $row["stock"]; ?>">
+                                                    pattern="[0-9]*" value="<?= $row["stock"]; ?>" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="harga">Harga</label>
