@@ -50,24 +50,24 @@ function ubahBarang($data, $idbarang_vendor)
 {
     global $db;
 
-     // Ambil data dari form
-     $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
-     $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
-     $launching_date = htmlspecialchars($data['launching_date']);
-     $collection = htmlspecialchars($data['collection']);
-     $article_name = htmlspecialchars($data['article_name']);
-     $size = htmlspecialchars($data['size']);
-     $stock = htmlspecialchars($data['stock']);
-     $vendor = htmlspecialchars($data['vendor']);
+    // Ambil data dari form
+    $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
+    $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
+    $launching_date = htmlspecialchars($data['launching_date']);
+    $collection = htmlspecialchars($data['collection']);
+    $article_name = htmlspecialchars($data['article_name']);
+    $size = htmlspecialchars($data['size']);
+    $stock = htmlspecialchars($data['stock']);
+    $vendor = htmlspecialchars($data['vendor']);
     if ($vendor === 'OTHER') {
         $otherVendor = htmlspecialchars($data['otherVendor']);
         $vendor = $otherVendor;
     }
-     $status = htmlspecialchars($data['status']);
- 
-     // Convert the date values to the correct format (YYYY-MM-DD)
-     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
-     $launching_date = date('Y-m-d', strtotime($launching_date));
+    $status = htmlspecialchars($data['status']);
+
+    // Convert the date values to the correct format (YYYY-MM-DD)
+    $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
+    $launching_date = date('Y-m-d', strtotime($launching_date));
 
     // Query ubah barang
     $query = "UPDATE barangvendor SET tgl_brg_masuk = '$tgl_brg_masuk', sj_from_vendor = '$sj_from_vendor ', launching_date = '$launching_date', collection = '$collection', 
@@ -107,7 +107,7 @@ function hapusBarang($id)
 function getNama($username)
 {
     global $db;
-    $query = "SELECT nama FROM admin_produksi WHERE username = '$username'";
+    $query = "SELECT nama FROM admin WHERE username = '$username' AND role = 'produksi'";
     $result = mysqli_query($db, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {

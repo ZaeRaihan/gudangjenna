@@ -73,7 +73,7 @@ function ubahBarang($data, $idbarang_inrevisi)
     $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
     $status = htmlspecialchars($data['status']);
 
-// Convert the date values to the correct format (YYYY-MM-DD)
+    // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
     $launching_date = date('Y-m-d', strtotime($launching_date));
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
@@ -147,7 +147,7 @@ function hapusBarang($id)
 function getNama($username)
 {
     global $db;
-    $query = "SELECT nama FROM admin_produksi WHERE username = '$username'";
+    $query = "SELECT nama FROM admin WHERE username = '$username' AND role = 'produksi'";
     $result = mysqli_query($db, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {

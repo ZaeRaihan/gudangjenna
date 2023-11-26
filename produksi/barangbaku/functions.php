@@ -108,7 +108,7 @@ function hapusBarang($id)
 function getNama($username)
 {
     global $db;
-    $query = "SELECT nama FROM admin_produksi WHERE username = '$username'";
+    $query = "SELECT nama FROM admin WHERE username = '$username' AND role = 'produksi'";
     $result = mysqli_query($db, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -159,6 +159,7 @@ function formatDate($dateString)
     return date('d F Y', $timestamp);
 }
 
-function format_rupiah($angka) {
+function format_rupiah($angka)
+{
     return 'Rp ' . number_format($angka, 0, ',', '.');
 }

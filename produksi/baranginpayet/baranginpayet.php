@@ -2,8 +2,8 @@
 session_start();
 require 'functions.php';
 
-// Check jika user sudah login
-if (!isset($_SESSION['usernamepr'])) {
+// cek apakah user belum login atau tidak memiliki peran produksi
+if (!isset($_SESSION['usernamepr']) || $_SESSION['role'] !== 'produksi') {
     header("Location: ../login.php");
     exit();
 }
