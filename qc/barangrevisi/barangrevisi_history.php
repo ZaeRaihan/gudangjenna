@@ -2,7 +2,7 @@
 session_start();
 
 // Check apakah user belum login
-if (!isset($_SESSION['usernameqc'])) {
+if (!isset($_SESSION['usernameqc']) || $_SESSION['role'] !== 'qc') {
     header("Location: ../login.php");
     exit();
 }

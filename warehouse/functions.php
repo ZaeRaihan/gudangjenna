@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Koneksi ke database
 $db = mysqli_connect("localhost", "root", "", "gudangjenna");
 
@@ -13,25 +13,26 @@ function query($query)
     return $rows;
 }
 
-//password
-function getHashedPassword($username) {
+// Password hashed
+function getHashedPassword($username)
+{
     global $db;
-    $query = "SELECT password FROM admin_wh WHERE username = '$username'";
+    $query = "SELECT password FROM admin WHERE username = '$username' AND role = 'warehouse'";
     $result = mysqli_query($db, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
         return $user['password'];
     } else {
-        return false; // Username not found
+        return false; // Username not found or role is not 'warehouse'
     }
 }
 
-
-//tampil username
-function getNama($username) {
+// Get username's name
+function getNama($username)
+{
     global $db;
-    $query = "SELECT nama FROM admin_wh WHERE username = '$username'";
+    $query = "SELECT nama FROM admin WHERE username = '$username' AND role = 'warehouse'";
     $result = mysqli_query($db, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -42,4 +43,16 @@ function getNama($username) {
     }
 }
 
-?>
+function getUserRole($username)
+{
+    global $db;
+    $query = "SELECT role FROM admin WHERE username = '$username'";
+    $result = mysqli_query($db, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+        return $user['role'];
+    } else {
+        return "unknown"; // Role not found
+    }
+}

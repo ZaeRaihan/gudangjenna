@@ -14,7 +14,8 @@ function query($query)
 }
 
 // Fungsi untuk menambahkan barang baru
-function tambahBarang($data) {
+function tambahBarang($data)
+{
     global $db;
 
     // Ambil data dari form
@@ -34,7 +35,7 @@ function tambahBarang($data) {
 
     // Query tambah barang
     $query = "INSERT INTO barang_minor (tgl_brg_masuk, launching_date, collection, article_name, size, stock, tgl_brg_keluar, sj_for_wh) VALUES ('$tgl_brg_masuk', '$launching_date', '$collection', '$article_name', '$size', '$stock', '$tgl_brg_keluar', '$sj_for_wh')";
-    
+
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
@@ -61,13 +62,14 @@ function ubahBarang($data, $idbarang_minor)
 
     // Query ubah barang
     $query = "UPDATE barang_minor SET tgl_brg_masuk = '$tgl_brg_masuk', launching_date = '$launching_date', collection = '$collection', article_name = '$article_name', size = '$size', stock = '$stock', tgl_brg_keluar = '$tgl_brg_keluar', sj_for_wh = '$sj_for_wh' WHERE idbarang_minor = $idbarang_minor";
-    
+
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
 
 // Fungsi untuk mengambil data barang berdasarkan ID
-function getBarangById($idbarang_minor) {
+function getBarangById($idbarang_minor)
+{
     global $db;
     $query = "SELECT * FROM barang_minor WHERE idbarang_minor = $idbarang_minor";
     $result = mysqli_query($db, $query);
@@ -84,7 +86,7 @@ function getBarangById($idbarang_minor) {
 function hapusBarang($id)
 {
     global $db;
-    
+
     // Query hapus barang
     $query = "DELETE FROM barang_minor WHERE idbarang_minor = $id";
     mysqli_query($db, $query);
@@ -92,9 +94,10 @@ function hapusBarang($id)
 }
 
 //tampil username
-function getNama($username) {
+function getNama($username)
+{
     global $db;
-    $query = "SELECT nama FROM admin_wh WHERE username = '$username'";
+    $query = "SELECT nama FROM admin WHERE username = '$username' AND role = 'warehouse'";
     $result = mysqli_query($db, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -106,7 +109,8 @@ function getNama($username) {
 }
 
 // Fungsi untuk menyalin data sebagai data baru
-function proses_copy($id) {
+function proses_copy($id)
+{
     global $db;
 
     $dataToCopy = getBarangById($id);
@@ -135,12 +139,10 @@ function proses_copy($id) {
     } else {
         return false;
     }
-    
 }
 // Fungsi untuk membuat format tanggal
-function formatDate($dateString) {
+function formatDate($dateString)
+{
     $timestamp = strtotime($dateString);
     return date('d F Y', $timestamp);
 }
-
-?>

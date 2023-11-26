@@ -2,8 +2,8 @@
 session_start();
 require 'functions.php';
 
-// Check jika user sudah login
-if (!isset($_SESSION['usernameqc'])) {
+// cek apakah user belum login atau tidak memiliki peran qc
+if (!isset($_SESSION['usernameqc']) || $_SESSION['role'] !== 'qc') {
     header("Location: ../login.php");
     exit();
 }
@@ -105,13 +105,11 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown"
-                    href="../logout.php"><?php echo getNama($_SESSION['usernameqc']); ?></i>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="../logout.php"><?php echo getNama($_SESSION['usernameqc']); ?></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li>
-                        <form class="" action="../logout.php" onclick="return confirm('yakin ingin logout?');"
-                            method="post">
+                        <form class="" action="../logout.php" onclick="return confirm('yakin ingin logout?');" method="post">
                             <button class="btn btn-default" type="submit" name="keluar"><i class="fa fa-sign-out"></i>
                                 Logout</button>
                         </form>
@@ -186,8 +184,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                         <!-- Search Form -->
                         <form action="" method="GET" class="form-inline">
                             <label for="search"></label>
-                            <input type="text" class="form-control mx-2" id="search" name="search"
-                                value="<?php echo $_GET['search'] ?? ''; ?>" placeholder="cari data barang">
+                            <input type="text" class="form-control mx-2" id="search" name="search" value="<?php echo $_GET['search'] ?? ''; ?>" placeholder="cari data barang">
                             <button type="submit" class="btn btn-success">Search</button>
                             <a href="barangqc.php" class="btn btn-warning mx-2">Clear</a>
                         </form>
@@ -203,33 +200,30 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <div class="pagination-container">
                                 <ul class="pagination pagination-lg">
                                     <?php if ($page > 1) : ?>
-                                    <li>
-                                        <a href="?page=<?php echo ($page - 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
-                                            aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
+                                        <li>
+                                            <a href="?page=<?php echo ($page - 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
                                     <?php endif; ?>
                                     <?php
                                     $startPage = max(1, $page - 1);
                                     $endPage = min($totalPagesSearchDateFilter, $startPage + 4);
-                                        for ($p = $startPage; $p <= $endPage; $p++) :
-                                     ?>
-                                    <li class="<?php if ($p == $page) echo 'active'; ?>">
-                                        <a
-                                            href="?page=<?php echo $p; ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>">
-                                            <?php echo $p; ?>
-                                        </a>
-                                    </li>
+                                    for ($p = $startPage; $p <= $endPage; $p++) :
+                                    ?>
+                                        <li class="<?php if ($p == $page) echo 'active'; ?>">
+                                            <a href="?page=<?php echo $p; ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>">
+                                                <?php echo $p; ?>
+                                            </a>
+                                        </li>
                                     <?php endfor; ?>
 
                                     <?php if ($page < $totalPagesSearchDateFilter) : ?>
-                                    <li>
-                                        <a href="?page=<?php echo ($page + 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>"
-                                            aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
+                                        <li>
+                                            <a href="?page=<?php echo ($page + 1); ?>&start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>&search=<?php echo $search; ?>" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
                                     <?php endif; ?>
                                 </ul>
                             </div>
@@ -242,12 +236,10 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                     <div class="col-md-12">
                         <form action="" method="GET" class="form-inline">
                             <label for="start_date">Start Date:</label>
-                            <input type="date" class="form-control mx-2" id="start_date" name="start_date"
-                                value="<?php echo $_GET['start_date'] ?? ''; ?>">
+                            <input type="date" class="form-control mx-2" id="start_date" name="start_date" value="<?php echo $_GET['start_date'] ?? ''; ?>">
 
                             <label for="end_date">End Date:</label>
-                            <input type="date" class="form-control mx-2" id="end_date" name="end_date"
-                                value="<?php echo $_GET['end_date'] ?? ''; ?>">
+                            <input type="date" class="form-control mx-2" id="end_date" name="end_date" value="<?php echo $_GET['end_date'] ?? ''; ?>">
 
                             <button type="submit" class="btn btn-success">Apply Filter</button>
                             <a href="barangqc.php" class="btn btn-warning mx-2">Clear Filter</a>
@@ -274,50 +266,46 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                         <!-- Hitung indeks awal saat ini berdasarkan halaman dan limit -->
                         <?php foreach ($barangqc as $row) : ?>
 
-                        <tr class="data-row">
-                            <td><?= $i; ?></td>
-                            <td><?= formatDate($row["tgl_brg_keluar"]); ?></td>
-                            <td><?= $row["sj_for_qc"]; ?></td>
-                            <td><?= formatDate($row["launching_date"]); ?></td>
-                            <td><?= $row["collection"]; ?></td>
-                            <td><?= $row["article_name"]; ?></td>
-                            <td><?= $row["size"]; ?></td>
-                            <td><?= $row["stock"]; ?></td>
-                            <td><?= $row["vendor"]; ?></td>
-                            <td>
-                                <div class="btn-group text-center" style="display: flex; justify-content: center;">
-                                    <!-- Button untuk mengirim data ke tabel barangqc -->
-                                    <form action="kirim_lolosqc.php" method="post" style="margin: 0;">
-                                        <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
-                                        <button type="submit" class="btn btn-warning"
-                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Lolos
-                                            QC</button>
-                                    </form>
-                                    <!-- Button untuk mengirim data ke tabel barangpayet -->
-                                    <form action="kirim_reject.php" method="post" style="margin: 0;">
-                                        <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
-                                        <button type="submit" class="btn btn-primary"
-                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Reject</button>
-                                    </form>
-                                </div>
-                                <div class="btn-group text-center" style="display: flex; justify-content: center;">
-                                    <!-- Button untuk mengirim data ke tabel barangqc -->
-                                    <form action="kirim_minor.php" method="post" style="margin: 0;">
-                                        <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
-                                        <button type="submit" class="btn btn-success"
-                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Minor</button>
-                                    </form>
-                                    <!-- Button untuk mengirim data ke tabel barangpayet -->
-                                    <form action="kirim_revisi.php" method="post" style="margin: 0;">
-                                        <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
-                                        <button type="submit" class="btn btn-info"
-                                            onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Revisi</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr class="data-row">
+                                <td><?= $i; ?></td>
+                                <td><?= formatDate($row["tgl_brg_keluar"]); ?></td>
+                                <td><?= $row["sj_for_qc"]; ?></td>
+                                <td><?= formatDate($row["launching_date"]); ?></td>
+                                <td><?= $row["collection"]; ?></td>
+                                <td><?= $row["article_name"]; ?></td>
+                                <td><?= $row["size"]; ?></td>
+                                <td><?= $row["stock"]; ?></td>
+                                <td><?= $row["vendor"]; ?></td>
+                                <td>
+                                    <div class="btn-group text-center" style="display: flex; justify-content: center;">
+                                        <!-- Button untuk mengirim data ke tabel barangqc -->
+                                        <form action="kirim_lolosqc.php" method="post" style="margin: 0;">
+                                            <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
+                                            <button type="submit" class="btn btn-warning" onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Lolos
+                                                QC</button>
+                                        </form>
+                                        <!-- Button untuk mengirim data ke tabel barangpayet -->
+                                        <form action="kirim_reject.php" method="post" style="margin: 0;">
+                                            <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
+                                            <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Reject</button>
+                                        </form>
+                                    </div>
+                                    <div class="btn-group text-center" style="display: flex; justify-content: center;">
+                                        <!-- Button untuk mengirim data ke tabel barangqc -->
+                                        <form action="kirim_minor.php" method="post" style="margin: 0;">
+                                            <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
+                                            <button type="submit" class="btn btn-success" onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Minor</button>
+                                        </form>
+                                        <!-- Button untuk mengirim data ke tabel barangpayet -->
+                                        <form action="kirim_revisi.php" method="post" style="margin: 0;">
+                                            <input type="hidden" name="idbarang_qc" value="<?= $row["idbarang_qc"]; ?>">
+                                            <button type="submit" class="btn btn-info" onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Revisi</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
 
-                        <?php $i++; ?>
+                            <?php $i++; ?>
                         <?php endforeach; ?>
 
                     </table>
@@ -347,24 +335,24 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
     <script src="script.js"></script>
 
     <script>
-    function printTable() {
-        const selectedRows = [];
-        const checkboxes = document.querySelectorAll('.print-checkbox:checked');
+        function printTable() {
+            const selectedRows = [];
+            const checkboxes = document.querySelectorAll('.print-checkbox:checked');
 
-        checkboxes.forEach(checkbox => {
-            selectedRows.push(checkbox.getAttribute('data-id'));
-        });
+            checkboxes.forEach(checkbox => {
+                selectedRows.push(checkbox.getAttribute('data-id'));
+            });
 
-        if (selectedRows.length > 0) {
-            const selectedRowsStr = selectedRows.join(',');
-            const printPageUrl = `print_page.php?selected_rows=${encodeURIComponent(selectedRowsStr)}`;
+            if (selectedRows.length > 0) {
+                const selectedRowsStr = selectedRows.join(',');
+                const printPageUrl = `print_page.php?selected_rows=${encodeURIComponent(selectedRowsStr)}`;
 
-            // Buka URL Print Page di tab baru
-            window.open(printPageUrl, '_blank');
-        } else {
-            alert('No rows selected for printing.');
+                // Buka URL Print Page di tab baru
+                window.open(printPageUrl, '_blank');
+            } else {
+                alert('No rows selected for printing.');
+            }
         }
-    }
     </script>
 
 </body>

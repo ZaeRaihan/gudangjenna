@@ -14,7 +14,8 @@ function query($query)
 }
 
 // Fungsi untuk menambahkan barang baru
-function tambahBarang($data) {
+function tambahBarang($data)
+{
     global $db;
 
     // Ambil data dari form
@@ -32,7 +33,7 @@ function tambahBarang($data) {
     // Query tambah barang
     $query = "INSERT INTO barangpinjam (tgl_brg_keluar, surat_retur, gudang, article_name, size, stock, dipinjam) VALUES 
     ('$tgl_brg_keluar', '$surat_retur', '$gudang', '$article_name', '$size', '$stock', '$dipinjam')";
-    
+
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
@@ -57,13 +58,14 @@ function ubahBarang($data, $idbarang_pinjam)
     // Query ubah barang
     $query = "UPDATE barangpinjam SET tgl_brg_keluar = '$tgl_brg_keluar', surat_retur = '$surat_retur', gudang = '$gudang', article_name = '$article_name', 
     size = '$size', stock = '$stock', dipinjam = '$dipinjam' WHERE idbarang_pinjam = $idbarang_pinjam";
-    
+
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
 
 // Fungsi untuk mengambil data barang berdasarkan ID
-function getBarangById($idbarang_pinjam) {
+function getBarangById($idbarang_pinjam)
+{
     global $db;
     $query = "SELECT * FROM barangpinjam WHERE idbarang_pinjam = $idbarang_pinjam";
     $result = mysqli_query($db, $query);
@@ -80,7 +82,7 @@ function getBarangById($idbarang_pinjam) {
 function hapusBarang($id)
 {
     global $db;
-    
+
     // Query hapus barang
     $query = "DELETE FROM barangpinjam WHERE idbarang_pinjam = $id";
     mysqli_query($db, $query);
@@ -88,9 +90,10 @@ function hapusBarang($id)
 }
 
 //tampil username
-function getNama($username) {
+function getNama($username)
+{
     global $db;
-    $query = "SELECT nama FROM admin_wh WHERE username = '$username'";
+    $query = "SELECT nama FROM admin WHERE username = '$username' AND role = 'warehouse'";
     $result = mysqli_query($db, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -102,7 +105,8 @@ function getNama($username) {
 }
 
 // Fungsi untuk menyalin data sebagai data baru
-function proses_copy($id) {
+function proses_copy($id)
+{
     global $db;
 
     $dataToCopy = getBarangById($id);
@@ -130,16 +134,15 @@ function proses_copy($id) {
     } else {
         return false;
     }
-    
 }
 // Fungsi untuk membuat format tanggal
-function formatDate($dateString) {
+function formatDate($dateString)
+{
     $timestamp = strtotime($dateString);
     return date('d F Y', $timestamp);
 }
 
-function format_rupiah($angka) {
+function format_rupiah($angka)
+{
     return 'Rp ' . number_format($angka, 0, ',', '.');
 }
-
-?>

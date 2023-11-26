@@ -2,21 +2,21 @@
 session_start();
 require 'functions.php';
 
-// Check apakah user blm login
-if (!isset($_SESSION['usernamewh'])) {
+// cek apakah user belum login atau tidak memiliki peran warehouse
+if (!isset($_SESSION['usernamewh']) || $_SESSION['role'] !== 'warehouse') {
     header("Location: ../login.php");
     exit();
 }
 
-$adminwh = query("SELECT * FROM admin_wh");
+$adminwh = query("SELECT * FROM admin");
 
 // Pagination
 $limit = 5;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $start = ($page - 1) * $limit;
 
-$adminwh = query("SELECT * FROM admin_wh LIMIT $start, $limit");
-$totalRecords = count(query("SELECT * FROM admin_wh"));
+$adminwh = query("SELECT * FROM admin LIMIT $start, $limit");
+$totalRecords = count(query("SELECT * FROM admin"));
 $totalPages = ceil($totalRecords / $limit);
 
 ?>
@@ -54,13 +54,11 @@ $totalPages = ceil($totalRecords / $limit);
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown"
-                    href="../logout.php"><?php echo getNama($_SESSION['usernamewh']); ?></i>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="../logout.php"><?php echo getNama($_SESSION['usernamewh']); ?></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li>
-                        <form class="" action="../logout.php" onclick="return confirm('yakin ingin logout?');"
-                            method="post">
+                        <form class="" action="../logout.php" onclick="return confirm('yakin ingin logout?');" method="post">
                             <button class="btn btn-default" type="submit" name="keluar"><i class="fa fa-sign-out"></i>
                                 Logout</button>
                         </form>
@@ -153,8 +151,7 @@ $totalPages = ceil($totalRecords / $limit);
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="tambahAdminModal" tabindex="-1" role="dialog"
-                    aria-labelledby="tambahAdminModalLabel" aria-hidden="true">
+                <div class="modal fade" id="tambahAdminModal" tabindex="-1" role="dialog" aria-labelledby="tambahAdminModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -172,8 +169,7 @@ $totalPages = ceil($totalRecords / $limit);
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password"
-                                            required>
+                                        <input type="password" class="form-control" id="password" name="password" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama</label>
@@ -199,9 +195,9 @@ $totalPages = ceil($totalRecords / $limit);
                 <div class="text-center">
                     <ul class="pagination">
                         <?php for ($p = 1; $p <= $totalPages; $p++) : ?>
-                        <li class="<?php if ($p == $page) echo 'active'; ?>">
-                            <a href="?page=<?php echo $p; ?>"><?php echo $p; ?></a>
-                        </li>
+                            <li class="<?php if ($p == $page) echo 'active'; ?>">
+                                <a href="?page=<?php echo $p; ?>"><?php echo $p; ?></a>
+                            </li>
                         <?php endfor; ?>
                     </ul>
                 </div>
@@ -213,6 +209,7 @@ $totalPages = ceil($totalRecords / $limit);
                             <th scope="col">Nama</th>
                             <th scope="col">Telepon</th>
                             <th scope="col">Foto</th>
+                            <th scope="col">Divisi</th>
                             <th scope="col">Aksi</th>
                         </tr>
 
@@ -220,85 +217,75 @@ $totalPages = ceil($totalRecords / $limit);
                         <?php $i = 1 + ($page - 1) * $limit; ?>
                         <?php foreach ($adminwh as $row) : ?>
 
-                        <tr>
-                            <td><?= $i; ?></td>
-                            <td><?= $row["nama"]; ?></td>
-                            <td><?= $row["telepon"]; ?></td>
-                            <td><img src="../../images/<?= $row["foto"]; ?>"></td>
-                            <td>
-                                <div class="btn-group text-center" style="display: flex; justify-content: center;">
-                                    <!-- <form action="proses_hapus_admin.php" method="post" style="display: inline;">
+                            <tr>
+                                <td><?= $i; ?></td>
+                                <td><?= $row["nama"]; ?></td>
+                                <td><?= $row["telepon"]; ?></td>
+                                <td><img src="../../images/<?= $row["foto"]; ?>"></td>
+                                <td><?= $row["role"]; ?></td>
+                                <td>
+                                    <div class="btn-group text-center" style="display: flex; justify-content: center;">
+                                        <!-- <form action="proses_hapus_admin.php" method="post" style="display: inline;">
                                         <input type="hidden" name="id" value="<?= $row["id"]; ?>">
                                         <button type="submit" class="btn btn-warning"
                                             onclick="return confirm('Apakah Anda yakin ingin menghapus admin ini?')">Hapus</button>
                                     </form> -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#ubahAdminModal<?= $row["id"]; ?>">Ubah</button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <div class="modal fade" id="ubahAdminModal<?= $row["id"]; ?>" tabindex="-1" role="dialog"
-                            aria-labelledby="ubahAdminModalLabel<?= $row["id"]; ?>" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h3 class="modal-title" id="ubahAdminModalLabel<?= $row["id"]; ?>">Ubah Admin
-                                        </h3>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ubahAdminModal<?= $row["id"]; ?>">Ubah</button>
                                     </div>
-                                    <div class="modal-body">
-                                        <!-- Form untuk mengubah data admin -->
-                                        <form action="proses_ubah_admin.php" method="post"
-                                            enctype="multipart/form-data">
-                                            <input type="hidden" name="id" value="<?= $row["id"]; ?>">
-                                            <div class="form-group">
-                                                <label for="username">Username</label>
-                                                <input type="text" class="form-control" id="username" name="username"
-                                                    value="<?= $row["username"]; ?>" required readonly>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="nama">Nama</label>
-                                                <input type="text" class="form-control" id="nama" name="nama"
-                                                    value="<?= $row["nama"]; ?>" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="telepon">Telepon</label>
-                                                <input type="text" class="form-control" id="telepon" name="telepon"
-                                                    value="<?= $row["telepon"]; ?>" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="password_lama">Password Lama</label>
-                                                <input type="password" class="form-control" id="password_lama"
-                                                    name="password_lama" autocomplete="off"
-                                                    placeholder="Masukkan Password Ketika Ingin Melakukan Perubahan Data"
-                                                    required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="password_baru">Password Baru</label>
-                                                <input type="password" class="form-control" id="password_baru"
-                                                    name="password_baru">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="konfirmasi_password">Konfirmasi Password Baru</label>
-                                                <input type="password" class="form-control" id="konfirmasi_password"
-                                                    name="konfirmasi_password">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="foto">Foto</label>
-                                                <input type="file" class="form-control-file" id="foto" name="foto">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Ubah</button>
-                                        </form>
+                                </td>
+                            </tr>
+
+                            <div class="modal fade" id="ubahAdminModal<?= $row["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="ubahAdminModalLabel<?= $row["id"]; ?>" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" id="ubahAdminModalLabel<?= $row["id"]; ?>">Ubah Admin
+                                            </h3>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Form untuk mengubah data admin -->
+                                            <form action="proses_ubah_admin.php" method="post" enctype="multipart/form-data">
+                                                <input type="hidden" name="id" value="<?= $row["id"]; ?>">
+                                                <div class="form-group">
+                                                    <label for="username">Username</label>
+                                                    <input type="password" class="form-control" id="username" name="username" value="<?= $row["username"]; ?>" required readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="nama">Nama</label>
+                                                    <input type="text" class="form-control" id="nama" name="nama" value="<?= $row["nama"]; ?>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="telepon">Telepon</label>
+                                                    <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $row["telepon"]; ?>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password_lama">Password Lama</label>
+                                                    <input type="password" class="form-control" id="password_lama" name="password_lama" autocomplete="off" placeholder="Masukkan Password Ketika Ingin Melakukan Perubahan Data" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password_baru">Password Baru</label>
+                                                    <input type="password" class="form-control" id="password_baru" name="password_baru">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="konfirmasi_password">Konfirmasi Password Baru</label>
+                                                    <input type="password" class="form-control" id="konfirmasi_password" name="konfirmasi_password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="foto">Foto</label>
+                                                    <input type="file" class="form-control-file" id="foto" name="foto">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Ubah</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
 
-                        <?php $i++; ?>
+                            <?php $i++; ?>
                         <?php endforeach; ?>
 
                     </table>

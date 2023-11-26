@@ -14,7 +14,8 @@ function query($query)
 }
 
 // Fungsi untuk menambahkan barang baru
-function tambahBarang($data) {
+function tambahBarang($data)
+{
     global $db;
 
     // Ambil data dari form
@@ -26,13 +27,13 @@ function tambahBarang($data) {
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
-   // $launching_date = date('Y-m-d', strtotime($launching_date));
-  // $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
+    // $launching_date = date('Y-m-d', strtotime($launching_date));
+    // $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
 
     // Query tambah barang
     $query = "INSERT INTO barangretur (tgl_brg_masuk, surat_retur, article_name, size, stock) VALUES 
     ('$tgl_brg_masuk', '$surat_retur', '$article_name', '$size', '$stock')";
-    
+
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
@@ -55,13 +56,14 @@ function ubahBarang($data, $idbarang_retur)
     // Query ubah barang
     $query = "UPDATE barangretur SET tgl_brg_masuk = '$tgl_brg_masuk', surat_retur = '$surat_retur', article_name = '$article_name', size = '$size', stock = '$stock' 
     WHERE idbarang_retur = $idbarang_retur";
-    
+
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
 
 // Fungsi untuk mengambil data barang berdasarkan ID
-function getBarangById($idbarang_retur) {
+function getBarangById($idbarang_retur)
+{
     global $db;
     $query = "SELECT * FROM barangretur WHERE idbarang_retur = $idbarang_retur";
     $result = mysqli_query($db, $query);
@@ -78,7 +80,7 @@ function getBarangById($idbarang_retur) {
 function hapusBarang($id)
 {
     global $db;
-    
+
     // Query hapus barang
     $query = "DELETE FROM barangretur WHERE idbarang_retur = $id";
     mysqli_query($db, $query);
@@ -86,9 +88,10 @@ function hapusBarang($id)
 }
 
 //tampil username
-function getNama($username) {
+function getNama($username)
+{
     global $db;
-    $query = "SELECT nama FROM admin_wh WHERE username = '$username'";
+    $query = "SELECT nama FROM admin WHERE username = '$username' AND role = 'warehouse'";
     $result = mysqli_query($db, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -100,7 +103,8 @@ function getNama($username) {
 }
 
 // Fungsi untuk menyalin data sebagai data baru
-function proses_copy($id) {
+function proses_copy($id)
+{
     global $db;
 
     $dataToCopy = getBarangById($id);
@@ -126,16 +130,15 @@ function proses_copy($id) {
     } else {
         return false;
     }
-    
 }
 // Fungsi untuk membuat format tanggal
-function formatDate($dateString) {
+function formatDate($dateString)
+{
     $timestamp = strtotime($dateString);
     return date('d F Y', $timestamp);
 }
 
-function format_rupiah($angka) {
+function format_rupiah($angka)
+{
     return 'Rp ' . number_format($angka, 0, ',', '.');
 }
-
-?>

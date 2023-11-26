@@ -14,7 +14,8 @@ function query($query)
 }
 
 // Fungsi untuk menambahkan admin baru
-function tambahAdmin($data) {
+function tambahAdmin($data)
+{
     global $db;
 
     $username = htmlspecialchars($data['username']);
@@ -30,13 +31,13 @@ function tambahAdmin($data) {
     }
 
     // Cek apakah username sudah ada dalam database
-    $result = mysqli_query($db, "SELECT * FROM admin_qc WHERE username='$username'");
+    $result = mysqli_query($db, "SELECT * FROM admin WHERE username='$username'");
     if (mysqli_fetch_assoc($result)) {
         return false; // Jika username sudah ada, hentikan proses tambahAdmin
     }
 
     // Query tambah admin
-    $query = "INSERT INTO admin_qc(username, password, nama, telepon, foto) VALUES ('$username', '$password', '$nama', '$telepon', '$foto')";
+    $query = "INSERT INTO admin(username, password, nama, telepon, foto, role) VALUES ('$username', '$password', '$nama', '$telepon', '$foto', 'qc')";
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
@@ -81,10 +82,6 @@ function uploadFoto()
     return $namaFileBaru;
 }
 
-
-
-
-// Fungsi untuk mengubah data admin
 // Fungsi untuk mengubah data admin
 function ubahAdmin($data, $files, $id)
 {
@@ -97,7 +94,7 @@ function ubahAdmin($data, $files, $id)
     $konfirmasi_password = htmlspecialchars($data['konfirmasi_password']);
 
     // Query untuk mendapatkan password admin
-    $admin = query("SELECT * FROM admin_qc WHERE id = $id")[0];
+    $admin = query("SELECT * FROM admin WHERE id = $id")[0];
     $password_admin = $admin['password'];
 
     // Periksa apakah password lama cocok
@@ -123,7 +120,7 @@ function ubahAdmin($data, $files, $id)
         }
 
         // Query ubah admin
-        $query = "UPDATE admin_qc SET nama = '$nama', telepon = '$telepon', password = '$password_hash', foto = '$foto' WHERE id = $id";
+        $query = "UPDATE admin SET nama = '$nama', telepon = '$telepon', password = '$password_hash', foto = '$foto' WHERE id = $id";
         mysqli_query($db, $query);
 
         // Hapus token atau sesi autentikasi di sini
@@ -143,17 +140,18 @@ function ubahAdmin($data, $files, $id)
 function hapusAdmin($id)
 {
     global $db;
-    
+
     // Query hapus admin
-    $query = "DELETE FROM admin_qc WHERE id = $id";
+    $query = "DELETE FROM admin WHERE id = $id";
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
 
 //tampil username
-function getNama($username) {
+function getNama($username)
+{
     global $db;
-    $query = "SELECT nama FROM admin_qc WHERE username = '$username'";
+    $query = "SELECT nama FROM admin WHERE username = '$username' AND role = 'qc'";
     $result = mysqli_query($db, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -163,7 +161,3 @@ function getNama($username) {
         return "Nama Tidak Ditemukan";
     }
 }
-
-
-
-?>

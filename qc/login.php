@@ -14,6 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Compare password yang sudah pakai hash
     if (password_verify($password, $hashedPassword)) {
         $_SESSION['usernameqc'] = $username;
+
+        // Set role in session
+        $_SESSION['role'] = getUserRole($username); // Function to get user role
+
         header("Location: beranda.php");
         exit();
     } else {
@@ -70,14 +74,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <!-- LOGIN ACTION PHP -->
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-laptop"></i></span>
-                                    <input class="form-control" type="text" name="user" required=""
-                                        placeholder="Masukkan username Anda">
+                                    <input class="form-control" type="text" name="user" required="" placeholder="Masukkan username Anda">
                                 </div>
 
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                    <input class="form-control" type="password" name="pass" value="" required=""
-                                        placeholder="Password">
+                                    <input class="form-control" type="password" name="pass" value="" required="" placeholder="Password">
                                 </div>
 
                                 <div class="form-group">
@@ -88,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <input class="btn btn-success" type="submit" name="daftar" value="Masuk">
                                 </div>
                                 <?php if (!empty($error_message)) : ?>
-                                <p class="text-danger text-center"><?php echo $error_message; ?></p>
+                                    <p class="text-danger text-center"><?php echo $error_message; ?></p>
                                 <?php endif; ?>
                             </form>
                         </div>

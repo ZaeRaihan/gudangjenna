@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-// Check jika user sudah login
-if (!isset($_SESSION['usernamewh'])) {
+// Check apakah user belum login
+if (!isset($_SESSION['usernamewh']) || $_SESSION['role'] !== 'warehouse') {
     header("Location: ../login.php");
     exit();
 }

@@ -109,7 +109,7 @@ function hapusBarang($id)
 function getNama($username)
 {
     global $db;
-    $query = "SELECT nama FROM admin_qc WHERE username = '$username'";
+    $query = "SELECT nama FROM admin WHERE username = '$username' AND role = 'qc'";
     $result = mysqli_query($db, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
