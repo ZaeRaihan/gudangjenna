@@ -100,6 +100,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
+            <img src="../../images/Jenna-Kaia.png" alt="Logo Perusahaan" class="navbar-logo">
             <a class="navbar-brand">ADMIN PRODUKSI</a>
         </div>
         <ul class="nav navbar-top-links navbar-right">

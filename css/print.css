@@ -6,6 +6,11 @@ p {
   font-size: 15px;
 }
 
+.logo {
+  width: 200px; /* Atur lebar logo sesuai kebutuhan */
+  height: auto; /* Sesuaikan tinggi agar proporsional */
+}
+
 h1 {
   text-transform: uppercase;
   font-weight: 600;
@@ -18,7 +23,7 @@ h1 {
 }
 
 .table th {
-  background-color: #9DB2BF;
+  background-color: #9db2bf;
   border: 1px solid black;
   text-align: center;
   border-bottom: 2px solid black;
@@ -27,19 +32,18 @@ h1 {
 }
 
 .table td {
-  background-color: #EEE2DE;
+  background-color: #eee2de;
   border: 1px solid black;
   text-align: center;
-;
 }
 
 .table tr:hover {
-  background-color: white; 
+  background-color: white;
 }
 
 .table tr:hover td {
-  background-color: white; 
-  color: black; 
+  background-color: white;
+  color: black;
 }
 
 .text-center {
@@ -54,15 +58,16 @@ h1 {
 @media print {
   /* Styles untuk printed content */
   table {
-      border-collapse: collapse;
-      width: 100%;
+    border-collapse: collapse;
+    width: 100%;
   }
-  th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: left;
+  th,
+  td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
   }
   h1 {
-      text-align: center;
+    text-align: center;
   }
 }

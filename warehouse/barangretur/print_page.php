@@ -28,9 +28,16 @@ $selectedRowsData = query($query);
 </head>
 
 <body>
-    <h1 class="text-center mt-3" style="margin-bottom: 30px;">Surat Jalan <br>
-        Barang Retur
-    </h1>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <img src="../../images/Jenna-Kaia.png" alt="Logo Perusahaan" class="logo">
+            </div>
+            <div class="col text-center">
+                <h1 class="mt-3">Surat Jalan <br>Barang Retur</h1>
+            </div>
+        </div>
+    </div>
 
     <table class="table table-hover">
         <tr>
@@ -42,17 +49,17 @@ $selectedRowsData = query($query);
             <th scope="col">Stock</th>
         </tr>
 
-        <?php $i = 1;?>
+        <?php $i = 1; ?>
         <?php foreach ($selectedRowsData as $row) : ?>
-        <tr>
-            <td><?= $i; ?></td>
-            <td><?= formatDate($row["tgl_brg_masuk"]); ?></td>
-            <td><?= $row["surat_retur"]; ?></td>
-            <td><?= $row["article_name"]; ?></td>
-            <td><?= $row["size"]; ?></td>
-            <td><?= $row["stock"]; ?></td>
-        </tr>
-        <?php $i++; ?>
+            <tr>
+                <td><?= $i; ?></td>
+                <td><?= formatDate($row["tgl_brg_masuk"]); ?></td>
+                <td><?= $row["surat_retur"]; ?></td>
+                <td><?= $row["article_name"]; ?></td>
+                <td><?= $row["size"]; ?></td>
+                <td><?= $row["stock"]; ?></td>
+            </tr>
+            <?php $i++; ?>
         <?php endforeach; ?>
     </table>
     <p class="text-right mt-3" style="margin-right: 100px; margin-bottom: 75px; margin-top: 30px;">Tanda tangan:</p>

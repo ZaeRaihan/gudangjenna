@@ -28,9 +28,16 @@ $selectedRowsData = query($query);
 </head>
 
 <body>
-    <h1 class="text-center mt-3" style="margin-bottom: 30px;">Surat Jalan <br>
-        Barang Reject
-    </h1>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <img src="../../images/Jenna-Kaia.png" alt="Logo Perusahaan" class="logo">
+            </div>
+            <div class="col text-center">
+                <h1 class="mt-3">Surat Jalan <br>Barang Reject</h1>
+            </div>
+        </div>
+    </div>
 
     <table class="table table-hover">
         <tr>

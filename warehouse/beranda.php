@@ -38,17 +38,16 @@ if (!isset($_SESSION['usernamewh']) || $_SESSION['role'] !== 'warehouse') {
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
+            <img src="../images/Jenna-Kaia.png" alt="Logo Perusahaan" class="navbar-logo">
             <a class="navbar-brand">ADMIN WAREHOUSE</a>
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown"
-                    href="../logout.php"><?php echo getNama($_SESSION['usernamewh']); ?></i>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="../logout.php"><?php echo getNama($_SESSION['usernamewh']); ?></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li>
-                        <form class="" action="logout.php" onclick="return confirm('yakin ingin logout?');"
-                            method="post">
+                        <form class="" action="logout.php" onclick="return confirm('yakin ingin logout?');" method="post">
                             <button class="btn btn-default" type="submit" name="keluar"><i class="fa fa-sign-out"></i>
                                 Logout</button>
                         </form>
@@ -148,8 +147,7 @@ if (!isset($_SESSION['usernamewh']) || $_SESSION['role'] !== 'warehouse') {
                     <div class="card">
                         <h3>Barang Lolos QC Masuk</h3>
                         <p class="text-center">Barang Masuk Dari QC</p>
-                        <p class="card-footer" style="margin-top: 45px;"><a
-                                href="./baranglolosqc/baranglolosqc.php">Tambah Barang</a></p>
+                        <p class="card-footer" style="margin-top: 45px;"><a href="./baranglolosqc/baranglolosqc.php">Tambah Barang</a></p>
                     </div>
                 </div>
 
@@ -170,8 +168,7 @@ if (!isset($_SESSION['usernamewh']) || $_SESSION['role'] !== 'warehouse') {
                     <div class="card">
                         <h3>Barang Reject Masuk</h3>
                         <p class="text-center">Barang Reject Masuk Dari QC</p>
-                        <p class="card-footer" style="margin-top: 45px;"><a
-                                href="./barangreject/barangreject.php">Tambah Barang</a></p>
+                        <p class="card-footer" style="margin-top: 45px;"><a href="./barangreject/barangreject.php">Tambah Barang</a></p>
                     </div>
                 </div>
 
@@ -179,8 +176,7 @@ if (!isset($_SESSION['usernamewh']) || $_SESSION['role'] !== 'warehouse') {
                     <div class="card">
                         <h3>Gudang Barang Reject</h3>
                         <p class="text-center">Gudang Barang Reject</p>
-                        <p class="card-footer" style="margin-top: 45px;"><a
-                                href="./gudangreject/gudangreject.php">Tambah Barang</a></p>
+                        <p class="card-footer" style="margin-top: 45px;"><a href="./gudangreject/gudangreject.php">Tambah Barang</a></p>
                     </div>
                 </div>
 
@@ -210,8 +206,7 @@ if (!isset($_SESSION['usernamewh']) || $_SESSION['role'] !== 'warehouse') {
                     <div class="card">
                         <h3>Barang Keluar</h3>
                         <p class="text-center">Data Barang Keluar Dari Gudang</p>
-                        <p class="card-footer" style="margin-top: 45px;"><a
-                                href="./barangkeluar/barangkeluar.php">Tambah Barang</a></p>
+                        <p class="card-footer" style="margin-top: 45px;"><a href="./barangkeluar/barangkeluar.php">Tambah Barang</a></p>
                     </div>
                 </div>
 
@@ -232,8 +227,7 @@ if (!isset($_SESSION['usernamewh']) || $_SESSION['role'] !== 'warehouse') {
                     <div class="card">
                         <h3>Barang Pinjam</h3>
                         <p class="text-center">Inventori Barang Hasil Pinjam</p>
-                        <p class="card-footer" style="margin-top: 45px;"><a
-                                href="./barangpinjam/barangpinjam.php">Tambah Barang</a></p>
+                        <p class="card-footer" style="margin-top: 45px;"><a href="./barangpinjam/barangpinjam.php">Tambah Barang</a></p>
                     </div>
                 </div>
             </div>
