@@ -322,46 +322,24 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     </div>
                                     <div class="form-group">
                                         <label for="vendor">Vendor</label>
-                                        <select class="form-control" id="vendor" name="vendor" required onchange="checkLainnya('vendor')">
+                                        <select class="form-control" id="vendor" name="vendor" required>
                                             <option value="" disabled selected>Pilih Vendor</option>
-                                            <option value="Alia Digital Printex">Alia Digital Printex</option>
-                                            <option value="Atfemale">Atfemale</option>
-                                            <option value="Atmosfira Dekatama">Atmosfira Dekatama</option>
-                                            <option value="Baju Kertas">Baju Kertas</option>
-                                            <option value="Bandanaira">Bandanaira</option>
-                                            <option value="Bu Citra">Bu Citra</option>
-                                            <option value="Bu Dewi">Bu Dewi</option>
-                                            <option value="Bu Elis">Bu Elis</option>
-                                            <option value="Bu Hany">Bu Hany</option>
-                                            <option value="Bu Icha">Bu Icha</option>
-                                            <option value="Bu Kartika">Bu Kartika</option>
-                                            <option value="Bu Linda">Bu Linda</option>
-                                            <option value="Bu Lilis">Bu Lilis</option>
-                                            <option value="Bu Rini">Bu Rini</option>
-                                            <option value="Bu Riri">Bu Riri</option>
-                                            <option value="Bu Ussy">Bu Ussy</option>
-                                            <option value="Bu Yani">Bu Yani</option>
-                                            <option value="Bu Yuli">Bu Yuli</option>
-                                            <option value="CV SBB">CV SBB</option>
-                                            <option value="Kensby Research Co.">Kensby Research Co.</option>
-                                            <option value="Muara Global">Muara Global</option>
-                                            <option value="Ophie Rever">Ophie Rever</option>
-                                            <option value="Pak Edi">Pak Edi</option>
-                                            <option value="Pak Giri">Pak Giri</option>
-                                            <option value="Pak Sunar">Pak Sunar</option>
-                                            <option value="Pa Ohid">Pa Ohid</option>
-                                            <option value="Penjahit Rapi">Penjahit Rapi</option>
-                                            <option value="PT Jaya Mitra Kurnia">PT Jaya Mitra Kurnia</option>
-                                            <option value="PT Thonnamaz">PT Thonnamaz</option>
-                                            <option value="PT.SJS">PT.SJS</option>
-                                            <option value="RB Manufacturing">RB Manufacturing</option>
-                                            <option value="Rumah Renza">Rumah Renza</option>
-                                            <option value="Sakh Konveksi">Sakh Konveksi</option>
-                                            <option value="Three and Me">Three and Me</option>
-                                            <!-- Opsi vendor lainnya -->
-                                            <option value="LAINNYA">Lainnya</option>
+                                            <?php
+                                            // Mengambil data vendor dari tabel 'vendor'
+                                            $conn = new mysqli("localhost", "root", "", "gudangjenna");
+                                            $sql = "SELECT * FROM vendor";
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo '<option value="' . $row["nama_vendor"] . '">' . $row["nama_vendor"] . '</option>';
+                                                }
+                                            } else {
+                                                echo '<option value="">Tidak ada data vendor</option>';
+                                            }
+                                            $conn->close();
+                                            ?>
                                         </select>
-                                        <input type="text" class="form-control mt-2" id="vendor_input" name="vendor_input" style="display: none;" placeholder="Masukkan Vendor">
                                     </div>
                                     <div class="form-group">
                                         <label for="status">Status</label>
