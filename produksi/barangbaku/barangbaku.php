@@ -313,45 +313,24 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                     </div>
                                     <div class="form-group">
                                         <label for="supplier">Supplier</label>
-                                        <select class="form-control" id="supplier" name="supplier" required onchange="checkLainnya('supplier')">
+                                        <select class="form-control" id="supplier" name="supplier" required>
                                             <option value="" disabled selected>Pilih Supplier</option>
-                                            <option value="Aneka Sandang">Aneka Sandang</option>
-                                            <option value="Aneka Warna Dunia">Aneka Warna Dunia</option>
-                                            <option value="Berkat Yakin">Berkat Yakin</option>
-                                            <option value="Bintang Fabric">Bintang Fabric</option>
-                                            <option value="Bobby Kristianto">Bobby Kristianto</option>
-                                            <option value="Cahaya Mulia Inti Perkasa">Cahaya Mulia Inti Perkasa</option>
-                                            <option value="CM Textile">CM Textile</option>
-                                            <option value="CV. Sinar Terang">CV. Sinar Terang</option>
-                                            <option value="Dalia Global">Dalia Global</option>
-                                            <option value="Imp">Imp</option>
-                                            <option value="Indonesia Fabric">Indonesia Fabric</option>
-                                            <option value="Iyong Se">Iyong Se</option>
-                                            <option value="Jaya Mitra Kurnia">Jaya Mitra Kurnia</option>
-                                            <option value="Jaya Mitra Kurnia">Jaya Mitra Kurnia</option>
-                                            <option value="KSP">KSP</option>
-                                            <option value="Ko Beni">Ko Beni</option>
-                                            <option value="Majalaya Sumber Textil">Majalaya Sumber Textil</option>
-                                            <option value="Makala">Makala</option>
-                                            <option value="Mandiri Textile">Mandiri Textile</option>
-                                            <option value="Multisandang Tamajaya">Multisandang Tamajaya</option>
-                                            <option value="Nitex Textile Fashion">Nitex Textile Fashion</option>
-                                            <option value="PT Citra Talenta Textindo">PT Citra Talenta Textindo</option>
-                                            <option value="PT Daliatex Kusuma">PT Daliatex Kusuma</option>
-                                            <option value="PT Jaya Mitra Kurnia">PT Jaya Mitra Kurnia</option>
-                                            <option value="PT Sipatamoda">PT Sipatamoda</option>
-                                            <option value="PT Tifatex">PT Tifatex</option>
-                                            <option value="RJF Textile">RJF Textile</option>
-                                            <option value="Royal Tex">Royal Tex</option>
-                                            <option value="SJA Textile">SJA Textile</option>
-                                            <option value="Syarial - Radit Zio Tex">Syarial - Radit Zio Tex</option>
-                                            <option value="Tamim">Tamim</option>
-                                            <option value="The Secret / Cotton Centre">The Secret / Cotton Centre
-                                            </option>
-                                            <!-- Opsi vendor lainnya -->
-                                            <option value="LAINNYA">Lainnya</option>
+                                            <?php
+                                            // Mengambil data supplier dari tabel 'supplier'
+                                            $conn = new mysqli("localhost", "root", "", "gudangjenna");
+                                            $sql = "SELECT * FROM supplier";
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo '<option value="' . $row["nama_supplier"] . '">' . $row["nama_supplier"] . '</option>';
+                                                }
+                                            } else {
+                                                echo '<option value="">Tidak ada data supplier</option>';
+                                            }
+                                            $conn->close();
+                                            ?>
                                         </select>
-                                        <input type="text" class="form-control mt-2" id="supplier_input" name="supplier_input" style="display: none;" placeholder="Masukkan Supplier">
                                     </div>
                                     <div class="form-group">
                                         <label for="status">Status</label>
@@ -466,132 +445,31 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="supplier">Supplier</label>
-                                                    <select class="form-control" id="supplier" name="supplier" required onchange="checkOtherOptionSupplier(this);">
-                                                        <option value="<?= $row["supplier"]; ?>" <?= ($row["supplier"] == $row["supplier"]) ? "selected" : ""; ?>>
+                                                    <select class="form-control" id="supplier" name="supplier" required>
+                                                        <option value="<?= $row["supplier"]; ?>" selected>
                                                             <?= $row["supplier"]; ?>
                                                         </option>
-                                                        <option value="Aneka Sandang" <?= ($row["supplier"] == "Aneka Sandang") ? "selected" : ""; ?>>
-                                                            Aneka Sandang
-                                                        </option>
-                                                        <option value="Aneka Warna Dunia" <?= ($row["supplier"] == "Aneka Warna Dunia") ? "selected" : ""; ?>>
-                                                            Aneka Warna Dunia
-                                                        </option>
-                                                        <option value="Berkat Yakin" <?= ($row["supplier"] == "Berkat Yakin") ? "selected" : ""; ?>>
-                                                            Berkat Yakin
-                                                        </option>
-                                                        <option value="Bintang Fabric" <?= ($row["supplier"] == "Bintang Fabric") ? "selected" : ""; ?>>
-                                                            Bintang Fabric
-                                                        </option>
-                                                        <option value="Bobby Kristianto" <?= ($row["supplier"] == "Bobby Kristianto") ? "selected" : ""; ?>>
-                                                            Bobby Kristianto
-                                                        </option>
-                                                        <option value="Cahaya Mulia Inti Perkasa" <?= ($row["supplier"] == "Cahaya Mulia Inti Perkasa") ? "selected" : ""; ?>>
-                                                            Cahaya Mulia Inti Perkasa
-                                                        </option>
-                                                        <option value="CM Textile" <?= ($row["supplier"] == "CM Textile") ? "selected" : ""; ?>>
-                                                            CM Textile
-                                                        </option>
-                                                        <option value="CV. Sinar Terang" <?= ($row["supplier"] == "CV. Sinar Terang") ? "selected" : ""; ?>>
-                                                            CV. Sinar Terang
-                                                        </option>
-                                                        <option value="Dalia Global" <?= ($row["supplier"] == "Dalia Global") ? "selected" : ""; ?>>
-                                                            Dalia Global
-                                                        </option>
-                                                        <option value="Imp" <?= ($row["supplier"] == "Imp") ? "selected" : ""; ?>>
-                                                            Imp
-                                                        </option>
-                                                        <option value="Indonesia Fabric" <?= ($row["supplier"] == "Indonesia Fabric") ? "selected" : ""; ?>>
-                                                            Indonesia Fabric
-                                                        </option>
-                                                        <option value="Iyong Se" <?= ($row["supplier"] == "Iyong Se") ? "selected" : ""; ?>>
-                                                            Iyong Se
-                                                        </option>
-                                                        <option value="Jaya Mitra Kurnia" <?= ($row["supplier"] == "Jaya Mitra Kurnia") ? "selected" : ""; ?>>
-                                                            Jaya Mitra Kurnia
-                                                        </option>
-                                                        <option value="Jaya Mitra Kurnia" <?= ($row["supplier"] == "Jaya Mitra Kurnia") ? "selected" : ""; ?>>
-                                                            Jaya Mitra Kurnia
-                                                        </option>
-                                                        <option value="KSP" <?= ($row["supplier"] == "KSP") ? "selected" : ""; ?>>
-                                                            KSP
-                                                        </option>
-                                                        <option value="Ko Beni" <?= ($row["supplier"] == "Ko Beni") ? "selected" : ""; ?>>
-                                                            Ko Beni
-                                                        </option>
-                                                        <option value="Majalaya Sumber Textil" <?= ($row["supplier"] == "Majalaya Sumber Textil") ? "selected" : ""; ?>>
-                                                            Majalaya Sumber Textil
-                                                        </option>
-                                                        <option value="Makala" <?= ($row["supplier"] == "Makala") ? "selected" : ""; ?>>
-                                                            Makala
-                                                        </option>
-                                                        <option value="Mandiri Textile" <?= ($row["supplier"] == "Mandiri Textile") ? "selected" : ""; ?>>
-                                                            Mandiri Textile
-                                                        </option>
-                                                        <option value="Multisandang Tamajaya" <?= ($row["supplier"] == "Multisandang Tamajaya") ? "selected" : ""; ?>>
-                                                            Multisandang Tamajaya
-                                                        </option>
-                                                        <option value="Nitex Textile Fashion" <?= ($row["supplier"] == "Nitex Textile Fashion") ? "selected" : ""; ?>>
-                                                            Nitex Textile Fashion
-                                                        </option>
-                                                        <option value="PT Citra Talenta Textindo" <?= ($row["supplier"] == "PT Citra Talenta Textindo") ? "selected" : ""; ?>>
-                                                            PT Citra Talenta Textindo
-                                                        </option>
-                                                        <option value="PT Daliatex Kusuma" <?= ($row["supplier"] == "PT Daliatex Kusuma") ? "selected" : ""; ?>>
-                                                            PT Daliatex Kusuma
-                                                        </option>
-                                                        <option value="PT Jaya Mitra Kurnia" <?= ($row["supplier"] == "PT Jaya Mitra Kurnia") ? "selected" : ""; ?>>
-                                                            PT Jaya Mitra Kurnia
-                                                        </option>
-                                                        <option value="PT Sipatamoda" <?= ($row["supplier"] == "PT Sipatamoda") ? "selected" : ""; ?>>
-                                                            PT Sipatamoda
-                                                        </option>
-                                                        <option value="PT Tifatex" <?= ($row["supplier"] == "PT Tifatex") ? "selected" : ""; ?>>
-                                                            PT Tifatex
-                                                        </option>
-                                                        <option value="RJF Textile" <?= ($row["supplier"] == "RJF Textile") ? "selected" : ""; ?>>
-                                                            RJF Textile
-                                                        </option>
-                                                        <option value="Royal Tex" <?= ($row["supplier"] == "Royal Tex") ? "selected" : ""; ?>>
-                                                            Royal Tex
-                                                        </option>
-                                                        <option value="SJA Textile" <?= ($row["supplier"] == "SJA Textile") ? "selected" : ""; ?>>
-                                                            SJA Textile
-                                                        </option>
-                                                        <option value="Syarial - Radit Zio Tex" <?= ($row["supplier"] == "Syarial - Radit Zio Tex") ? "selected" : ""; ?>>
-                                                            Syarial - Radit Zio Tex
-                                                        </option>
-                                                        <option value="Tamim" <?= ($row["supplier"] == "Tamim") ? "selected" : ""; ?>>
-                                                            Tamim
-                                                        </option>
-                                                        <option value="The Secret / Cotton Centre" <?= ($row["supplier"] == "The Secret / Cotton Centre") ? "selected" : ""; ?>>
-                                                            The Secret / Cotton Centre
-                                                        </option>
-                                                        <option value="OTHER" <?= ($row["supplier"] == "OTHER") ? "selected" : ""; ?>>
-                                                            Other
-                                                        </option>
+
+                                                        <?php
+                                                        // Mengambil data supplier dari tabel 'supplier'
+                                                        $koneksi = new mysqli("localhost", "root", "", "gudangjenna");
+                                                        $sql = "SELECT * FROM supplier";
+                                                        $result = $koneksi->query($sql);
+
+                                                        // Loop melalui hasil kueri untuk membuat opsi dropdown
+                                                        if ($result->num_rows > 0) {
+                                                            while ($supplier = $result->fetch_assoc()) {
+                                                        ?>
+                                                                <option value="<?= $supplier["nama_supplier"]; ?>">
+                                                                    <?= $supplier["nama_supplier"]; ?>
+                                                                </option>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        $koneksi->close();
+                                                        ?>
                                                     </select>
                                                 </div>
-                                                <!-- Kolom input tambahan untuk supplier lainnya -->
-                                                <div class="form-group" id="otherSupplierInput">
-                                                    <label for="otherSupplier">Supplier Lainnya</label>
-                                                    <input class="form-control" type="text" id="otherSupplier" name="otherSupplier" placeholder="Pilih Other Pada Dropdown Untuk Memasukkan Supplier Lainnya">
-                                                </div>
-                                                <script>
-                                                    function checkOtherOptionSupplier(select) {
-                                                        var otherSupplierInput = document.getElementById("otherSupplierInput");
-
-                                                        if (select.value === "OTHER") {
-                                                            otherSupplierInput.style.display = "block";
-                                                            document.getElementById("otherSupplier").setAttribute("required",
-                                                                "true");
-                                                        } else {
-                                                            otherSupplierInput.style.display =
-                                                                "block";
-                                                            document.getElementById("otherSupplier").removeAttribute(
-                                                                "required");
-                                                        }
-                                                    }
-                                                </script>
                                                 <div class="form-group">
                                                     <label for="status">Status</label>
                                                     <select class="form-control" id="status" name="status" required>
@@ -640,21 +518,6 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
 
     <!-- JavaScript file -->
     <script src="script.js"></script>
-
-    <script>
-        function checkLainnya(field) {
-            const dropdown = document.getElementById(field);
-            const inputField = document.getElementById(field + "_input");
-
-            if (dropdown.value === "LAINNYA") {
-                inputField.style.display = "block";
-                inputField.setAttribute("required", "required");
-            } else {
-                inputField.style.display = "none";
-                inputField.removeAttribute("required");
-            }
-        }
-    </script>
 
 </body>
 

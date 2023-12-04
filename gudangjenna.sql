@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2023 at 11:26 AM
+-- Generation Time: Dec 03, 2023 at 05:57 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,75 +42,12 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `nama`, `telepon`, `foto`, `role`) VALUES
-(59, 'qc1', '$2y$10$cEkvs3qzGPbC273LBtQR5OcpZw8L0kpF1oweE4BcgGYPmG/cP2Nhu', 'Fahmi', '081214988946', '65116d0c2ac2b.jpg', 'qc'),
-(72, 'produksi1', '$2y$10$aEbXwW2mSWsYsiKeugujlOspW4ycgQQKr5kmwTTvkOpD9ZouJTMBa', 'Agung', '0821229320111', '65425c453ff31.jpg', 'produksi'),
-(73, 'wh1', '$2y$10$8o3/yemaLM84VKaSElS9T.PF8WO7lwdbTHid11NVt7RTqWmha2hCu', 'Nisa', '0895373888947', '64eb743c837c6.jpg', 'warehouse');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin_produksi`
---
-
-CREATE TABLE `admin_produksi` (
-  `id` int(25) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `telepon` varchar(255) NOT NULL,
-  `foto` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `admin_produksi`
---
-
-INSERT INTO `admin_produksi` (`id`, `username`, `password`, `nama`, `telepon`, `foto`) VALUES
-(72, 'produksi1', '$2y$10$aEbXwW2mSWsYsiKeugujlOspW4ycgQQKr5kmwTTvkOpD9ZouJTMBa', 'Agung', '0821229320111', '65425c453ff31.jpg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin_qc`
---
-
-CREATE TABLE `admin_qc` (
-  `id` int(25) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `telepon` varchar(255) NOT NULL,
-  `foto` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `admin_qc`
---
-
-INSERT INTO `admin_qc` (`id`, `username`, `password`, `nama`, `telepon`, `foto`) VALUES
-(59, 'qc1', '$2y$10$cEkvs3qzGPbC273LBtQR5OcpZw8L0kpF1oweE4BcgGYPmG/cP2Nhu', 'Fahmi', '081214988946', '65116d0c2ac2b.jpg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin_wh`
---
-
-CREATE TABLE `admin_wh` (
-  `id` int(25) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `telepon` varchar(255) NOT NULL,
-  `foto` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `admin_wh`
---
-
-INSERT INTO `admin_wh` (`id`, `username`, `password`, `nama`, `telepon`, `foto`) VALUES
-(73, 'wh1', '$2y$10$8o3/yemaLM84VKaSElS9T.PF8WO7lwdbTHid11NVt7RTqWmha2hCu', 'Nisa', '0895373888947', '64eb743c837c6.jpg');
+(1, 'produksi1', '$2y$10$aEbXwW2mSWsYsiKeugujlOspW4ycgQQKr5kmwTTvkOpD9ZouJTMBa', 'Agung', '0821229320111', '65425c453ff31.jpg', 'produksi'),
+(2, 'qc1', '$2y$10$cEkvs3qzGPbC273LBtQR5OcpZw8L0kpF1oweE4BcgGYPmG/cP2Nhu', 'Fahmi', '081214988946', '65116d0c2ac2b.jpg', 'qc'),
+(3, 'wh1', '$2y$10$8o3/yemaLM84VKaSElS9T.PF8WO7lwdbTHid11NVt7RTqWmha2hCu', 'Nisa', '0895373888947', '64eb743c837c6.jpg', 'warehouse'),
+(74, 'zae', '$2y$10$DvcZEgqHWzu.ZuCimqA/rONZADG9bl4G8jwd9ky5EEfEXz9XpqVra', 'Maintenance', '085975244732', 'default.jpeg', 'produksi'),
+(75, 'zae1', '$2y$10$78oNS4K5dJZ5/.wRYCkhkOvRikfp5z3cQLin7J27kK4O5CPC/ysb2', 'Maintenance\r\n', '0821229320111', 'default.jpeg', 'qc'),
+(76, 'zae2', '$2y$10$n0NgKNxiglrdYK/xrwmiqOzC20Qf1edAWjvzpPpbq1wf0A1oMPc9m', 'Maintenance', '085975244732', 'default.jpeg', 'warehouse');
 
 -- --------------------------------------------------------
 
@@ -341,20 +278,6 @@ CREATE TABLE `baranginpayet_history` (
 --
 
 INSERT INTO `baranginpayet_history` (`id`, `idbarang_inpayet`, `tgl_brg_keluar`, `sj_for_vendor`, `launching_date`, `collection`, `article_name`, `size`, `stock_inpayet`, `stock_hasilpayet`, `vendor_payet`, `tgl_brg_masuk`, `sj_from_vendor`, `totalstock`, `status`, `idbarang_payet`, `edit_timestamp`) VALUES
-(156, 142, '2023-09-14', 'payet-02', '2023-09-25', 'DRAGONBALL', 'goku', 'L-XL', 22, 10, 'ashyiap', '2023-09-14', 'hasil-02', 10, 'On progress', 0, '2023-09-14 14:50:49'),
-(157, 143, '2023-09-14', 'payet-02', '2023-09-25', 'DRAGONBALL', 'goku', 'L-XL', 22, 10, 'ashyiap', '2023-09-14', 'hasil-02', 10, 'On progress', 0, '2023-09-14 14:53:00'),
-(158, 144, '2023-09-14', 'payet-02', '2023-09-25', 'DRAGONBALL', 'goku', 'L-XL', 22, 10, 'ashyiap', '2023-09-14', 'hasil-02', 10, 'On progress', 0, '2023-09-14 14:53:08'),
-(159, 145, '2023-09-14', 'payet-02', '2023-09-25', 'DRAGONBALL', 'goku', 'L-XL', 22, 10, 'ashyiap', '2023-09-14', 'hasil-02', 10, 'On progress', 0, '2023-09-14 14:53:24'),
-(160, 146, '2023-09-14', '', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 0, 'dunia game', '2023-09-14', '', 0, 'On progress', 29, '2023-09-14 14:53:55'),
-(161, 146, '2023-09-14', 'payet-02', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 0, 'dunia game', '2023-09-14', 'hasil-01', 0, 'On progress', 29, '2023-09-14 14:54:05'),
-(162, 147, '2023-09-14', 'payet-02', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 10, 'dunia game', '2023-09-14', 'hasil-01', 10, 'On progress', 0, '2023-09-14 14:54:15'),
-(163, 148, '2023-09-15', '', '2023-09-25', 'Prive', 'Marsella Outer Cream', 'l-xl', 9, 0, 'Bu Citra', '2023-09-15', '', 0, 'On progress', 39, '2023-09-15 11:39:03'),
-(164, 148, '2023-09-15', 'payet-02', '2023-09-25', 'Prive', 'Marsella Outer Cream', 'l-xl', 9, 0, 'Bu Citra', '2023-09-15', '', 0, 'On progress', 39, '2023-09-15 11:39:25'),
-(165, 149, '2023-09-15', 'payet-02', '2023-09-25', 'Prive', 'Marsella Outer Cream', 'l-xl', 9, 7, 'Bu Citra', '2023-09-16', 'hasil', 7, 'On progress', 0, '2023-09-15 11:39:34'),
-(166, 150, '2023-09-20', '', '2023-10-25', 'Jennaka', 'haven black top', 'S-M', 11, 0, 'PT Thonnamaz', '2023-09-20', '', 0, 'On progress', 40, '2023-09-20 13:36:11'),
-(167, 150, '2023-09-20', 'payet-02', '2023-10-25', 'Jennaka', 'haven black top', 'S-M', 11, 0, 'PT Thonnamaz', '2023-09-20', '', 0, 'On progress', 40, '2023-09-20 13:36:59'),
-(168, 151, '2023-09-20', 'payet-02', '2023-10-25', 'Jennaka', 'haven black top', 'S-M', 11, 5, 'PT Thonnamaz', '2023-09-21', 'hasilpayet-01', 5, 'On progress', 0, '2023-09-20 13:37:37'),
-(169, 152, '2023-09-21', '', '2023-08-25', 'Makala', 'Vest Melinna Top Lime Green', 'm', 1, 0, 'Bandanaira', '2023-09-21', '', 0, 'On progress', 42, '2023-09-21 02:38:11'),
 (170, 152, '2023-09-21', 'payet-02', '2023-08-25', 'Makala', 'Vest Melinna Top Lime Green', 'm', 1, 0, 'Bandanaira', '2023-09-21', '', 0, 'On progress', 42, '2023-09-21 02:39:14'),
 (171, 153, '2023-09-21', '', '2023-09-25', 'Jennaka', 'haven black top', 'm', 12, 0, 'sasha', '2023-09-21', '', 0, 'On progress', 38, '2023-09-21 02:41:29'),
 (172, 154, '2023-09-21', 'payet-02', '2023-09-25', 'Jennaka', 'haven black top', 'm', 12, 5, 'sasha', '2023-09-21', 'vendor-02', 5, 'On progress', 0, '2023-09-21 02:41:55'),
@@ -496,9 +419,6 @@ CREATE TABLE `baranginrevisi_history` (
 --
 
 INSERT INTO `baranginrevisi_history` (`id`, `idbarang_inrevisi`, `tgl_brg_keluar`, `sj_for_vendor`, `launching_date`, `collection`, `article_name`, `size`, `stock_inrevisi`, `stock_hasilrevisi`, `vendor_revisi`, `tgl_brg_masuk`, `sj_from_vendor`, `totalstock`, `status`, `idbarang_revisi`, `edit_timestamp`) VALUES
-(56, 6, '2023-09-06', 'revisi-01', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 11, 10, '', '2023-09-06', 'hasil-01', 20, 'Finished', 5, '2023-09-14 11:54:17'),
-(57, 8, '2023-09-06', 'revisi-01', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 11, 10, 'kanto', '2023-09-06', 'hasil-01', 10, 'Finished', 0, '2023-09-14 11:54:28'),
-(58, 33, '2023-09-13', 'revisi-01', '2023-09-25', 'Jennaka', 'haven black top', 'm', 2, 1, 'sasha', '2023-09-13', 'hasil-01', 1, 'on progress', 19, '2023-09-14 11:55:42'),
 (59, 48, '2023-09-14', '', '2023-09-25', 'DRAGONBALL', 'vegeta', 'All Size', 31, 0, 'Alia Digital Printex', '2023-09-14', '', 0, 'On progress', 24, '2023-09-14 14:58:36'),
 (60, 48, '2023-09-14', 'revisi-01', '2023-09-25', 'DRAGONBALL', 'vegeta', 'All Size', 31, 0, 'Alia Digital Printex', '2023-09-14', 'hasil-02', 0, 'On progress', 24, '2023-09-14 14:58:45'),
 (61, 49, '2023-09-14', 'revisi-01', '2023-09-25', 'DRAGONBALL', 'vegeta', 'All Size', 31, 20, 'Alia Digital Printex', '2023-09-14', 'hasil-02', 20, 'On progress', 0, '2023-09-14 14:58:55'),
@@ -632,11 +552,6 @@ CREATE TABLE `baranginsewing_history` (
 --
 
 INSERT INTO `baranginsewing_history` (`id`, `idbarang_insewing`, `tgl_brg_keluar`, `sj_for_vendor`, `nama`, `launching_date`, `collection`, `article_name`, `size`, `inyard`, `stock_insewing`, `stock_hasilsewing`, `vendor_sewing`, `tgl_brg_masuk`, `sj_from_vendor`, `status`, `idbarang_baku`, `edit_timestamp`) VALUES
-(9, 32, '2023-09-13', 'sewing-01', 'Pattern Floral Green', '2023-09-25', 'azurlane', 'asuna bunny', 'm', 110, 2, 21, 'bu tati', '2023-09-13', 'hasil-01', 'Finished', 0, '2023-09-13 15:37:16'),
-(10, 32, '2023-09-13', 'sewing-01', 'Pattern Floral Green', '2023-09-25', 'azurlane', 'asuna bunny', 'm', 110, 2, 21, 'bu tati', '2023-09-13', 'hasil-01', 'On Progress', 0, '2023-09-13 15:37:24'),
-(11, 32, '2023-09-13', 'sewing-01', 'Pattern Floral Green', '2023-09-25', 'azurlane', 'asuna bunny', 'm', 110, 2, 21, 'bu tati', '2023-09-13', 'hasil-01', 'On Progress', 0, '2023-09-13 15:43:14'),
-(12, 33, '2023-09-13', '111', '111', '2023-09-13', '11', '11', 'L-XL', 111, 11, 111, '11', '2023-09-13', '111', 'On Progress', 0, '2023-09-13 15:43:41'),
-(13, 33, '2023-09-13', '111', '111', '2023-09-13', '11', '11', 'L-XL', 111, 11, 111, 'Alia Digital Printex', '2023-09-13', '111', 'On Progress', 0, '2023-09-13 15:43:52'),
 (14, 34, '2023-09-13', '', 'Pattern Floral Yellow', '2023-09-13', '', '', '', 110, 7, 0, '', '2023-09-13', '', 'On progress', 20, '2023-09-13 15:45:02'),
 (15, 34, '2023-09-13', 'sewing-01', 'Pattern Floral Yellow', '2023-09-13', 'DRAGONBALL', 'Goku', 'S-M', 110, 1, 21, 'bu tati', '2023-09-13', 'hasil-01', 'Finished', 20, '2023-09-13 15:45:14'),
 (16, 35, '2023-09-13', '111', '111', '2023-09-13', '11', '111', 'L-XL', 11, 11, 11, '111', '2023-09-13', '11', 'Finished', 0, '2023-09-13 15:45:49'),
@@ -753,25 +668,6 @@ CREATE TABLE `barangkeluar_history` (
 --
 
 INSERT INTO `barangkeluar_history` (`id`, `idbarang_keluar`, `tgl_brg_keluar`, `sj_keluar`, `gudang`, `article_name`, `size`, `stock`, `status`, `keterangan`, `idstock`, `idstock_reject`, `idstock_minor`, `edit_timestamp`) VALUES
-(24, 46, '2023-09-11', 'out-01', 'Stock Gudang', 'ayaka', 'm', 1, 'Online', 'keluar untuk store tiktok', 58, 0, 0, '2023-09-12 10:02:03'),
-(25, 46, '2023-09-11', 'out-01', 'Stock Gudang', 'ayaka', 'm', 1, 'Online', 'keluar untuk store tiktok', 58, 0, 0, '2023-09-12 10:02:16'),
-(26, 46, '2023-09-11', 'out-01', 'Stock Gudang', 'ayaka', 'm', 1, 'Online', 'keluar untuk store tiktok', 58, 0, 0, '2023-09-12 13:14:33'),
-(27, 46, '2023-09-11', 'out-01', 'Stock Gudang', 'ayaka', 'm', 1, 'Online', 'keluar untuk store tiktok', 58, 0, 0, '2023-09-12 13:27:45'),
-(28, 46, '2023-09-11', 'out-01', 'Stock Gudang', 'ayaka', 'm', 1, 'Online', 'keluar untuk store tiktok', 58, 0, 0, '2023-09-13 09:48:15'),
-(29, 46, '2023-09-11', 'out-01', 'Stock Gudang', 'ayaka', 'm', 1, 'Offline', 'keluar untuk store tiktok', 58, 0, 0, '2023-09-13 09:48:22'),
-(30, 46, '2023-09-11', 'out-01', 'Gudang Barang Minor', 'ayaka', 'm', 1, 'Offline', 'keluar untuk store tiktok', 58, 0, 0, '2023-09-13 09:48:27'),
-(31, 47, '2023-09-13', 'out-02', 'Stock Gudang', 'black pink', 'L', 12, 'Offline', 'ke store surabaya', 0, 0, 0, '2023-09-13 09:56:36'),
-(32, 48, '2023-09-13', '', 'Gudang Barang Minor', 'ayaka', 'm', 0, '', '', 0, 0, 40, '2023-09-13 09:57:07'),
-(33, 48, '2023-09-13', 'keluar-002', 'Gudang Barang Minor', 'ayaka', 'm', 1, 'Offline', 'ke store bandung', 0, 0, 40, '2023-09-13 09:57:14'),
-(34, 48, '2023-09-13', 'keluar-002', 'Gudang Barang Minor', 'ayaka', 'm', 1, 'Offline', 'ke store bandung', 0, 0, 40, '2023-09-14 12:22:42'),
-(35, 27, '2023-09-07', 'keluar-002', 'Stock Gudang', 'asuna bunny girl', 'm', 2, 'Online', 'store', 46, 0, 0, '2023-09-20 11:26:30'),
-(36, 37, '2023-09-07', 'keluar-002', 'Stock Gudang', 'asuna bunny girl', 'm', 2, 'Online', 'store', 0, 0, 0, '2023-09-20 11:26:33'),
-(37, 39, '2023-09-07', 'keluar-002', 'Stock Gudang', 'asuna bunny girl', 'm', 2, 'Online', 'store', 0, 0, 0, '2023-09-20 11:26:37'),
-(38, 41, '2023-09-07', 'keluar-002', 'Stock Gudang', 'asuna bunny girl', 'm', 2, 'Online', 'store', 0, 0, 0, '2023-09-20 11:26:41'),
-(39, 43, '2023-09-07', 'keluar-002', 'Stock Gudang', 'asuna bunny girl', 'm', 2, 'Online', 'store', 0, 0, 0, '2023-09-20 11:26:48'),
-(40, 45, '2023-09-08', 'keluar-002', 'Stock Gudang', 'asuna bunny girl', 'm', 201, 'Online', 'store', 0, 0, 0, '2023-09-20 11:26:53'),
-(41, 50, '2023-09-20', '', 'Stock Gudang', 'haven black top', 'M', 0, '', '', 77, 0, 0, '2023-09-20 13:54:10'),
-(42, 50, '2023-09-20', '', 'Stock Gudang', 'haven black top', 'M', 11, 'Online', 'store tiktok\r\n', 77, 0, 0, '2023-09-20 13:54:29'),
 (43, 50, '2023-09-20', '', 'Stock Gudang', 'haven black top', 'M', 11, 'Online', 'store tiktok\r\n', 77, 0, 0, '2023-09-20 13:54:36'),
 (44, 51, '2023-09-21', '', 'Stock Gudang', 'MADYA TOP ASH PINK (XL)', 'XL', 0, '', '', 72, 0, 0, '2023-09-21 02:53:08'),
 (45, 51, '2023-09-21', 'surat 1', 'Stock Gudang', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 'Online', 'toktok store', 72, 0, 0, '2023-10-19 10:11:21'),
@@ -890,10 +786,6 @@ CREATE TABLE `barangpayet_history` (
 --
 
 INSERT INTO `barangpayet_history` (`id`, `idbarang_payet`, `tgl_brg_masuk`, `launching_date`, `collection`, `article_name`, `size`, `stock`, `vendor`, `idbarang_vendor`, `edit_timestamp`) VALUES
-(3, 19, '2023-09-03', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 'dunia game', 33, '2023-09-14 07:35:34'),
-(4, 19, '2023-09-03', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 'CV SBB', 33, '2023-09-14 07:35:45'),
-(5, 19, '2023-09-03', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 'dunia game', 33, '2023-09-14 07:35:54'),
-(6, 21, '2023-09-05', '2023-09-25', 'azurlane', 'haven bunny', 'XL', 21, 'bu tati', 36, '2023-09-14 07:36:41'),
 (7, 21, '2023-09-05', '2023-09-25', 'azurlane', 'haven bunny', 'XL', 21, 'Three and Me', 36, '2023-09-14 07:36:51'),
 (8, 25, '2023-09-05', '2023-09-25', 'azurlane', 'haven bunny', 'XL', 21, 'bu tati', 0, '2023-09-14 11:41:29'),
 (9, 25, '2023-09-05', '2023-09-25', 'azurlane', 'haven bunny', 'XL', 21, 'bu tati', 0, '2023-09-14 11:41:39'),
@@ -1059,9 +951,9 @@ INSERT INTO `barangqc` (`idbarang_qc`, `tgl_brg_masuk`, `launching_date`, `colle
 (147, '2023-09-14', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', '2023-09-15', 'qc-03', 14, 0, 0),
 (148, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', '2023-09-15', 'qc-03', 0, 0, 51),
 (149, '2023-09-16', '2023-09-25', 'Prive', 'Marsella Outer Cream', 'l-xl', 9, 'Bu Citra', '2023-09-15', 'qc-03', 0, 149, 0),
-(152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 30, 'Bu Yuli', '2023-09-21', 'qc-01', 85, 0, 0),
+(152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 30, 'Bu Kartika', '2023-09-21', 'qc-01', 85, 0, 0),
 (153, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 2, 'Bu Yani', '2023-09-21', 'sj 01 hasil revisi', 0, 0, 53),
-(164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', '2023-11-21', 'QC-10', 85, 0, 0);
+(164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Kartika', '2023-11-21', 'QC-10', 85, 0, 0);
 
 --
 -- Triggers `barangqc`
@@ -1174,24 +1066,6 @@ CREATE TABLE `barangqc_history` (
 --
 
 INSERT INTO `barangqc_history` (`id`, `idbarang_qc`, `tgl_brg_masuk`, `launching_date`, `collection`, `article_name`, `size`, `stock`, `vendor`, `tgl_brg_keluar`, `sj_for_qc`, `idbarang_vendor`, `idbarang_inpayet`, `idbarang_inrevisi`, `edit_timestamp`) VALUES
-(32, 103, '2023-09-02', '2023-09-25', 'azurlane', 'toki bunny', 's', 21, 'Three and Me', '2023-09-04', 'qc-01', 32, 0, 0, '2023-09-14 11:00:47'),
-(33, 103, '2023-09-02', '2023-09-25', 'azurlane', 'toki bunny', 's', 21, 'asep', '2023-09-04', 'qc-01', 32, 0, 0, '2023-09-14 11:00:52'),
-(34, 128, '2023-09-06', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 10, 'kanto', '2023-09-06', 'qc-03', 0, 0, 0, '2023-09-14 11:39:58'),
-(35, 103, '2023-09-02', '2023-09-25', 'azurlane', 'toki bunny', 's', 21, 'Atfemale', '2023-09-04', 'qc-01', 32, 0, 0, '2023-09-14 11:40:08'),
-(36, 147, '2023-09-14', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', '2023-09-15', '', 14, 0, 0, '2023-09-15 11:35:27'),
-(37, 147, '2023-09-14', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', '2023-09-15', 'qc-03', 14, 0, 0, '2023-09-15 11:36:18'),
-(38, 147, '2023-09-14', '2023-07-08', 'Essential', 'Athaya Top', 'xl', 1, 'PT.SJS', '2023-09-15', 'qc-03', 14, 0, 0, '2023-09-15 11:36:28'),
-(39, 148, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', '2023-09-15', '', 0, 0, 51, '2023-09-15 11:38:03'),
-(40, 149, '2023-09-16', '2023-09-25', 'Prive', 'Marsella Outer Cream', 'l-xl', 2, 'Bu Citra', '2023-09-15', '', 0, 149, 0, '2023-09-15 11:40:17'),
-(41, 147, '2023-09-14', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', '2023-09-15', 'qc-03', 14, 0, 0, '2023-09-17 06:32:26'),
-(42, 103, '2023-09-02', '2023-09-25', 'azurlane', 'toki bunny', 's', 21, 'Three and Me', '2023-09-04', 'qc-01', 32, 0, 0, '2023-09-20 11:23:24'),
-(43, 121, '2023-09-02', '2023-09-25', 'azurlane', 'toki bunny', 's', 21, 'dunia game', '2023-09-04', 'qc-01', 0, 0, 0, '2023-09-20 11:23:37'),
-(44, 125, '2023-09-02', '2023-09-25', 'azurlane', 'toki bunny', 's', 21, 'dunia game', '2023-09-04', 'qc-01', 0, 0, 0, '2023-09-20 11:23:50'),
-(45, 151, '2023-09-20', '2023-10-25', 'Jennaka', 'haven black top', 'M', 10, 'PT Thonnamaz', '2023-09-20', '', 81, 0, 0, '2023-09-20 13:31:27'),
-(46, 151, '2023-09-20', '2023-10-25', 'Jennaka', 'haven black top', 'M', 10, 'Three and Me', '2023-09-20', 'qc-01', 81, 0, 0, '2023-09-20 13:31:40'),
-(47, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, 'asep', '2023-09-21', '', 85, 0, 0, '2023-09-21 02:35:20'),
-(48, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, 'asep', '2023-09-21', 'qc-01', 85, 0, 0, '2023-09-21 03:04:43'),
-(49, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 20, 'asep', '2023-09-21', 'qc-01', 85, 0, 0, '2023-09-21 03:06:52'),
 (50, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 30, 'asep', '2023-09-21', 'qc-01', 85, 0, 0, '2023-09-21 03:09:49'),
 (51, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 30, 'Three and Me', '2023-09-21', 'qc-01', 85, 0, 0, '2023-09-21 03:10:01'),
 (52, 153, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 2, 'Bu Yani', '2023-09-21', '', 0, 0, 53, '2023-09-21 03:17:00'),
@@ -1199,7 +1073,11 @@ INSERT INTO `barangqc_history` (`id`, `idbarang_qc`, `tgl_brg_masuk`, `launching
 (54, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 30, 'Bu Yuli', '2023-09-21', 'qc-01', 85, 0, 0, '2023-11-20 12:59:19'),
 (55, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 30, 'Bu Yuli', '2023-09-21', 'qc-01', 85, 0, 0, '2023-11-20 12:59:28'),
 (56, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 30, 'Bu Yuli', '2023-09-21', 'qc-01', 85, 0, 0, '2023-11-20 13:00:22'),
-(57, 164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', '2023-11-21', '', 85, 0, 0, '2023-11-21 00:30:56');
+(57, 164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', '2023-11-21', '', 85, 0, 0, '2023-11-21 00:30:56'),
+(58, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 30, 'Bu Yuli', '2023-09-21', 'qc-01', 85, 0, 0, '2023-11-26 15:29:25'),
+(59, 164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', '2023-11-21', 'QC-10', 85, 0, 0, '2023-11-26 15:29:25'),
+(60, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 30, 'Bu Yuli', '2023-09-21', 'qc-01', 85, 0, 0, '2023-12-03 15:26:51'),
+(61, 164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', '2023-11-21', 'QC-10', 85, 0, 0, '2023-12-03 15:26:51');
 
 -- --------------------------------------------------------
 
@@ -1388,17 +1266,6 @@ CREATE TABLE `barangrevisi_history` (
 --
 
 INSERT INTO `barangrevisi_history` (`id`, `idbarang_revisi`, `tgl_brg_masuk`, `launching_date`, `collection`, `article_name`, `size`, `stock`, `vendor`, `tgl_brg_keluar`, `sj_for_produksi`, `idbarang_qc`, `edit_timestamp`) VALUES
-(38, 25, '2023-09-14', '2023-09-14', '2121', '212', 'M', 212, 'CV SBB', '2023-09-14', '121', 0, '2023-09-14 12:01:03'),
-(39, 21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 2, '', '2023-09-13', 'revisi-05', 0, '2023-09-14 12:01:14'),
-(40, 21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 2, 'armin', '2023-09-13', 'revisi-05', 0, '2023-09-14 12:01:20'),
-(41, 21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 2, 'Bu Yuli', '2023-09-13', 'revisi-05', 0, '2023-09-14 12:01:27'),
-(42, 21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 2, 'Bu Yuli', '2023-09-13', 'revisi-05', 0, '2023-09-14 12:01:35'),
-(43, 26, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 0, 'PT.SJS', '2023-09-15', '', 147, '2023-09-15 11:36:18'),
-(44, 26, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top', 'xl', 0, 'PT.SJS', '2023-09-15', '', 147, '2023-09-15 11:36:28'),
-(45, 26, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 0, 'PT.SJS', '2023-09-15', '', 147, '2023-09-15 11:37:02'),
-(46, 26, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 0, 'PT.SJS', '2023-09-15', 'revisi-01', 147, '2023-09-15 11:37:17'),
-(47, 26, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', '2023-09-15', 'revisi-01', 147, '2023-09-17 06:32:26'),
-(48, 27, '2023-09-20', '2023-10-25', 'Jennaka', 'haven black top', 'M', 0, 'sasha', '2023-09-20', '', 151, '2023-09-20 13:50:00'),
 (49, 28, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 0, 'asep', '2023-09-21', '', 152, '2023-09-21 02:49:55'),
 (50, 28, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 2, 'asep', '2023-09-21', 'REVISI -01', 152, '2023-09-21 03:04:43'),
 (51, 28, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 2, 'asep', '2023-09-21', 'REVISI -01', 152, '2023-09-21 03:06:52'),
@@ -1407,7 +1274,9 @@ INSERT INTO `barangrevisi_history` (`id`, `idbarang_revisi`, `tgl_brg_masuk`, `l
 (54, 28, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 2, 'asep', '2023-09-21', 'REVISI -01', 152, '2023-11-20 12:58:50'),
 (55, 28, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 2, 'asep', '2023-09-21', 'REVISI -01', 152, '2023-11-20 12:59:19'),
 (56, 28, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 2, 'asep', '2023-09-21', 'REVISI -01', 152, '2023-11-20 12:59:28'),
-(57, 28, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 2, 'asep', '2023-09-21', 'REVISI -01', 152, '2023-11-20 13:00:22');
+(57, 28, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 2, 'asep', '2023-09-21', 'REVISI -01', 152, '2023-11-20 13:00:22'),
+(58, 28, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 2, 'asep', '2023-09-21', 'REVISI -01', 152, '2023-11-26 15:29:25'),
+(59, 28, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 2, 'asep', '2023-09-21', 'REVISI -01', 152, '2023-12-03 15:26:51');
 
 -- --------------------------------------------------------
 
@@ -1449,7 +1318,7 @@ INSERT INTO `barangvendor` (`idbarang_vendor`, `tgl_brg_masuk`, `sj_from_vendor`
 (13, '2023-09-14', 'vendor-03 ', '2023-07-08', 'Essential', 'Athaya Top BW', 'l-xl', 1, 'PT.SJS', 'QC', 0),
 (14, '2023-09-14', 'vendor-03  ', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', 'QC', 0),
 (84, '2023-09-21', 'vendor-02 ', '2023-09-25', 'Jennaka', 'haven', 'L', 12, 'Bu Yuli', 'QC', 0),
-(85, '2023-09-21', 'vendor-02      ', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', 'QC', 0);
+(102, '2023-12-03', 'hasil-01', '2023-12-25', 'azurlane', 'asuna', 'XL', 22, 'Three and Me', 'QC', 0);
 
 --
 -- Triggers `barangvendor`
@@ -1536,7 +1405,6 @@ CREATE TABLE `barangvendor_history` (
 --
 
 INSERT INTO `barangvendor_history` (`id`, `idbarang_vendor`, `tgl_brg_masuk`, `sj_from_vendor`, `launching_date`, `collection`, `article_name`, `size`, `stock`, `vendor`, `status`, `idbarang_insewing`, `edit_timestamp`) VALUES
-(154, 82, '2023-09-20', 'vendor-01 ', '2023-10-25', 'Jennaka', 'haven black top', 'M', 10, 'PT Thonnamaz', 'QC', 0, '2023-09-20 13:30:17'),
 (155, 83, '2023-09-20', 'hasil sewing', '2023-09-20', 'Jennaka', 'haven pink top', 'S', 21, 'Bu Rini', '', 40, '2023-09-20 13:43:41'),
 (156, 85, '2023-09-21', 'vendor-02', '2023-09-25', 'Jennaka', 'haven', 'L', 12, 'asep', 'QC', 0, '2023-09-21 02:32:24'),
 (157, 85, '2023-09-21', 'vendor-02 ', '2023-09-25', 'Jennaka', 'haven', 'S-M', 10, 'asep', 'QC', 0, '2023-09-21 02:34:19'),
@@ -1545,7 +1413,9 @@ INSERT INTO `barangvendor_history` (`id`, `idbarang_vendor`, `tgl_brg_masuk`, `s
 (160, 85, '2023-09-21', 'vendor-02   ', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, 'Bu Yuli', 'QC', 0, '2023-11-20 12:59:19'),
 (161, 85, '2023-09-21', 'vendor-02    ', '2023-09-25', 'Jennaka', 'haven', 'S-M', 0, 'Bu Yuli', 'QC', 0, '2023-11-20 12:59:28'),
 (162, 85, '2023-09-21', 'vendor-02     ', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, 'Bu Yuli', 'QC', 0, '2023-11-20 13:00:22'),
-(163, 101, '2023-11-20', 'vendor-10', '2023-12-05', 'essential', 'haven white top', 'L-XL', 21, 'PT.SJS', 'Payet', 0, '2023-11-20 13:51:57');
+(163, 101, '2023-11-20', 'vendor-10', '2023-12-05', 'essential', 'haven white top', 'L-XL', 21, 'PT.SJS', 'Payet', 0, '2023-11-20 13:51:57'),
+(164, 85, '2023-09-21', 'vendor-02      ', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', 'QC', 0, '2023-11-26 15:29:25'),
+(165, 85, '2023-09-21', 'vendor-02       ', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', 'Payet', 0, '2023-12-03 15:26:51');
 
 -- --------------------------------------------------------
 
@@ -1639,7 +1509,7 @@ INSERT INTO `barang_lolosqc` (`idbarang_lolosqc`, `tgl_brg_masuk`, `launching_da
 (342, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, '2023-09-15', 'LolosQC-01', 147),
 (343, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, '2023-09-15', 'LolosQC-01', 148),
 (345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, '2023-09-21', 'WH -01', 152),
-(349, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 10, '2023-11-20', 'wh-10', 153);
+(349, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 10, '2023-11-20', 'wh-11', 153);
 
 --
 -- Triggers `barang_lolosqc`
@@ -1699,28 +1569,17 @@ CREATE TABLE `barang_lolosqc_history` (
 --
 
 INSERT INTO `barang_lolosqc_history` (`id`, `idbarang_lolosqc`, `tgl_brg_masuk`, `launching_date`, `collection`, `article_name`, `size`, `stock`, `tgl_brg_keluar`, `sj_for_wh`, `idbarang_qc`, `edit_timestamp`) VALUES
-(22, 338, '2023-09-11', '2023-10-05', 'genshin', 'ayaka', 'm', 2, '2023-09-11', 'wh-01', 136, '2023-09-11 14:30:42'),
-(23, 338, '2023-09-11', '2023-10-05', 'genshin', 'ayaka', 'm', 2, '2023-09-11', 'wh-01', 136, '2023-09-11 14:30:53'),
-(24, 339, '2023-09-11', '2023-10-05', 'genshin', 'ayaka', 'm', 2, '2023-09-11', 'wh-01', 0, '2023-09-13 16:50:32'),
-(25, 341, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 0, '2023-09-13', '', 142, '2023-09-13 16:51:24'),
-(26, 342, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 0, '2023-09-15', '', 147, '2023-09-15 11:35:53'),
-(27, 342, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 0, '2023-09-15', 'LolosQC-01', 147, '2023-09-15 11:36:05'),
-(28, 342, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, '2023-09-15', 'LolosQC-01', 147, '2023-09-15 11:36:18'),
-(29, 342, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top', 'xl', 1, '2023-09-15', 'LolosQC-01', 147, '2023-09-15 11:36:28'),
-(30, 343, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 0, '2023-09-15', '', 148, '2023-09-15 11:38:41'),
-(31, 342, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, '2023-09-15', 'LolosQC-01', 147, '2023-09-17 06:32:26'),
-(32, 344, '2023-09-20', '2023-10-25', 'Jennaka', 'haven black top', 'M', 0, '2023-09-20', '', 151, '2023-09-20 13:48:34'),
-(33, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 0, '2023-09-21', '', 152, '2023-09-21 02:48:15'),
-(34, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 15, '2023-09-21', 'WH -01', 152, '2023-09-21 03:04:43'),
-(35, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 15, '2023-09-21', 'WH -01', 152, '2023-09-21 03:06:52'),
-(36, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 15, '2023-09-21', 'WH -01', 152, '2023-09-21 03:07:24'),
-(37, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 20, '2023-09-21', 'WH -01', 152, '2023-09-21 03:09:49'),
 (38, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 20, '2023-09-21', 'WH -01', 152, '2023-09-21 03:10:01'),
 (39, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 20, '2023-09-21', 'WH -01', 152, '2023-11-20 12:58:50'),
 (40, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, '2023-09-21', 'WH -01', 152, '2023-11-20 12:59:19'),
 (41, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, '2023-09-21', 'WH -01', 152, '2023-11-20 12:59:28'),
 (42, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, '2023-09-21', 'WH -01', 152, '2023-11-20 13:00:22'),
-(43, 349, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 0, '2023-11-20', '', 153, '2023-11-20 13:57:42');
+(43, 349, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 0, '2023-11-20', '', 153, '2023-11-20 13:57:42'),
+(44, 349, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 10, '2023-11-20', 'wh-10', 153, '2023-11-26 14:51:58'),
+(45, 349, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 11, '2023-11-20', 'wh-10', 153, '2023-11-26 14:52:07'),
+(46, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, '2023-09-21', 'WH -01', 152, '2023-11-26 15:29:25'),
+(47, 349, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 10, '2023-11-20', 'wh-10', 153, '2023-11-26 15:31:31'),
+(48, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, '2023-09-21', 'WH -01', 152, '2023-12-03 15:26:51');
 
 -- --------------------------------------------------------
 
@@ -1822,43 +1681,19 @@ CREATE TABLE `barang_minor_history` (
 --
 
 INSERT INTO `barang_minor_history` (`id`, `idbarang_minor`, `tgl_brg_masuk`, `launching_date`, `collection`, `article_name`, `size`, `stock`, `tgl_brg_keluar`, `sj_for_wh`, `idbarang_qc`, `edit_timestamp`) VALUES
-(16, 13, '2023-09-09', '2023-10-05', 'genshin', 'ayaka', 'm', 2, '2023-09-10', '1', 132, '2023-09-10 05:59:58'),
-(17, 13, '2023-09-09', '2023-10-05', 'genshin', 'ayaka', 'm', 2, '2023-09-10', '1', 132, '2023-09-10 06:02:20'),
-(18, 14, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 0, '2023-09-13', '', 142, '2023-09-13 16:52:12'),
-(19, 14, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 11, '2023-09-13', '2121', 142, '2023-09-13 16:52:18'),
-(20, 15, '2023-09-13', '2023-09-13', '11', '11', 'S', 11, '2023-09-13', '11', 0, '2023-09-13 16:52:38'),
-(21, 14, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'All Size', 11, '2023-09-13', '2121', 142, '2023-09-14 07:12:45'),
-(22, 14, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 11, '2023-09-13', '2121', 142, '2023-09-14 07:13:03'),
-(23, 14, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 11, '2023-09-13', '2121', 142, '2023-09-14 08:27:04'),
-(24, 16, '2023-09-15', '2023-09-25', 'Prive', 'Marsella Outer Cream', 'l-xl', 0, '2023-09-15', '', 149, '2023-09-15 11:40:36'),
-(32, 16, '2023-09-15', '2023-09-25', 'Prive', 'Marsella Outer Cream', 'l-xl', 9, '2023-09-15', 'minor-01', 149, '2023-09-17 10:14:35'),
-(33, 17, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 0, '2023-09-21', '', 152, '2023-09-21 02:49:17'),
-(34, 18, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 0, '2023-09-21', '', 152, '2023-09-21 02:58:07'),
-(35, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 0, '2023-09-21', '', 152, '2023-09-21 02:58:52'),
-(36, 17, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 3, '2023-09-21', 'WH -01', 152, '2023-09-21 03:04:43'),
-(37, 18, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 4, '2023-09-21', 'WH -01', 152, '2023-09-21 03:04:43'),
-(38, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 10, '2023-09-21', 'WH -01', 152, '2023-09-21 03:04:43'),
-(39, 17, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 3, '2023-09-21', 'WH -01', 152, '2023-09-21 03:06:52'),
-(40, 18, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 4, '2023-09-21', 'WH -01', 152, '2023-09-21 03:06:52'),
-(41, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 10, '2023-09-21', 'WH -01', 152, '2023-09-21 03:06:52'),
-(42, 17, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 3, '2023-09-21', 'WH -01', 152, '2023-09-21 03:09:49'),
-(43, 18, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 4, '2023-09-21', 'WH -01', 152, '2023-09-21 03:09:49'),
-(44, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 10, '2023-09-21', 'WH -01', 152, '2023-09-21 03:09:49'),
-(45, 17, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 3, '2023-09-21', 'WH -01', 152, '2023-09-21 03:10:01'),
-(46, 18, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 4, '2023-09-21', 'WH -01', 152, '2023-09-21 03:10:01'),
-(47, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 10, '2023-09-21', 'WH -01', 152, '2023-09-21 03:10:01'),
-(48, 17, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 3, '2023-09-21', 'WH -01', 152, '2023-11-20 12:58:50'),
-(49, 18, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 4, '2023-09-21', 'WH -01', 152, '2023-11-20 12:58:50'),
-(50, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 10, '2023-09-21', 'WH -01', 152, '2023-11-20 12:58:50'),
-(51, 17, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 3, '2023-09-21', 'WH -01', 152, '2023-11-20 12:59:19'),
-(52, 18, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 4, '2023-09-21', 'WH -01', 152, '2023-11-20 12:59:19'),
 (53, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 10, '2023-09-21', 'WH -01', 152, '2023-11-20 12:59:19'),
 (54, 17, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 3, '2023-09-21', 'WH -01', 152, '2023-11-20 12:59:28'),
 (55, 18, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 4, '2023-09-21', 'WH -01', 152, '2023-11-20 12:59:28'),
 (56, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 10, '2023-09-21', 'WH -01', 152, '2023-11-20 12:59:28'),
 (57, 17, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 3, '2023-09-21', 'WH -01', 152, '2023-11-20 13:00:22'),
 (58, 18, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 4, '2023-09-21', 'WH -01', 152, '2023-11-20 13:00:22'),
-(59, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 10, '2023-09-21', 'WH -01', 152, '2023-11-20 13:00:22');
+(59, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 10, '2023-09-21', 'WH -01', 152, '2023-11-20 13:00:22'),
+(60, 17, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 3, '2023-09-21', 'WH -01', 152, '2023-11-26 15:29:25'),
+(61, 18, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 4, '2023-09-21', 'WH -01', 152, '2023-11-26 15:29:25'),
+(62, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 10, '2023-09-21', 'WH -01', 152, '2023-11-26 15:29:25'),
+(63, 17, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 3, '2023-09-21', 'WH -01', 152, '2023-12-03 15:26:51'),
+(64, 18, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 4, '2023-09-21', 'WH -01', 152, '2023-12-03 15:26:51'),
+(65, 19, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 10, '2023-09-21', 'WH -01', 152, '2023-12-03 15:26:51');
 
 -- --------------------------------------------------------
 
@@ -1900,7 +1735,7 @@ INSERT INTO `barang_reject` (`idbarang_reject`, `tgl_brg_masuk`, `launching_date
 (18, '2023-08-01', '2023-08-25', 'seraph', 'dirani top black', 'xl', 100, '2023-08-26', '49001', 0),
 (19, '2023-09-09', '2023-10-05', 'genshin', 'ayaka', 'm', 2, '2023-09-10', 'wh-012', 132),
 (20, '2023-09-11', '2023-10-05', 'genshin', 'ayaka', 'm', 1, '2023-09-11', 'reject-01', 136),
-(21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 20, '2023-09-13', '121', 142);
+(21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 20, '2023-09-13', '120', 142);
 
 --
 -- Triggers `barang_reject`
@@ -1960,8 +1795,6 @@ CREATE TABLE `barang_reject_history` (
 --
 
 INSERT INTO `barang_reject_history` (`id`, `idbarang_reject`, `tgl_brg_masuk`, `launching_date`, `collection`, `article_name`, `size`, `stock`, `tgl_brg_keluar`, `sj_for_wh`, `idbarang_qc`, `edit_timestamp`) VALUES
-(3, 20, '2023-09-11', '2023-10-05', 'genshin', 'ayaka', 'm', 0, '2023-09-11', '', 136, '2023-09-11 12:09:16'),
-(4, 20, '2023-09-11', '2023-10-05', 'genshin', 'ayaka', 'm', 1, '2023-09-11', 'reject-01', 136, '2023-09-11 14:30:42'),
 (5, 20, '2023-09-11', '2023-10-05', 'genshin', 'ayaka', 'm', 1, '2023-09-11', 'reject-01', 136, '2023-09-11 14:30:53'),
 (6, 21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 0, '2023-09-13', '', 142, '2023-09-13 16:51:37'),
 (7, 21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 2, '2023-09-13', '121', 142, '2023-09-14 07:12:45'),
@@ -1970,7 +1803,8 @@ INSERT INTO `barang_reject_history` (`id`, `idbarang_reject`, `tgl_brg_masuk`, `
 (10, 21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 2, '2023-09-13', '121', 142, '2023-09-17 10:12:48'),
 (11, 21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 2, '2023-09-13', '121', 142, '2023-09-17 10:13:45'),
 (12, 21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 20, '2023-09-13', '121', 142, '2023-09-17 10:13:50'),
-(13, 23, '2023-09-20', '2023-10-25', 'Jennaka', 'haven black top', 'M', 0, '2023-09-20', '', 151, '2023-09-20 13:49:10');
+(13, 23, '2023-09-20', '2023-10-25', 'Jennaka', 'haven black top', 'M', 0, '2023-09-20', '', 151, '2023-09-20 13:49:10'),
+(14, 21, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 20, '2023-09-13', '121', 142, '2023-11-26 14:57:36');
 
 -- --------------------------------------------------------
 
@@ -2347,11 +2181,6 @@ CREATE TABLE `gudangreject_history` (
 --
 
 INSERT INTO `gudangreject_history` (`id`, `idstock_reject`, `kode`, `collection`, `kategori`, `article_name`, `size`, `stock`, `harga`, `rak`, `lokasi`, `umur`, `idbarang_reject`, `edit_timestamp`) VALUES
-(1, 60, 'jnk-3163', 'celestial sun', 'outer', 'ILYA CARDIGAN PINK', 'free', 4, 589000, '3d', 'rak', '13-18 bulan', 0, '2023-09-08 07:58:41'),
-(2, 60, 'jnk-3163', 'celestial sun', 'outer', 'ILYA CARDIGAN PINK', 'free', 40, 589000, '3d', 'rak', '0 - 3 BULAN', 0, '2023-09-08 07:58:50'),
-(3, 60, 'jnk-3163', 'celestial sun', 'outer', 'ILYA CARDIGAN PINK', 'free', 4, 589000, '3d', 'rak', '0 - 3 BULAN', 0, '2023-09-09 17:53:51'),
-(4, 60, 'jnk-3163', 'celestial sun', 'outer', 'ILYA CARDIGAN PINK', 'free', 5, 5890000, '3d', 'rak', '0 - 3 BULAN', 0, '2023-09-09 17:53:55'),
-(5, 60, 'jnk-3163', 'celestial sun', 'outer', 'ILYA CARDIGAN PINK', 'free', 5, 5890000, '3d', 'rak', '0 - 3 BULAN', 0, '2023-09-11 13:49:49'),
 (6, 62, 'db-01', 'DRAGONBALL', 'SCRUNCHIE', 'Goku', 'S-M', 12, 1000000, '1l', 'Kontainer', '&gt; 24 BULAN', 0, '2023-09-13 09:36:52'),
 (7, 63, '', 'genshin', '', 'ayaka', 'm', 1, 0, '', '', '0 - 3 bulan', 20, '2023-09-13 09:37:30'),
 (8, 63, 'GI-01', 'genshin', 'BAG', 'ayaka', 'm', 1, 100000, '3d', 'Kontainer', '19 - 24 BULAN', 20, '2023-09-13 09:37:47'),
@@ -2459,7 +2288,7 @@ INSERT INTO `stockgudang` (`idstock`, `kode`, `collection`, `kategori`, `article
 (68, 'JNK-4255', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP CREME (XL)', 'XL', 42, 659000, '3I', 'RAK', '0 - 3 BULAN', 0),
 (69, 'JNK-4256', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (S)', 'S', 63, 659000, '1H', 'RAK', '0 - 3 BULAN', 0),
 (70, 'JNK-4257', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (M)', 'M', 67, 659000, '1H', 'RAK', '0 - 3 BULAN', 0),
-(71, 'JNK-4258', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (L)', 'L', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0);
+(71, 'JNK-4258', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (L)', 'L', 24, 659000, '1H', 'RAK', '0 - 3 BULAN', 0);
 
 --
 -- Triggers `stockgudang`
@@ -2543,22 +2372,68 @@ CREATE TABLE `stockgudang_history` (
 --
 
 INSERT INTO `stockgudang_history` (`id`, `idstock`, `kode`, `collection`, `kategori`, `article_name`, `size`, `stock`, `harga`, `rak`, `lokasi`, `umur`, `idbarang_lolosqc`, `edit_timestamp`) VALUES
-(77, 30, 'JNK-2376', 'Jennaka', 'shirt', 'haven black top', 'l-xl', 25, 589000, '3d 3c', 'rak', '0 - 3 BULAN', 0, '2023-09-14 12:15:05'),
-(78, 30, 'JNK-2376', 'Jennaka', 'shirt', 'haven black top', 'l-xl', 25, 589000, '3d 3c', 'rak', '0 - 3 BULAN', 0, '2023-09-14 12:15:17'),
-(79, 30, 'JNK-2376', 'Jennaka', 'baju', 'haven black top', 'l-xl', 25, 589000, '3d 3c', 'rak', '0 - 3 BULAN', 0, '2023-09-14 12:15:24'),
-(80, 30, 'JNK-2376', 'Jennaka', 'BAG', 'haven black top', 'l-xl', 25, 589000, '3d 3c', 'rak', '0 - 3 BULAN', 0, '2023-09-14 12:20:59'),
-(81, 25, 'jnk-3163', 'celestial sun', 'outer', 'ILYA CARDIGAN PINK', 'free', 8, 589000, '3d', 'rak', '13-18 bulan', 0, '2023-09-14 12:21:06'),
-(82, 25, 'jnk-3163', 'celestial sun', 'outer', 'ILYA CARDIGAN PINK', 'free', 8, 589000, '3d', 'Karton', '13-18 bulan', 0, '2023-09-14 12:21:12'),
-(83, 25, 'jnk-3163', 'celestial sun', 'outer', 'ILYA CARDIGAN PINK', 'free', 8, 589000, '3d', 'Karton', '13-18 bulan', 0, '2023-09-14 12:21:20'),
-(84, 66, 'GI-02', 'genshin', 'kostum', 'diluc knight', 'L', 212, 1000000, '1l', 'Karung', '&gt; 24 BULAN', 0, '2023-09-14 12:25:49'),
-(85, 66, 'GI-02', 'genshin', 'kostum', 'diluc knight', 'L', 212, 1000000, '1l', 'Karung', '&gt; 24 BULAN', 0, '2023-09-14 12:26:31'),
 (86, 66, 'GI-02', 'genshin', 'OUTER', 'diluc knight', 'L', 212, 1000000, '1l', 'dus', '0 - 3 BULAN', 0, '2023-09-14 12:26:36'),
 (87, 75, 'JNK-4259', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-09-15 07:16:11'),
 (88, 77, '', 'Jennaka', '', 'haven black top', 'M', 5, 0, '', '', '0 - 3 bulan', 344, '2023-09-20 13:53:00'),
 (89, 77, 'jnk-01', 'Jennaka', 'TOP', 'haven black top', 'M', 5, 1000000, '3d', 'Rak', '0 - 3 bulan', 344, '2023-09-20 13:54:29'),
 (90, 77, 'jnk-01', 'Jennaka', 'TOP', 'haven black top', 'M', -5, 1000000, '3d', 'Rak', '0 - 3 bulan', 344, '2023-09-20 13:54:36'),
 (91, 72, 'JNK-4259', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-10-27 13:06:04'),
-(92, 72, 'JNK-4259', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-10-27 13:06:22');
+(92, 72, 'JNK-4259', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-10-27 13:06:22'),
+(93, 71, 'JNK-4258', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (L)', 'L', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-11-26 15:32:26'),
+(94, 71, 'JNK-4258', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (L)', 'L', 21, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-11-26 15:32:31'),
+(95, 71, 'JNK-4258', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (L)', 'L', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-11-26 15:32:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendor`
+--
+
+CREATE TABLE `vendor` (
+  `idvendor` int(25) NOT NULL,
+  `nama_vendor` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vendor`
+--
+
+INSERT INTO `vendor` (`idvendor`, `nama_vendor`) VALUES
+(1, 'Alia Digital Printex'),
+(2, 'Atfemale'),
+(3, 'Atmosfira Dekatama'),
+(4, 'Baju Kertas'),
+(5, 'Bandanaira'),
+(6, 'Bu Citra'),
+(7, 'Bu Dewi'),
+(8, 'Bu Elis'),
+(9, 'Bu Hany'),
+(10, 'Bu Icha'),
+(11, 'Bu Kartika'),
+(12, 'Bu Linda'),
+(13, 'Bu Lilis'),
+(14, 'Bu Rini'),
+(15, 'Bu Riri'),
+(16, 'Bu Ussy'),
+(17, 'Bu Yani'),
+(18, 'Bu Yuli'),
+(19, 'CV SBB'),
+(20, 'Kensby Research Co.'),
+(21, 'Muara Global'),
+(22, 'Ophie Rever'),
+(23, 'Pak Edi'),
+(24, 'Pak Giri'),
+(25, 'Pak Sunar'),
+(26, 'Pa Ohid'),
+(27, 'Penjahit Rapi'),
+(28, 'PT Jaya Mitra Kurnia'),
+(29, 'PT Thonnamaz'),
+(30, 'PT.SJS'),
+(31, 'RB Manufacturing'),
+(32, 'Rumah Renza'),
+(33, 'Sakh Konveksi'),
+(34, 'Three and Me'),
+(38, 'reza');
 
 --
 -- Indexes for dumped tables
@@ -2568,24 +2443,6 @@ INSERT INTO `stockgudang_history` (`id`, `idstock`, `kode`, `collection`, `kateg
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `admin_produksi`
---
-ALTER TABLE `admin_produksi`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `admin_qc`
---
-ALTER TABLE `admin_qc`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `admin_wh`
---
-ALTER TABLE `admin_wh`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2793,6 +2650,12 @@ ALTER TABLE `stockgudang_history`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `vendor`
+--
+ALTER TABLE `vendor`
+  ADD PRIMARY KEY (`idvendor`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -2800,25 +2663,7 @@ ALTER TABLE `stockgudang_history`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
-
---
--- AUTO_INCREMENT for table `admin_produksi`
---
-ALTER TABLE `admin_produksi`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
-
---
--- AUTO_INCREMENT for table `admin_qc`
---
-ALTER TABLE `admin_qc`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
-
---
--- AUTO_INCREMENT for table `admin_wh`
---
-ALTER TABLE `admin_wh`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `barangbaku`
@@ -2914,7 +2759,7 @@ ALTER TABLE `barangqc`
 -- AUTO_INCREMENT for table `barangqc_history`
 --
 ALTER TABLE `barangqc_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `barangretur`
@@ -2938,19 +2783,19 @@ ALTER TABLE `barangrevisi`
 -- AUTO_INCREMENT for table `barangrevisi_history`
 --
 ALTER TABLE `barangrevisi_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `barangvendor`
 --
 ALTER TABLE `barangvendor`
-  MODIFY `idbarang_vendor` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `idbarang_vendor` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `barangvendor_history`
 --
 ALTER TABLE `barangvendor_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
 -- AUTO_INCREMENT for table `barang_lolosqc`
@@ -2962,7 +2807,7 @@ ALTER TABLE `barang_lolosqc`
 -- AUTO_INCREMENT for table `barang_lolosqc_history`
 --
 ALTER TABLE `barang_lolosqc_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `barang_minor`
@@ -2974,7 +2819,7 @@ ALTER TABLE `barang_minor`
 -- AUTO_INCREMENT for table `barang_minor_history`
 --
 ALTER TABLE `barang_minor_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `barang_reject`
@@ -2986,7 +2831,7 @@ ALTER TABLE `barang_reject`
 -- AUTO_INCREMENT for table `barang_reject_history`
 --
 ALTER TABLE `barang_reject_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `gudangminor`
@@ -3022,7 +2867,13 @@ ALTER TABLE `stockgudang`
 -- AUTO_INCREMENT for table `stockgudang_history`
 --
 ALTER TABLE `stockgudang_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+
+--
+-- AUTO_INCREMENT for table `vendor`
+--
+ALTER TABLE `vendor`
+  MODIFY `idvendor` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

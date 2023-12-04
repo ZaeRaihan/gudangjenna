@@ -8,12 +8,12 @@ if (!isset($_SESSION['usernamepr']) || $_SESSION['role'] !== 'produksi') {
     exit();
 }
 
-$vendor = query("SELECT * FROM vendor");
+$supplier = query("SELECT * FROM supplier");
 
 // Pagination
 $limit = 20;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$totalRecords = count(query("SELECT * FROM vendor"));
+$totalRecords = count(query("SELECT * FROM supplier"));
 $totalPages = ceil($totalRecords / $limit);
 // Hitung posisi awal pagination
 $start = ($page - 1) * $limit;
@@ -41,19 +41,19 @@ if (!empty($search)) {
     $search = strtolower($search); // Ubah istilah penelusuran menjadi huruf kecil
 
     $search_filter = "WHERE 
-        LOWER(nama_vendor) LIKE '%$search%'";
+        LOWER(nama_supplier) LIKE '%$search%'";
 }
 
 // Query dengan search filter and date filter
-$query = "SELECT * FROM vendor $date_filter $search_filter ORDER BY idvendor DESC LIMIT $start, $limit";
-$vendor = query($query);
+$query = "SELECT * FROM supplier $date_filter $search_filter ORDER BY idsupplier DESC LIMIT $start, $limit";
+$supplier = query($query);
 
 // Hitung jumlah total records untuk pencarian yang difilter dan rentang tanggal
-$totalRecordsSearchDateFilter = count(query("SELECT * FROM vendor $date_filter $search_filter"));
+$totalRecordsSearchDateFilter = count(query("SELECT * FROM supplier $date_filter $search_filter"));
 $totalPagesSearchDateFilter = ceil($totalRecordsSearchDateFilter / $limit);
 
 // Hitung jumlah total catatan untuk filtered date range
-$totalRecordsDateFilter = count(query("SELECT * FROM vendor $date_filter"));
+$totalRecordsDateFilter = count(query("SELECT * FROM supplier $date_filter"));
 $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
 ?>
 
@@ -76,7 +76,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
 
     <!-- tema css -->
     <link href="../../css/tabel.css" rel="stylesheet">
-    <title>Data Vendor</title>
+    <title>Data Supplier</title>
 </head>
 
 <body>
@@ -173,7 +173,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
     <div class="content">
         <div class="container-fluid">
             <!------- HEADER ------->
-            <h1 class="page-header">Data Master Vendor
+            <h1 class="page-header">Data Master Supplier
                 <br><br><br>
 
                 <!-- TAMBAH DATA DENGAN MODAL -->
@@ -181,16 +181,16 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                     <div class="col-md-4">
                         <div class="text-left">
                             <a href="#" class="btn btn-success" data-toggle="modal" data-target="#tambahBarangModal">Tambah
-                                Vendor</a>
+                                Supplier</a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <!-- Search Form -->
                         <form action="" method="GET" class="form-inline">
                             <label for="search"></label>
-                            <input type="text" class="form-control mx-2" id="search" name="search" value="<?php echo $_GET['search'] ?? ''; ?>" placeholder="cari data vendor">
+                            <input type="text" class="form-control mx-2" id="search" name="search" value="<?php echo $_GET['search'] ?? ''; ?>" placeholder="cari data supplier">
                             <button type="submit" class="btn btn-success">Search</button>
-                            <a href="vendor.php" class="btn btn-warning mx-2">Clear</a>
+                            <a href="supplier.php" class="btn btn-warning mx-2">Clear</a>
                         </form>
 
                     </div>
@@ -239,7 +239,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title" id="tambahBarangModalLabel">Tambah Vendor</h3>
+                                <h3 class="modal-title" id="tambahBarangModalLabel">Tambah Supplier</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -248,8 +248,8 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                 <!-- Form untuk menambahkan data barang -->
                                 <form action="proses_tambah.php" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <label for="nama_vendor">Nama Vendor</label>
-                                        <input type="text" class="form-control" id="nama_vendor" name="nama_vendor">
+                                        <label for="nama_supplier">Nama Supplier</label>
+                                        <input type="text" class="form-control" id="nama_supplier" name="nama_supplier">
                                     </div>
                                     <button type="submit" class="btn btn-success">Tambah</button>
                                 </form>
@@ -262,33 +262,33 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                     <table id="data-table" class="table table-hover">
                         <tr>
                             <th scope="col">Id</th>
-                            <th scope="col">Nama Vendor</th>
+                            <th scope="col">Nama Supplier</th>
                             <th scope="col">Aksi</th>
                         </tr>
 
                         <!-- Table and Pagination -->
                         <?php $i = $start + 1; ?>
                         <!-- Hitung indeks awal saat ini berdasarkan halaman dan limit -->
-                        <?php foreach ($vendor as $row) : ?>
+                        <?php foreach ($supplier as $row) : ?>
 
                             <tr class="data-row">
                                 <td><?= $i; ?></td>
-                                <td><?= $row["nama_vendor"]; ?></td>
+                                <td><?= $row["nama_supplier"]; ?></td>
                                 <td>
                                     <div class="btn-group text-center" style="display: flex; justify-content: center;">
-                                        <button type="button" class="btn btn-warning delete-button" data-id="<?= $row["idvendor"]; ?>">Hapus</button>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ubahBarangModal<?= $row["idvendor"]; ?>" data-id="<?= $row["idvendor"]; ?>" data-page="<?= $page; ?>">Ubah</button>
-                                        <button type="button" class="btn btn-success copy-button" data-id="<?= $row["idvendor"]; ?>">Copy</button>
+                                        <button type="button" class="btn btn-warning delete-button" data-id="<?= $row["idsupplier"]; ?>">Hapus</button>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ubahBarangModal<?= $row["idsupplier"]; ?>" data-id="<?= $row["idsupplier"]; ?>" data-page="<?= $page; ?>">Ubah</button>
+                                        <button type="button" class="btn btn-success copy-button" data-id="<?= $row["idsupplier"]; ?>">Copy</button>
                                     </div>
                                 </td>
                             </tr>
 
-                            <div class="modal fade" id="ubahBarangModal<?= $row["idvendor"]; ?>" tabindex="-1" role="dialog" aria-labelledby="ubahBarangModalLabel<?= $row["idvendor"]; ?>" aria-hidden="true">
+                            <div class="modal fade" id="ubahBarangModal<?= $row["idsupplier"]; ?>" tabindex="-1" role="dialog" aria-labelledby="ubahBarangModalLabel<?= $row["idsupplier"]; ?>" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h3 class="modal-title" id="ubahBarangModalLabel<?= $row["idvendor"]; ?>">
-                                                Ubah Vendor</h3>
+                                            <h3 class="modal-title" id="ubahBarangModalLabel<?= $row["idsupplier"]; ?>">
+                                                Ubah Supplier</h3>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -297,10 +297,10 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                             <!-- Form untuk mengubah data barang -->
                                             <form action="proses_ubah.php" method="post" enctype="multipart/form-data">
                                                 <input type="hidden" name="url" value="<?= basename($_SERVER['PHP_SELF']) . "?" . $_SERVER['QUERY_STRING'] ?>">
-                                                <input type="hidden" name="id" value="<?= $row["idvendor"]; ?>">
+                                                <input type="hidden" name="id" value="<?= $row["idsupplier"]; ?>">
                                                 <div class="form-group">
-                                                    <label for="nama_vendor">Nama Vendor</label>
-                                                    <input type="text" class="form-control" id="nama_vendor" name="nama_vendor" value="<?= $row["nama_vendor"]; ?>">
+                                                    <label for="nama_supplier">Nama Supplier</label>
+                                                    <input type="text" class="form-control" id="nama_supplier" name="nama_supplier" value="<?= $row["nama_supplier"]; ?>">
                                                 </div>
                                                 <input type="hidden" name="page" value="<?= $page; ?>">
                                                 <button type="submit" class="btn btn-primary">Ubah</button>

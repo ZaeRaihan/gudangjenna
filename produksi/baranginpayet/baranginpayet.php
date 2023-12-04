@@ -337,47 +337,25 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                         <input type="number" class="form-control" id="stock_inpayet" name="stock_inpayet" pattern="[0-9]*" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="vendor_payet">Vendor Payet</label>
-                                        <select class="form-control" id="vendor_payet" name="vendor_payet" required onchange="checkLainnya('vendor_payet')">
-                                            <option value="" disabled selected>Pilih Vendor Payet</option>
-                                            <option value="Alia Digital Printex">Alia Digital Printex</option>
-                                            <option value="Atfemale">Atfemale</option>
-                                            <option value="Atmosfira Dekatama">Atmosfira Dekatama</option>
-                                            <option value="Baju Kertas">Baju Kertas</option>
-                                            <option value="Bandanaira">Bandanaira</option>
-                                            <option value="Bu Citra">Bu Citra</option>
-                                            <option value="Bu Dewi">Bu Dewi</option>
-                                            <option value="Bu Elis">Bu Elis</option>
-                                            <option value="Bu Hany">Bu Hany</option>
-                                            <option value="Bu Icha">Bu Icha</option>
-                                            <option value="Bu Kartika">Bu Kartika</option>
-                                            <option value="Bu Linda">Bu Linda</option>
-                                            <option value="Bu Lilis">Bu Lilis</option>
-                                            <option value="Bu Rini">Bu Rini</option>
-                                            <option value="Bu Riri">Bu Riri</option>
-                                            <option value="Bu Ussy">Bu Ussy</option>
-                                            <option value="Bu Yani">Bu Yani</option>
-                                            <option value="Bu Yuli">Bu Yuli</option>
-                                            <option value="CV SBB">CV SBB</option>
-                                            <option value="Kensby Research Co.">Kensby Research Co.</option>
-                                            <option value="Muara Global">Muara Global</option>
-                                            <option value="Ophie Rever">Ophie Rever</option>
-                                            <option value="Pak Edi">Pak Edi</option>
-                                            <option value="Pak Giri">Pak Giri</option>
-                                            <option value="Pak Sunar">Pak Sunar</option>
-                                            <option value="Pa Ohid">Pa Ohid</option>
-                                            <option value="Penjahit Rapi">Penjahit Rapi</option>
-                                            <option value="PT Jaya Mitra Kurnia">PT Jaya Mitra Kurnia</option>
-                                            <option value="PT Thonnamaz">PT Thonnamaz</option>
-                                            <option value="PT.SJS">PT.SJS</option>
-                                            <option value="RB Manufacturing">RB Manufacturing</option>
-                                            <option value="Rumah Renza">Rumah Renza</option>
-                                            <option value="Sakh Konveksi">Sakh Konveksi</option>
-                                            <option value="Three and Me">Three and Me</option>
-                                            <!-- Opsi vendor_payet lainnya -->
-                                            <option value="LAINNYA">Lainnya</option>
+                                        <label for="vendor_payet">Vendor</label>
+                                        <select class="form-control" id="vendor_payet" name="vendor_payet" required>
+                                            <option value="" disabled selected>Pilih Vendor</option>
+                                            <?php
+                                            // Mengambil data vendor dari tabel 'vendor'
+                                            $conn = new mysqli("localhost", "root", "", "gudangjenna");
+                                            $sql = "SELECT * FROM vendor";
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo '<option value="' . $row["nama_vendor"] . '">' . $row["nama_vendor"] . '</option>';
+                                                }
+                                            } else {
+                                                echo '<option value="">Tidak ada data vendor</option>';
+                                            }
+                                            $conn->close();
+                                            ?>
                                         </select>
-                                        <input type="text" class="form-control mt-2" id="vendor_payet_input" name="vendor_payet_input" style="display: none;" placeholder="Masukkan Vendor Payet">
                                     </div>
                                     <div class="form-group">
                                         <label for="tgl_brg_masuk">Tanggal Barang Masuk</label>
@@ -534,141 +512,32 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                                     <input type="number" class="form-control" id="stock_inpayet" name="stock_inpayet" pattern="[0-9]*" value="<?= $row["stock_inpayet"]; ?>" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="vendor_payet">Vendor Payet</label>
-                                                    <select class="form-control" id="vendor_payet" name="vendor_payet" required onchange="checkOtherOptionVendor_payet(this);">
-                                                        <option value="<?= $row["vendor_payet"]; ?>" <?= ($row["vendor_payet"] == $row["vendor_payet"]) ? "selected" : ""; ?>>
+                                                    <label for="vendor_payet">Vendor</label>
+                                                    <select class="form-control" id="vendor_payet" name="vendor_payet" required>
+                                                        <option value="<?= $row["vendor_payet"]; ?>" selected>
                                                             <?= $row["vendor_payet"]; ?>
                                                         </option>
-                                                        <option value="Alia Digital Printex" <?= ($row["vendor_payet"] == "Alia Digital Printex") ? "selected" : ""; ?>>
-                                                            Alia Digital Printex
-                                                        </option>
-                                                        <option value="Atfemale" <?= ($row["vendor_payet"] == "Atfemale") ? "selected" : ""; ?>>
-                                                            Atfemale
-                                                        </option>
-                                                        <option value="Atmosfira Dekatama" <?= ($row["vendor_payet"] == "Atmosfira Dekatama") ? "selected" : ""; ?>>
-                                                            Atmosfira Dekatama
-                                                        </option>
-                                                        <option value="Baju Kertas" <?= ($row["vendor_payet"] == "Baju Kertas") ? "selected" : ""; ?>>
-                                                            Baju Kertas
-                                                        </option>
-                                                        <option value="Bandanaira" <?= ($row["vendor_payet"] == "Bandanaira") ? "selected" : ""; ?>>
-                                                            Bandanaira
-                                                        </option>
-                                                        <option value="Bu Citra" <?= ($row["vendor_payet"] == "Bu Citra") ? "selected" : ""; ?>>
-                                                            Bu Citra
-                                                        </option>
-                                                        <option value="Bu Dewi" <?= ($row["vendor_payet"] == "Bu Dewi") ? "selected" : ""; ?>>
-                                                            Bu Dewi
-                                                        </option>
-                                                        <option value="Bu Elis" <?= ($row["vendor_payet"] == "Bu Elis") ? "selected" : ""; ?>>
-                                                            Bu Elis
-                                                        </option>
-                                                        <option value="Bu Hany" <?= ($row["vendor_payet"] == "Bu Hany") ? "selected" : ""; ?>>
-                                                            Bu Hany
-                                                        </option>
-                                                        <option value="Bu Icha" <?= ($row["vendor_payet"] == "Bu Icha") ? "selected" : ""; ?>>
-                                                            Bu Icha
-                                                        </option>
-                                                        <option value="Bu Kartika" <?= ($row["vendor_payet"] == "Bu Kartika") ? "selected" : ""; ?>>
-                                                            Bu Kartika
-                                                        </option>
-                                                        <option value="Bu Linda" <?= ($row["vendor_payet"] == "Bu Linda") ? "selected" : ""; ?>>
-                                                            Bu Linda
-                                                        </option>
-                                                        <option value="Bu Lilis" <?= ($row["vendor_payet"] == "Bu Lilis") ? "selected" : ""; ?>>
-                                                            Bu Lilis
-                                                        </option>
-                                                        <option value="Bu Rini" <?= ($row["vendor_payet"] == "Bu Rini") ? "selected" : ""; ?>>
-                                                            Bu Rini
-                                                        </option>
-                                                        <option value="Bu Riri" <?= ($row["vendor_payet"] == "Bu Riri") ? "selected" : ""; ?>>
-                                                            Bu Riri
-                                                        </option>
-                                                        <option value="Bu Ussy" <?= ($row["vendor_payet"] == "Bu Ussy") ? "selected" : ""; ?>>
-                                                            Bu Ussy
-                                                        </option>
-                                                        <option value="Bu Yani" <?= ($row["vendor_payet"] == "Bu Yani") ? "selected" : ""; ?>>
-                                                            Bu Yani
-                                                        </option>
-                                                        <option value="Bu Yuli" <?= ($row["vendor_payet"] == "Bu Yuli") ? "selected" : ""; ?>>
-                                                            Bu Yuli
-                                                        </option>
-                                                        <option value="CV SBB" <?= ($row["vendor_payet"] == "CV SBB") ? "selected" : ""; ?>>
-                                                            CV SBB
-                                                        </option>
-                                                        <option value="Kensby Research Co." <?= ($row["vendor_payet"] == "Kensby Research Co.") ? "selected" : ""; ?>>
-                                                            Kensby Research Co.
-                                                        </option>
-                                                        <option value="Muara Global" <?= ($row["vendor_payet"] == "Muara Global") ? "selected" : ""; ?>>
-                                                            Muara Global
-                                                        </option>
-                                                        <option value="Ophie Rever" <?= ($row["vendor_payet"] == "Ophie Rever") ? "selected" : ""; ?>>
-                                                            Ophie Rever
-                                                        </option>
-                                                        <option value="Pak Edi" <?= ($row["vendor_payet"] == "Pak Edi") ? "selected" : ""; ?>>
-                                                            Pak Edi
-                                                        </option>
-                                                        <option value="Pak Giri" <?= ($row["vendor_payet"] == "Pak Giri") ? "selected" : ""; ?>>
-                                                            Pak Giri
-                                                        </option>
-                                                        <option value="Pak Sunar" <?= ($row["vendor_payet"] == "Pak Sunar") ? "selected" : ""; ?>>
-                                                            Pak Sunar
-                                                        </option>
-                                                        <option value="Pa Ohid" <?= ($row["vendor_payet"] == "Pa Ohid") ? "selected" : ""; ?>>
-                                                            Pa Ohid
-                                                        </option>
-                                                        <option value="Penjahit Rapi" <?= ($row["vendor_payet"] == "Penjahit Rapi") ? "selected" : ""; ?>>
-                                                            Penjahit Rapi
-                                                        </option>
-                                                        <option value="PT Jaya Mitra Kurnia" <?= ($row["vendor_payet"] == "PT Jaya Mitra Kurnia") ? "selected" : ""; ?>>
-                                                            PT Jaya Mitra Kurnia
-                                                        </option>
-                                                        <option value="PT Thonnamaz" <?= ($row["vendor_payet"] == "PT Thonnamaz") ? "selected" : ""; ?>>
-                                                            PT Thonnamaz
-                                                        </option>
-                                                        <option value="PT.SJS" <?= ($row["vendor_payet"] == "PT.SJS") ? "selected" : ""; ?>>
-                                                            PT.SJS
-                                                        </option>
-                                                        <option value="RB Manufacturing" <?= ($row["vendor_payet"] == "RB Manufacturing") ? "selected" : ""; ?>>
-                                                            RB Manufacturing
-                                                        </option>
-                                                        <option value="Rumah Renza" <?= ($row["vendor_payet"] == "Rumah Renza") ? "selected" : ""; ?>>
-                                                            Rumah Renza
-                                                        </option>
-                                                        <option value="Sakh Konveksi" <?= ($row["vendor_payet"] == "Sakh Konveksi") ? "selected" : ""; ?>>
-                                                            Sakh Konveksi
-                                                        </option>
-                                                        <option value="Three and Me" <?= ($row["vendor_payet"] == "Three and Me") ? "selected" : ""; ?>>
-                                                            Three and Me
-                                                        </option>
-                                                        <option value="OTHER" <?= ($row["vendor_payet"] == "OTHER") ? "selected" : ""; ?>>
-                                                            Other
-                                                        </option>
+
+                                                        <?php
+                                                        // Mengambil data vendor dari tabel 'vendor'
+                                                        $koneksi = new mysqli("localhost", "root", "", "gudangjenna");
+                                                        $sql = "SELECT * FROM vendor";
+                                                        $result = $koneksi->query($sql);
+
+                                                        // Loop melalui hasil kueri untuk membuat opsi dropdown
+                                                        if ($result->num_rows > 0) {
+                                                            while ($vendor = $result->fetch_assoc()) {
+                                                        ?>
+                                                                <option value="<?= $vendor["nama_vendor"]; ?>">
+                                                                    <?= $vendor["nama_vendor"]; ?>
+                                                                </option>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        $koneksi->close();
+                                                        ?>
                                                     </select>
                                                 </div>
-                                                <!-- Kolom input tambahan untuk vendor_payet lainnya -->
-                                                <div class="form-group" id="otherVendor_payetInput">
-                                                    <label for="otherVendor_payet">Vendor Payet Lainnya</label>
-                                                    <input class="form-control" type="text" id="otherVendor_payet" name="otherVendor_payet" placeholder="Pilih Other Pada Dropdown Untuk Memasukkan Vendor Payet Lainnya">
-                                                </div>
-                                                <script>
-                                                    function checkOtherOptionVendor_payet(select) {
-                                                        var otherVendor_payetInput = document.getElementById(
-                                                            "otherVendor_payetInput");
-
-                                                        if (select.value === "OTHER") {
-                                                            otherVendor_payetInput.style.display = "block";
-                                                            document.getElementById("otherVendor_payet").setAttribute(
-                                                                "required",
-                                                                "true");
-                                                        } else {
-                                                            otherVendor_payetInput.style.display =
-                                                                "block";
-                                                            document.getElementById("otherVendor_payet").removeAttribute(
-                                                                "required");
-                                                        }
-                                                    }
-                                                </script>
                                                 <div class="form-group">
                                                     <label for="tgl_brg_masuk">Tanggal Barang Masuk</label>
                                                     <input type="date" class="form-control" id="tgl_brg_masuk" name="tgl_brg_masuk" value="<?= $row["tgl_brg_masuk"]; ?>">
@@ -760,19 +629,6 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                 window.open(printPageUrl, '_blank');
             } else {
                 alert('No rows selected for printing.');
-            }
-        }
-
-        function checkLainnya(field) {
-            const dropdown = document.getElementById(field);
-            const inputField = document.getElementById(field + "_input");
-
-            if (dropdown.value === "LAINNYA") {
-                inputField.style.display = "block";
-                inputField.setAttribute("required", "required");
-            } else {
-                inputField.style.display = "none";
-                inputField.removeAttribute("required");
             }
         }
     </script>

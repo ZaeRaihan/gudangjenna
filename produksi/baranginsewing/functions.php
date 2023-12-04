@@ -30,13 +30,9 @@ function tambahBarang($data)
     $stock_insewing = htmlspecialchars($data['stock_insewing']);
     $stock_hasilsewing = htmlspecialchars($data['stock_hasilsewing']);
     $vendor_sewing = htmlspecialchars($data['vendor_sewing']);
-    $vendor_sewing_input = htmlspecialchars($data['vendor_sewing_input']);
     $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
     $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
     $status = htmlspecialchars($data['status']);
-
-    // Menggunakan ternary operator untuk memilih antara nilai dropdown atau input teks
-    $vendor_sewingToUse = ($vendor_sewing === "LAINNYA") ? $vendor_sewing_input : $vendor_sewing;
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_keluar = date('Y-m-d', strtotime($tgl_brg_keluar));
@@ -45,7 +41,7 @@ function tambahBarang($data)
 
     // Query tambah barang
     $query = "INSERT INTO baranginsewing (tgl_brg_keluar, sj_for_vendor, nama, launching_date, collection, article_name, size, inyard, stock_insewing, stock_hasilsewing, vendor_sewing, tgl_brg_masuk, sj_from_vendor, status)
-    VALUES ('$tgl_brg_keluar', '$sj_for_vendor', '$nama', '$launching_date', '$collection', '$article_name', '$size', '$inyard', '$stock_insewing', '$stock_hasilsewing', '$vendor_sewingToUse', '$tgl_brg_masuk', '$sj_from_vendor', '$status')";
+    VALUES ('$tgl_brg_keluar', '$sj_for_vendor', '$nama', '$launching_date', '$collection', '$article_name', '$size', '$inyard', '$stock_insewing', '$stock_hasilsewing', '$vendor_sewing', '$tgl_brg_masuk', '$sj_from_vendor', '$status')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -67,10 +63,6 @@ function ubahBarang($data, $idbarang_insewing)
     $stock_insewing = htmlspecialchars($data['stock_insewing']);
     $stock_hasilsewing = htmlspecialchars($data['stock_hasilsewing']);
     $vendor_sewing = htmlspecialchars($data['vendor_sewing']);
-    if ($vendor_sewing === 'OTHER') {
-        $otherVendor_sewing = htmlspecialchars($data['otherVendor_sewing']);
-        $vendor_sewing = $otherVendor_sewing;
-    }
     $tgl_brg_masuk = htmlspecialchars($data['tgl_brg_masuk']);
     $sj_from_vendor = htmlspecialchars($data['sj_from_vendor']);
     $status = htmlspecialchars($data['status']);

@@ -30,18 +30,15 @@ function tambahBarang($data)
     $stock = htmlspecialchars($data['stock']);
     $harga = htmlspecialchars($data['harga']);
     $supplier = htmlspecialchars($data['supplier']);
-    $supplier_input = htmlspecialchars($data['supplier_input']);
     $status = htmlspecialchars($data['status']);
 
-    // Menggunakan ternary operator untuk memilih antara nilai dropdown atau input teks
-    $supplierToUse = ($supplier === "LAINNYA") ? $supplier_input : $supplier;
 
     // Convert the date values to the correct format (YYYY-MM-DD)
     $tgl_brg_masuk = date('Y-m-d', strtotime($tgl_brg_masuk));
 
     // Query tambah barang
     $query = "INSERT INTO barangbaku (tgl_brg_masuk, kode, nama, warna, inyard, stock, harga, supplier, status) VALUES 
-    ('$tgl_brg_masuk', '$kode', '$nama', '$warna', '$inyard', '$stock', '$harga', '$supplierToUse', '$status')";
+    ('$tgl_brg_masuk', '$kode', '$nama', '$warna', '$inyard', '$stock', '$harga', '$supplier', '$status')";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -61,10 +58,6 @@ function ubahBarang($data, $idbarang_baku)
     $stock = htmlspecialchars($data['stock']);
     $harga = htmlspecialchars($data['harga']);
     $supplier = htmlspecialchars($data['supplier']);
-    if ($supplier === 'OTHER') {
-        $otherSupplier = htmlspecialchars($data['otherSupplier']);
-        $supplier = $otherSupplier;
-    }
     $status = htmlspecialchars($data['status']);
 
     // Convert the date values to the correct format (YYYY-MM-DD)
