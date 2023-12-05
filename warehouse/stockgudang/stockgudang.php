@@ -447,20 +447,25 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                         function konfirmasiKirim(tipe) {
                                             var jumlahStok = prompt("Masukkan jumlah stok yang akan dikirim:", "");
                                             if (jumlahStok !== null && jumlahStok !== "") {
-                                                if (tipe === 'keluar') {
-                                                    document.getElementById("stok-keluar").value = jumlahStok;
-                                                    var konfirmasi = confirm('Apakah Anda ingin mengirim ' + jumlahStok +
-                                                        ' barang tersebut?');
-                                                    if (konfirmasi) {
-                                                        document.getElementById("form-keluar").submit();
+                                                // Memeriksa apakah nilai yang dimasukkan adalah angka positif
+                                                if (jumlahStok >= 0) {
+                                                    if (tipe === 'keluar') {
+                                                        document.getElementById("stok-keluar").value = jumlahStok;
+                                                        var konfirmasi = confirm('Apakah Anda ingin mengirim ' + jumlahStok +
+                                                            ' barang tersebut?');
+                                                        if (konfirmasi) {
+                                                            document.getElementById("form-keluar").submit();
+                                                        }
+                                                    } else if (tipe === 'pinjam') {
+                                                        document.getElementById("stok-pinjam").value = jumlahStok;
+                                                        var konfirmasi = confirm('Apakah Anda ingin mengirim ' + jumlahStok +
+                                                            ' barang tersebut sebagai Barang Dipinjam?');
+                                                        if (konfirmasi) {
+                                                            document.getElementById("form-pinjam").submit();
+                                                        }
                                                     }
-                                                } else if (tipe === 'pinjam') {
-                                                    document.getElementById("stok-pinjam").value = jumlahStok;
-                                                    var konfirmasi = confirm('Apakah Anda ingin mengirim ' + jumlahStok +
-                                                        ' barang tersebut sebagai Barang Dipinjam?');
-                                                    if (konfirmasi) {
-                                                        document.getElementById("form-pinjam").submit();
-                                                    }
+                                                } else {
+                                                    alert('Mohon masukkan nilai stok yang valid (positif).');
                                                 }
                                             }
                                         }

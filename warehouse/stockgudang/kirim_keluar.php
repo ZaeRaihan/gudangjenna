@@ -65,4 +65,10 @@ if (!empty($data_stockgudang)) {
         // Tampilkan pesan kesalahan menggunakan JavaScript
         echo "<script>alert('$pesan'); window.history.back();</script>";
     }
+} else {
+    // Handle jika data stock gudang tidak ditemukan
+    $pesan = "Data stock gudang tidak ditemukan.";
+
+    // Tampilkan pesan menggunakan JavaScript
+    echo "<script>alert('$pesan'); window.history.back();</script>";
 }

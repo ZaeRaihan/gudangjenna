@@ -25,21 +25,42 @@ if (!empty($data_stockgudang)) {
     // Ambil data dari tabel stockgudang
     $article_name = $data_stockgudang[0]["article_name"];
     $size = $data_stockgudang[0]["size"];
+    $current_stock = $data_stockgudang[0]["stock"]; // Mengambil stok saat ini dari database
 
-    // Masukkan data ke dalam tabel barangpinjam
-    $query_insert_barangpinjam = "INSERT INTO barangpinjam (tgl_brg_keluar, surat_retur, gudang, article_name, size, stock, dipinjam, idstock) 
-                              VALUES (NOW(), '', 'Stock Gudang', '$article_name', '$size', '$stok_dikirim', '', $idstock)";
+    // Memeriksa apakah stok saat ini mencukupi untuk pengiriman
+    if ($current_stock >= $stok_dikirim && $current_stock > 0) {
+        // Jika stok mencukupi, lakukan pengiriman
+        $query_insert_barangpinjam = "INSERT INTO barangpinjam (tgl_brg_keluar, surat_retur, gudang, article_name, size, stock, dipinjam, idstock) 
+                                  VALUES (NOW(), '', 'Stock Gudang', '$article_name', '$size', '$stok_dikirim', '', $idstock)";
 
-    if (mysqli_query($db, $query_insert_barangpinjam)) {
-        // Data berhasil dikirimkan
-        $pesan = "Data berhasil dikirimkan ke tabel barangpinjam.";
+        if (mysqli_query($db, $query_insert_barangpinjam)) {
+            // Data berhasil dikirimkan ke tabel barangpinjam
 
-        // Tampilkan pesan menggunakan JavaScript setelah data terkirim
-        echo "<script>alert('$pesan'); window.location.href = 'stockgudang.php';</script>";
-        // Ganti 'nama_halaman_tujuan.php' dengan halaman tujuan setelah data terkirim
+            // Update stok di stockgudang
+            $query_update_stok = "UPDATE stockgudang SET stock = stock - $stok_dikirim WHERE idstock = $idstock";
+            if (mysqli_query($db, $query_update_stok)) {
+                // Jika stok berhasil diperbarui, tampilkan pesan sukses
+                $pesan = "Data berhasil dikirimkan ke tabel barangpinjam dan stok berhasil diperbarui di stockgudang.";
+
+                // Tampilkan pesan menggunakan JavaScript setelah data terkirim
+                echo "<script>alert('$pesan'); window.location.href = 'stockgudang.php';</script>";
+            } else {
+                // Handle jika terjadi kesalahan saat memperbarui stok di stockgudang
+                $pesan = "Terjadi kesalahan saat memperbarui stok di stockgudang: " . mysqli_error($db);
+
+                // Tampilkan pesan kesalahan menggunakan JavaScript
+                echo "<script>alert('$pesan'); window.history.back();</script>";
+            }
+        } else {
+            // Handle jika terjadi kesalahan saat memasukkan data ke barangpinjam
+            $pesan = "Terjadi kesalahan saat memasukkan data ke tabel barangpinjam: " . mysqli_error($db);
+
+            // Tampilkan pesan kesalahan menggunakan JavaScript
+            echo "<script>alert('$pesan'); window.history.back();</script>";
+        }
     } else {
-        // Handle jika terjadi kesalahan saat memasukkan data
-        $pesan = "Terjadi kesalahan saat memasukkan data ke tabel barangpinjam: " . mysqli_error($db);
+        // Handle jika stok tidak mencukupi untuk pengiriman
+        $pesan = "Stok tidak mencukupi untuk melakukan pengiriman.";
 
         // Tampilkan pesan kesalahan menggunakan JavaScript
         echo "<script>alert('$pesan'); window.history.back();</script>";
