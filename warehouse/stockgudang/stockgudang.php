@@ -427,18 +427,46 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                 <td><?= $row["umur"]; ?></td>
                                 <td>
                                     <div class="btn-group text-center" style="display: flex; justify-content: center;">
-                                        <!-- Button untuk mengirim data ke tabel barang keluar -->
-                                        <form action="kirim_keluar.php" method="post" style="margin: 0;">
+                                        <!-- Button untuk mengirim data -->
+                                        <form action="kirim_keluar.php" method="post" id="form-keluar" style="margin: 0;">
                                             <input type="hidden" name="idstock" value="<?= $row["idstock"]; ?>">
-                                            <button type="submit" class="btn btn-info" onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Keluar</button>
+                                            <input type="hidden" name="stok_dikirim" id="stok-keluar">
+                                            <button type="button" class="btn btn-info" onclick="konfirmasiKirim('keluar')">Keluar</button>
                                         </form>
-                                        <!-- Button untuk mengirim data ke tabel barang pinjam -->
-                                        <form action="kirim_pinjam.php" method="post" style="margin: 0;">
+
+                                        <!-- Button untuk mengirim data -->
+                                        <form action="kirim_pinjam.php" method="post" id="form-pinjam" style="margin: 0;">
                                             <input type="hidden" name="idstock" value="<?= $row["idstock"]; ?>">
-                                            <button type="submit" class="btn btn-warning" onclick="return confirm('Apakah Anda ingin mengirim barang tersebut?');">Dipinjam</button>
+                                            <input type="hidden" name="stok_dikirim" id="stok-pinjam">
+                                            <button type="button" class="btn btn-warning" onclick="konfirmasiKirim('pinjam')">Dipinjam</button>
                                         </form>
                                     </div>
+
+                                    <!-- JavaScript untuk mengatur pengiriman form -->
+                                    <script>
+                                        function konfirmasiKirim(tipe) {
+                                            var jumlahStok = prompt("Masukkan jumlah stok yang akan dikirim:", "");
+                                            if (jumlahStok !== null && jumlahStok !== "") {
+                                                if (tipe === 'keluar') {
+                                                    document.getElementById("stok-keluar").value = jumlahStok;
+                                                    var konfirmasi = confirm('Apakah Anda ingin mengirim ' + jumlahStok +
+                                                        ' barang tersebut?');
+                                                    if (konfirmasi) {
+                                                        document.getElementById("form-keluar").submit();
+                                                    }
+                                                } else if (tipe === 'pinjam') {
+                                                    document.getElementById("stok-pinjam").value = jumlahStok;
+                                                    var konfirmasi = confirm('Apakah Anda ingin mengirim ' + jumlahStok +
+                                                        ' barang tersebut sebagai Barang Dipinjam?');
+                                                    if (konfirmasi) {
+                                                        document.getElementById("form-pinjam").submit();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    </script>
                                 </td>
+
                                 <td>
                                     <div class="btn-group text-center" style="display: flex; justify-content: center;">
                                         <button type="button" class="btn btn-warning delete-button" data-id="<?= $row["idstock"]; ?>">Hapus</button>
