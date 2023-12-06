@@ -27,16 +27,34 @@ if (!empty($data_barang_reject)) {
     $size = $data_barang_reject[0]["size"];
     $stock = $data_barang_reject[0]["stock"];
 
-    // Masukkan data ke dalam tabel gudangreject
-    $query_insert_gudangreject = "INSERT INTO gudangreject (kode, collection, kategori, article_name, size, stock, harga, rak, lokasi, umur, idbarang_reject) 
-                              VALUES ('', '$collection', '', '$article_name', '$size', '$stock', '', '', '', '0 - 3 bulan', $idbarang_reject)";
-    
-    if (mysqli_query($db, $query_insert_gudangreject)) {
-        // Data berhasil dikirimkan
-        $pesan = "Data berhasil dikirimkan ke tabel gudangreject.";
+    // Periksa apakah data dengan article_name dan size tersebut sudah ada di tabel gudangreject
+    $query_check_existence = "SELECT * FROM gudangreject WHERE article_name = '$article_name' AND size = '$size'";
+    $existing_data = query($query_check_existence);
+
+    if (empty($existing_data)) {
+        // Jika data belum ada, lakukan INSERT ke tabel gudangreject
+        $query_insert_gudangreject = "INSERT INTO gudangreject (kode, collection, kategori, article_name, size, stock, harga, rak, lokasi, umur, idbarang_reject) 
+                                  VALUES ('', '$collection', '', '$article_name', '$size', '$stock', '', '', '', '0 - 3 bulan', $idbarang_reject)";
+        if (mysqli_query($db, $query_insert_gudangreject)) {
+            // Data berhasil ditambahkan ke gudangreject
+            $pesan = "Data berhasil ditambahkan ke tabel gudangreject.";
+        } else {
+            // Handle jika terjadi kesalahan saat memasukkan data
+            $pesan = "Terjadi kesalahan saat menambahkan data ke tabel gudangreject: " . mysqli_error($db);
+        }
     } else {
-        // Handle jika terjadi kesalahan saat memasukkan data
-        $pesan = "Terjadi kesalahan saat memasukkan data ke tabel gudangreject: " . mysqli_error($db);
+        // Jika data sudah ada, lakukan UPDATE stok di tabel gudangreject
+        $existing_stock = $existing_data[0]["stock"];
+        $updated_stock = $existing_stock + $stock;
+
+        $query_update_gudangreject = "UPDATE gudangreject SET stock = $updated_stock WHERE article_name = '$article_name' AND size = '$size'";
+        if (mysqli_query($db, $query_update_gudangreject)) {
+            // Stok berhasil diperbarui di gudangreject
+            $pesan = "Stok berhasil diperbarui di tabel gudangreject.";
+        } else {
+            // Handle jika terjadi kesalahan saat mengupdate stok
+            $pesan = "Terjadi kesalahan saat mengupdate stok di tabel gudangreject: " . mysqli_error($db);
+        }
     }
 } else {
     // Handle jika data barang_reject tidak ditemukan
@@ -45,4 +63,3 @@ if (!empty($data_barang_reject)) {
 
 // Tampilkan pesan menggunakan JavaScript dan tetap berada pada halaman saat ini
 echo "<script>alert('$pesan'); window.history.back();</script>";
-?>

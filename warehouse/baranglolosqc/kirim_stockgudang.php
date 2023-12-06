@@ -27,16 +27,34 @@ if (!empty($data_barang_lolosqc)) {
     $size = $data_barang_lolosqc[0]["size"];
     $stock = $data_barang_lolosqc[0]["stock"];
 
-    // Masukkan data ke dalam tabel stockgudang
-    $query_insert_stockgudang = "INSERT INTO stockgudang (kode, collection, kategori, article_name, size, stock, harga, rak, lokasi, umur, idbarang_lolosqc) 
-                              VALUES ('', '$collection', '', '$article_name', '$size', '$stock', '', '', '', '0 - 3 bulan', $idbarang_lolosqc)";
-    
-    if (mysqli_query($db, $query_insert_stockgudang)) {
-        // Data berhasil dikirimkan
-        $pesan = "Data berhasil dikirimkan ke tabel stockgudang.";
+    // Periksa apakah data dengan article_name dan size tersebut sudah ada di tabel stockgudang
+    $query_check_existence = "SELECT * FROM stockgudang WHERE article_name = '$article_name' AND size = '$size'";
+    $existing_data = query($query_check_existence);
+
+    if (empty($existing_data)) {
+        // Jika data belum ada, lakukan INSERT ke tabel stockgudang
+        $query_insert_stockgudang = "INSERT INTO stockgudang (kode, collection, kategori, article_name, size, stock, harga, rak, lokasi, umur, idbarang_lolosqc) 
+                                  VALUES ('', '$collection', '', '$article_name', '$size', '$stock', '', '', '', '0 - 3 bulan', $idbarang_lolosqc)";
+        if (mysqli_query($db, $query_insert_stockgudang)) {
+            // Data berhasil ditambahkan ke stockgudang
+            $pesan = "Data berhasil ditambahkan ke tabel stockgudang.";
+        } else {
+            // Handle jika terjadi kesalahan saat memasukkan data
+            $pesan = "Terjadi kesalahan saat menambahkan data ke tabel stockgudang: " . mysqli_error($db);
+        }
     } else {
-        // Handle jika terjadi kesalahan saat memasukkan data
-        $pesan = "Terjadi kesalahan saat memasukkan data ke tabel stockgudang: " . mysqli_error($db);
+        // Jika data sudah ada, lakukan UPDATE stok di tabel stockgudang
+        $existing_stock = $existing_data[0]["stock"];
+        $updated_stock = $existing_stock + $stock;
+
+        $query_update_stockgudang = "UPDATE stockgudang SET stock = $updated_stock WHERE article_name = '$article_name' AND size = '$size'";
+        if (mysqli_query($db, $query_update_stockgudang)) {
+            // Stok berhasil diperbarui di stockgudang
+            $pesan = "Stok berhasil diperbarui di tabel stockgudang.";
+        } else {
+            // Handle jika terjadi kesalahan saat mengupdate stok
+            $pesan = "Terjadi kesalahan saat mengupdate stok di tabel stockgudang: " . mysqli_error($db);
+        }
     }
 } else {
     // Handle jika data barang_lolosqc tidak ditemukan
@@ -45,4 +63,3 @@ if (!empty($data_barang_lolosqc)) {
 
 // Tampilkan pesan menggunakan JavaScript dan tetap berada pada halaman saat ini
 echo "<script>alert('$pesan'); window.history.back();</script>";
-?>
