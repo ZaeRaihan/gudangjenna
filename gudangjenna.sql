@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2023 at 05:57 PM
+-- Generation Time: Dec 07, 2023 at 11:38 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -919,41 +919,41 @@ CREATE TABLE `barangqc` (
   `sj_for_qc` varchar(255) NOT NULL,
   `idbarang_vendor` int(25) NOT NULL,
   `idbarang_inpayet` int(25) NOT NULL,
-  `idbarang_inrevisi` int(255) NOT NULL
+  `idbarang_inrevisi` int(255) NOT NULL,
+  `print_timestamp` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `barangqc`
 --
 
-INSERT INTO `barangqc` (`idbarang_qc`, `tgl_brg_masuk`, `launching_date`, `collection`, `article_name`, `size`, `stock`, `vendor`, `tgl_brg_keluar`, `sj_for_qc`, `idbarang_vendor`, `idbarang_inpayet`, `idbarang_inrevisi`) VALUES
-(103, '2023-09-02', '2023-09-25', 'azurlane', 'toki', 's', 21, 'Three and Me', '2023-09-04', 'qc-01', 32, 0, 0),
-(104, '2023-09-04', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 'hoyo', '2023-09-04', 'qc-02', 0, 45, 0),
-(114, '2023-09-06', '2023-10-25', 'genshin', 'jean', 'xl', 12, 'bu lisa', '2023-09-06', 'qc-03', 0, 56, 0),
-(116, '2023-09-06', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 10, 'kanto', '2023-09-06', 'qc-03', 0, 0, 6),
-(121, '2023-09-02', '2023-09-25', 'azurlane', 'toki', 's', 21, 'dunia game', '2023-09-04', 'qc-01', 0, 0, 0),
-(122, '2023-09-04', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 'hoyo', '2023-09-04', 'qc-02', 0, 0, 0),
-(123, '2023-09-06', '2023-10-25', 'genshin', 'jean', 'xl', 12, 'bu lisa', '2023-09-06', 'qc-03', 0, 0, 0),
-(124, '2023-09-06', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 10, 'kanto', '2023-09-06', 'qc-03', 0, 0, 0),
-(125, '2023-09-02', '2023-09-25', 'azurlane', 'toki', 's', 21, 'dunia game', '2023-09-04', 'qc-01', 0, 0, 0),
-(126, '2023-09-06', '2023-10-25', 'genshin', 'jean', 'xl', 12, 'bu lisa', '2023-09-06', 'qc-03', 0, 0, 0),
-(127, '2023-09-06', '2023-10-25', 'genshin', 'jean', 'xl', 12, 'bu lisa', '2023-09-06', 'qc-03', 0, 0, 0),
-(128, '2023-09-06', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 10, 'johto', '2023-09-06', 'qc-03', 0, 0, 0),
-(129, '2023-09-04', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 'hoyo', '2023-09-04', 'qc-02', 0, 0, 0),
-(130, '2023-09-07', '2023-09-25', 'naruto', 'boruto', 's', 21, 'masashi', '2023-09-07', 'qc-03', 49, 0, 0),
-(131, '2023-09-07', '2023-09-25', 'naruto', 'boruto', 's', 1, 'kanto', '2023-09-07', 'hasilrevisi-01', 0, 0, 18),
-(132, '2023-09-09', '2023-10-05', 'genshin', 'ayaka', 'm', 10, 'hoyoverse', '2023-09-09', 'qc-05', 53, 0, 0),
-(136, '2023-09-11', '2023-10-05', 'genshin', 'ayaka', 'm', 3, 'bu sri', '2023-09-11', 'qc-10', 0, 78, 0),
-(137, '2023-09-12', '2023-09-12', '1212', '1212', '121', 212, 'ashyiap', '2023-09-12', '12', 0, 0, 0),
-(138, '2023-09-12', '2023-09-12', '1212', '1212', '121', 212, 'Alia Digital Printex', '2023-09-12', '12', 0, 0, 0),
-(141, '2023-09-12', '2023-09-12', 'Jennaka', 'black pink', 'M', 120, 'yosep', '2023-09-13', 'qc-03', 67, 0, 0),
-(142, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 7, 'sasha', '2023-09-13', 'qc-03', 0, 123, 0),
-(147, '2023-09-14', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', '2023-09-15', 'qc-03', 14, 0, 0),
-(148, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', '2023-09-15', 'qc-03', 0, 0, 51),
-(149, '2023-09-16', '2023-09-25', 'Prive', 'Marsella Outer Cream', 'l-xl', 9, 'Bu Citra', '2023-09-15', 'qc-03', 0, 149, 0),
-(152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 30, 'Bu Kartika', '2023-09-21', 'qc-01', 85, 0, 0),
-(153, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 2, 'Bu Yani', '2023-09-21', 'sj 01 hasil revisi', 0, 0, 53),
-(164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Kartika', '2023-11-21', 'QC-10', 85, 0, 0);
+INSERT INTO `barangqc` (`idbarang_qc`, `tgl_brg_masuk`, `launching_date`, `collection`, `article_name`, `size`, `stock`, `vendor`, `tgl_brg_keluar`, `sj_for_qc`, `idbarang_vendor`, `idbarang_inpayet`, `idbarang_inrevisi`, `print_timestamp`) VALUES
+(104, '2023-09-04', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 'hoyo', '2023-09-04', 'qc-02', 0, 45, 0, NULL),
+(114, '2023-09-06', '2023-10-25', 'genshin', 'jean', 'xl', 12, 'bu lisa', '2023-09-06', 'qc-03', 0, 56, 0, NULL),
+(116, '2023-09-06', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 10, 'kanto', '2023-09-06', 'qc-03', 0, 0, 6, NULL),
+(121, '2023-09-02', '2023-09-25', 'azurlane', 'toki', 's', 21, 'dunia game', '2023-09-04', 'qc-01', 0, 0, 0, NULL),
+(122, '2023-09-04', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 'hoyo', '2023-09-04', 'qc-02', 0, 0, 0, NULL),
+(123, '2023-09-06', '2023-10-25', 'genshin', 'jean', 'xl', 12, 'bu lisa', '2023-09-06', 'qc-03', 0, 0, 0, NULL),
+(124, '2023-09-06', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 10, 'kanto', '2023-09-06', 'qc-03', 0, 0, 0, NULL),
+(125, '2023-09-02', '2023-09-25', 'azurlane', 'toki', 's', 21, 'dunia game', '2023-09-04', 'qc-01', 0, 0, 0, NULL),
+(126, '2023-09-06', '2023-10-25', 'genshin', 'jean', 'xl', 12, 'bu lisa', '2023-09-06', 'qc-03', 0, 0, 0, NULL),
+(127, '2023-09-06', '2023-10-25', 'genshin', 'jean', 'xl', 12, 'bu lisa', '2023-09-06', 'qc-03', 0, 0, 0, NULL),
+(128, '2023-09-06', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 10, 'johto', '2023-09-06', 'qc-03', 0, 0, 0, NULL),
+(129, '2023-09-04', '2023-09-25', 'azurlane', 'asuna ichinose', 'm', 25, 'hoyo', '2023-09-04', 'qc-02', 0, 0, 0, NULL),
+(130, '2023-09-07', '2023-09-25', 'naruto', 'boruto', 's', 21, 'masashi', '2023-09-07', 'qc-03', 49, 0, 0, NULL),
+(131, '2023-09-07', '2023-09-25', 'naruto', 'boruto', 's', 1, 'kanto', '2023-09-07', 'hasilrevisi-01', 0, 0, 18, NULL),
+(132, '2023-09-09', '2023-10-05', 'genshin', 'ayaka', 'm', 10, 'hoyoverse', '2023-09-09', 'qc-05', 53, 0, 0, NULL),
+(136, '2023-09-11', '2023-10-05', 'genshin', 'ayaka', 'm', 3, 'bu sri', '2023-09-11', 'qc-10', 0, 78, 0, NULL),
+(137, '2023-09-12', '2023-09-12', '1212', '1212', '121', 212, 'ashyiap', '2023-09-12', '12', 0, 0, 0, NULL),
+(138, '2023-09-12', '2023-09-12', '1212', '1212', '121', 212, 'Alia Digital Printex', '2023-09-12', '12', 0, 0, 0, NULL),
+(141, '2023-09-12', '2023-09-12', 'Jennaka', 'black pink', 'M', 120, 'yosep', '2023-09-13', 'qc-03', 67, 0, 0, NULL),
+(142, '2023-09-13', '2023-09-25', 'Jennaka', 'haven black top', 'm', 7, 'sasha', '2023-09-13', 'qc-03', 0, 123, 0, NULL),
+(147, '2023-09-14', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', '2023-09-15', 'qc-03', 14, 0, 0, NULL),
+(148, '2023-09-15', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', '2023-09-15', 'qc-03', 0, 0, 51, NULL),
+(149, '2023-09-16', '2023-09-25', 'Prive', 'Marsella Outer Cream', 'l-xl', 9, 'Bu Citra', '2023-09-15', 'qc-03', 0, 149, 0, NULL),
+(152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 30, 'Bu Kartika', '2023-09-21', 'qc-01', 85, 0, 0, NULL),
+(153, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 2, 'Bu Yani', '2023-09-21', 'sj 01 hasil revisi', 0, 0, 53, '2023-12-07 04:38:26'),
+(164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Kartika', '2023-11-21', 'QC-10', 85, 0, 0, '2023-12-07 04:38:26');
 
 --
 -- Triggers `barangqc`
@@ -1077,7 +1077,14 @@ INSERT INTO `barangqc_history` (`id`, `idbarang_qc`, `tgl_brg_masuk`, `launching
 (58, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 30, 'Bu Yuli', '2023-09-21', 'qc-01', 85, 0, 0, '2023-11-26 15:29:25'),
 (59, 164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', '2023-11-21', 'QC-10', 85, 0, 0, '2023-11-26 15:29:25'),
 (60, 152, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 30, 'Bu Yuli', '2023-09-21', 'qc-01', 85, 0, 0, '2023-12-03 15:26:51'),
-(61, 164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', '2023-11-21', 'QC-10', 85, 0, 0, '2023-12-03 15:26:51');
+(61, 164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', '2023-11-21', 'QC-10', 85, 0, 0, '2023-12-03 15:26:51'),
+(62, 164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Kartika', '2023-11-21', 'QC-10', 85, 0, 0, '2023-12-07 10:24:00'),
+(63, 164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 110, 'Bu Kartika', '2023-11-21', 'QC-10', 85, 0, 0, '2023-12-07 10:29:29'),
+(64, 103, '2023-09-02', '2023-09-25', 'azurlane', 'toki', 's', 21, 'Three and Me', '2023-09-04', 'qc-01', 32, 0, 0, '2023-12-07 10:36:48'),
+(65, 164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Kartika', '2023-11-21', 'QC-10', 85, 0, 0, '2023-12-07 10:38:08'),
+(66, 153, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 2, 'Bu Yani', '2023-09-21', 'sj 01 hasil revisi', 0, 0, 53, '2023-12-07 10:38:19'),
+(67, 164, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Kartika', '2023-11-21', 'QC-10', 85, 0, 0, '2023-12-07 10:38:26'),
+(68, 153, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 2, 'Bu Yani', '2023-09-21', 'sj 01 hasil revisi', 0, 0, 53, '2023-12-07 10:38:26');
 
 -- --------------------------------------------------------
 
@@ -1318,7 +1325,7 @@ INSERT INTO `barangvendor` (`idbarang_vendor`, `tgl_brg_masuk`, `sj_from_vendor`
 (13, '2023-09-14', 'vendor-03 ', '2023-07-08', 'Essential', 'Athaya Top BW', 'l-xl', 1, 'PT.SJS', 'QC', 0),
 (14, '2023-09-14', 'vendor-03  ', '2023-07-08', 'Essential', 'Athaya Top BW', 'xl', 1, 'PT.SJS', 'QC', 0),
 (84, '2023-09-21', 'vendor-02 ', '2023-09-25', 'Jennaka', 'haven', 'L', 12, 'Bu Yuli', 'QC', 0),
-(102, '2023-12-03', 'hasil-01', '2023-12-25', 'azurlane', 'asuna', 'XL', 22, 'Three and Me', 'QC', 0);
+(102, '2023-12-03', 'hasil-01 ', '2023-12-25', 'azurlane', 'asuna', 'XL', 20, 'Three and Me', 'QC', 0);
 
 --
 -- Triggers `barangvendor`
@@ -1415,7 +1422,8 @@ INSERT INTO `barangvendor_history` (`id`, `idbarang_vendor`, `tgl_brg_masuk`, `s
 (162, 85, '2023-09-21', 'vendor-02     ', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, 'Bu Yuli', 'QC', 0, '2023-11-20 13:00:22'),
 (163, 101, '2023-11-20', 'vendor-10', '2023-12-05', 'essential', 'haven white top', 'L-XL', 21, 'PT.SJS', 'Payet', 0, '2023-11-20 13:51:57'),
 (164, 85, '2023-09-21', 'vendor-02      ', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', 'QC', 0, '2023-11-26 15:29:25'),
-(165, 85, '2023-09-21', 'vendor-02       ', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', 'Payet', 0, '2023-12-03 15:26:51');
+(165, 85, '2023-09-21', 'vendor-02       ', '2023-09-25', 'Jennaka', 'haven', 'S-M', 111, 'Bu Yuli', 'Payet', 0, '2023-12-03 15:26:51'),
+(166, 102, '2023-12-03', 'hasil-01', '2023-12-25', 'azurlane', 'asuna', 'XL', 22, 'Three and Me', 'QC', 0, '2023-12-07 10:17:20');
 
 -- --------------------------------------------------------
 
@@ -1579,7 +1587,9 @@ INSERT INTO `barang_lolosqc_history` (`id`, `idbarang_lolosqc`, `tgl_brg_masuk`,
 (45, 349, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 11, '2023-11-20', 'wh-10', 153, '2023-11-26 14:52:07'),
 (46, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, '2023-09-21', 'WH -01', 152, '2023-11-26 15:29:25'),
 (47, 349, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 10, '2023-11-20', 'wh-10', 153, '2023-11-26 15:31:31'),
-(48, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, '2023-09-21', 'WH -01', 152, '2023-12-03 15:26:51');
+(48, 345, '2023-09-21', '2023-09-25', 'Jennaka', 'haven', 'S-M', 20, '2023-09-21', 'WH -01', 152, '2023-12-03 15:26:51'),
+(49, 349, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 10, '2023-11-20', 'wh-11', 153, '2023-12-07 10:38:19'),
+(50, 349, '2023-09-21', '2023-09-25', 'Jennaka', 'haven black top', 'S-M', 10, '2023-11-20', 'wh-11', 153, '2023-12-07 10:38:26');
 
 -- --------------------------------------------------------
 
@@ -2381,7 +2391,8 @@ INSERT INTO `stockgudang_history` (`id`, `idstock`, `kode`, `collection`, `kateg
 (92, 72, 'JNK-4259', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (XL)', 'XL', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-10-27 13:06:22'),
 (93, 71, 'JNK-4258', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (L)', 'L', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-11-26 15:32:26'),
 (94, 71, 'JNK-4258', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (L)', 'L', 21, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-11-26 15:32:31'),
-(95, 71, 'JNK-4258', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (L)', 'L', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-11-26 15:32:41');
+(95, 71, 'JNK-4258', 'PHALESSA COLLECTION 2 (25 AGUSTUS 2023)', 'Top', 'MADYA TOP ASH PINK (L)', 'L', 20, 659000, '1H', 'RAK', '0 - 3 BULAN', 0, '2023-11-26 15:32:41'),
+(96, 80, '', 'Jennaka', '', 'haven black top', 'S-M', 10, 0, '', '', '0 - 3 bulan', 349, '2023-12-07 10:17:52');
 
 -- --------------------------------------------------------
 
@@ -2759,7 +2770,7 @@ ALTER TABLE `barangqc`
 -- AUTO_INCREMENT for table `barangqc_history`
 --
 ALTER TABLE `barangqc_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `barangretur`
@@ -2795,7 +2806,7 @@ ALTER TABLE `barangvendor`
 -- AUTO_INCREMENT for table `barangvendor_history`
 --
 ALTER TABLE `barangvendor_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT for table `barang_lolosqc`
@@ -2807,7 +2818,7 @@ ALTER TABLE `barang_lolosqc`
 -- AUTO_INCREMENT for table `barang_lolosqc_history`
 --
 ALTER TABLE `barang_lolosqc_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `barang_minor`
@@ -2861,13 +2872,13 @@ ALTER TABLE `gudangreject_history`
 -- AUTO_INCREMENT for table `stockgudang`
 --
 ALTER TABLE `stockgudang`
-  MODIFY `idstock` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `idstock` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `stockgudang_history`
 --
 ALTER TABLE `stockgudang_history`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `vendor`
