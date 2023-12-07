@@ -426,6 +426,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                             <th scope="col">Status</th>
                             <th scope="col">Kirim</th>
                             <th scope="col">Aksi</th>
+                            <th scope="col">Printed</th>
                         </tr>
 
                         <!-- Table and Pagination -->
@@ -474,6 +475,7 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
                                         data-id="<?= $row["idbarang_inrevisi"]; ?>">Copy</button>
                                 </div>
                             </td>
+                            <td><?= $row["print_timestamp"]; ?></td>
                         </tr>
 
                         <div class="modal fade" id="ubahBarangModal<?= $row["idbarang_inrevisi"]; ?>" tabindex="-1"
@@ -675,8 +677,27 @@ $totalPagesDateFilter = ceil($totalRecordsDateFilter / $limit);
             const selectedRowsStr = selectedRows.join(',');
             const printPageUrl = `print_page.php?selected_rows=${encodeURIComponent(selectedRowsStr)}`;
 
-            // Buka URL Print Page di tab baru
-            window.open(printPageUrl, '_blank');
+            // Kirim request ke server untuk menyimpan timestamp
+            fetch('save_timestamp.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        selectedRows
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Buka URL Print Page di tab baru
+                        window.open(printPageUrl, '_blank');
+                    } else {
+                        throw new Error('Failed to save timestamp.');
+                    }
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
         } else {
             alert('No rows selected for printing.');
         }
